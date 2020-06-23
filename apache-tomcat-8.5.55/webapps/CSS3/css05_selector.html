@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/* 속성을 선택자로 지정하는 방법 */
+	/* 속성은 하나의 태그에 여러개 있을 수 있음. */
+	/* 속성은 태그의 부속물이므로 태그와 함께 와야 한다.*/
+	/* 태그 이름, 속성 이름, 속성값 다 와야 한다 */
+	input[type=text]{
+		background: red;
+	}
+	input[name=name]{
+		border-color: yellow;
+	}
+	input[type=password]{
+		background-color: blue;
+	}
+	input[name=pass]{
+		border-color: purple;
+	}
+</style>
+</head>
+<body>
+<form>
+	<input type="text" name="name">
+	<input type="password" name="pass">
+</form>
+</body>
+</html>

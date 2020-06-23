@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="/Users/i/Desktop/eclipse/SHOBU/WebContent" path="/SHOBU" reloadable="true" source="org.eclipse.jst.jee.server:SHOBU"><Resources><PreResources base="/Users/i/Desktop/eclipse/SHOBU/build/classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context>

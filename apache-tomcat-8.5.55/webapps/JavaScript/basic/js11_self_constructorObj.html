@@ -1,0 +1,64 @@
+<!-- 
+해보기 
+ Student 생성자 객체 선언,
+ 이름, 자바 score, 파이썬 score, html5 score.... 속성
+ 함수1(총합)
+ 함수2(평균)
+ 함수3(정보들을 출력)
+ 
+ 	이름	자바	파이썬 html5  총점   평균
+    제임스   70   80   90   150  89
+    
+이때 학생은 총 3명으로 객체 생성
+html body 부분 안에다가 알아서... 특정 영역을 지정해서 해주세요..
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>생성자 함수 이용한 객체 생성</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function Student(name, java, python, html5){
+		this.name = name;
+		this.java = java;
+		this.python = python;
+		this.html5 = html5;
+		
+		this.total = function(){
+			return java + python + html5;
+		}
+		this.mean = function(){
+			return this.total() / 3;
+		}
+		//2015년부터 바뀐 자바스크립트 개정판 문법을 es6라고 함.
+		//es6에서 바뀐 문법
+		//1) ` (grave accent)  => 태그와 데이터 사이에 연산 필요없이 쭉 붙일 수 있게 만들어줌.
+		//2) arrow function(엄청 중요! 반드시 알아야 함. 나중에... Vue.js에서)
+		//3) var --> let(로컬), const(상수)
+		this.print = function(){
+			document.write('<table border=1><tr><th>이름</th><th>자바</th><th>파이썬</th><th>html5</th><th>총점</th><th>평균</th></tr>');
+						
+			//document.write('<tr><td>'+name+'</td><td>'+java+'</td><td>'+python+'</td><td>'+html5+'</td><td>'+this.total()+'</td><td>'+this.mean()+'</td></tr></table>');
+			//위의 것을 grave accent로 바꿔보겠음.
+			document.write(`<tr><td>${this.name}</td><td>${this.java}</td><td>${this.python}</td><td>${this.html5}</td><td>${this.total()}</td><td>${this.mean()}</td></tr></table>`);
+		}
+		
+	}
+	$(document).ready(function(){
+		var s1 = new Student('김00', 100, 100, 100);
+		var s2 = new Student('이00', 90, 70, 50);
+		var s3 = new Student('박00', 10, 40, 60);
+		
+		s1.print();
+		document.write('<h3>============================<h3>');
+		s2.print();
+		document.write('<h3>============================<h3>');
+		s3.print();
+	});
+</script>
+</head>
+<body>
+	<p></p>
+</body>
+</html>

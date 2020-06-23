@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function selectline(){
+		//alert("^^"); // 잘 동작하는지 확인
+		//var sub = document.subwayFrm.line; //이렇게 할 수도 있지만
+		var sub = document.getElementById("sline"); //아이디로도 찾을 수 있음
+		//select는 바로 value로 찾음.
+		if(sub.value!=null) alert(sub.value+" 호선!! ");
+	}
+</script>
+</head>
+<body>
+	<form name="subwayFrm">
+		<!-- select는 onclick 아님. 아이템이 변경되므로 onchange -->
+		<!-- select에서는 onclick은 선택지 바꾸지도 못하고 클릭만 하면 적용됨 -->
+		<!-- onclick이 안 되는 게 아니라 클릭이 아이템 바꾸기 전에 발생한다. -->
+		<select name="line" onchange="selectline()" id="sline">
+			<!-- select는 value 안 줘도 서버에 값 전달됨. -->
+			<!-- value="" 나중에 nullpoint 떨어지니까 다른 값 줄 수 있음 -->
+			<option value="">---호선---</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+	</form>
+</body>
+</html>
