@@ -108,4 +108,10 @@ $(function() {
     $("#pages li:nth-child(" + classIndex + ")").addClass("selected");
   }	
   //~pagenation
+  
+  $('.value').each(function() {
+		var text = $(this).text();
+		$(this).parent().css('width', text);
+	});
+	//~graph
 });

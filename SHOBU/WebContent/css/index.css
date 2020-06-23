@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-/*
- * This is a Work In Progress!
- * The code is a rough draft, I would suggest not using it until it's done
- */
-
 body {
   padding: 0;
   margin: 0;
@@ -177,6 +172,112 @@ a {
 #pages img{
 	width: 150px;
 }
-.away{
+.graph{
+	width:500px;
+	margin: 30px 0;
+}
+.away, .graph, .home{
 	float: left;
 }
+
+
+figure {
+	margin: 0 auto;
+	max-width: 700px;
+	position: relative;
+}
+.graphic {
+	padding-left: 20px;
+}
+
+@keyframes expand {
+	from {width: 0%;}
+	to {width: 100%;}
+}
+@media screen and (min-width: 768px) {
+	@keyframes expand {
+		from {width: 0%;}
+		to {width: calc(100% - 75px);}
+	}
+}
+.chart {
+	overflow: hidden;
+	width: 0%;
+	animation: expand 1.5s ease forwards;
+}
+.row + .row .chart {
+	animation-delay: .2s;
+}
+.row + .row + .row .chart {
+	animation-delay: .4s;
+}
+.block {
+	display: block;
+	height: 100px;
+	color: #fff;
+	font-size: .75em;
+	float: left;
+	background-color: #334D5C;
+	position: relative;
+	overflow: hidden;
+	opacity: 1;
+	transition: opacity, .3s ease;
+	cursor: pointer;
+}
+.block:nth-of-type(2){
+	background-color: #45B29D;
+}
+.block:hover {
+	opacity: .65;
+}
+.value {
+	display: block;
+	line-height: 1em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+
+
+
+#bul_history{
+	width: 1000px;
+	margin: 400px auto;
+	position:relative;
+}
+.content-table {
+		width:100%;
+  		border-collapse: collapse;
+  		margin: 25px 0;
+  		font-size: 0.9em;
+  		min-width: 400px;
+  		border-radius: 5px 5px 0 0;
+  		overflow: hidden;
+  		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	}
+	.content-table thead tr {
+  		background-color: #009879;
+  		color: #FFFFFF;
+  		text-align: left;
+  		font-weight: bold;
+	}
+	.content-table th,
+	.content-table td {
+  		padding: 12px 15px;
+	}
+	.content-table tbody tr {
+		border-bottom: 1px solid #DDDDDD;
+	}
+	.content-table tbody tr:nth-of-type(even) {
+		background-color: #F3F3F3;
+		color: #009879;
+	}
+	.content-table tbody tr:nth-of-type(odd) {
+		background-color: #FFFFFF;
+		color: #009879;
+	}
+	.content-table tbody tr:last-of-type {
+		border-bottom: 2px solid #009879;
+	}
