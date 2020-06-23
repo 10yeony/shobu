@@ -1,0 +1,77 @@
+<!-- 
+모든 입력 폼을 하나로 묶는 역할을 하는 태그
+form 태그이다.(중요함!)
+이 안에 넣을 수 있는 다양한 입력폼들을 한번 사용해보겠다
+
+속성
+1)필수(Required) --- action="서버 안에 있는 페이지"
+2)선택(Optional)
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/* 아이디의 값이 wrap인 부분을 선택자로 지정 */
+	/* 아이디를 선택자로 지정할 때 앞에 #을 붙인다. */
+	#wrap{
+		/* margin은 전체 프레임과 안에 있는 것과의 여백 */
+		margin-left: 10%;
+		margin-top: 10%;
+	}
+</style>
+</head>
+<body>
+<h2 align="center">Register Input Form...</h2>
+<!-- 제목 빼고 바디의 내용을 다 div로 감쌈 -->
+<div id="wrap">
+<form action="#">
+<!-- 공백 주고 싶을 때 &nbsp; -->
+<!-- placeholder 속성으로 뭘 입력해야 할지 힌트를 줌 -->
+<label>NAME</label> &nbsp; &nbsp;<input type="text" name="name" placeholder="이름 입력"><br/><br/>
+<!-- HTML5에서 추가된 속성 : value 속성으로 값을 입력해놓고 / readonly 속성은 수정 못하게 함 -->
+<label>ID</label> &nbsp; &nbsp;<input type="text" name="id" value="encore" readonly="readonly"><br/><br/>
+<label>PASSWORD</label> &nbsp; &nbsp;<input type="password" name="password"><br/><br/>
+<input type="file" name="userfile"><br/><br/> <!-- 파일 업로드 기술 쓸 때 쓴다. -->
+BirthDate <input type="date" name="birthdate" id="birthdate"><br/><br/>
+<!-- name은 화면의 이름이고, 실제로 전송되는 값은 value -->
+Gender <input type="radio" name="gender" value="M">남성
+       <input type="radio" name="gender" value="F">여성<br/><br/>
+<!-- required : HTML5에서 추가된 속성. 자바스크립트 안 넣어줘도 필수입력하게 할 수 있음 -->
+Age <input type="number" name="age" required="required"><br/><br/>
+<strong>핸드폰 번호 앞자리를 선택하세요</strong><br/>
+<!-- 여러개 볼 수 있게 하려면 multiple -->
+<select multiple="multiple">
+	<!-- option은 꼭 안 닫아줘도 됨 -->
+	<!-- value를  안 줘도 됨. 안 주면 010, 011, 019가 값으로 감-->
+	<!-- 보이는 것과 다른 값 날릴 때 value를 준다. -->
+	<option>010
+	<option>011
+	<option value="SK C&C">017
+	<option>019
+</select><br/><br/>
+
+<strong>다음 중 집에서 길러봤던 애완동물들을 선택하세요</strong><br/>
+<!-- Multiple한 Choice. 여러 개 동시 선택 : checkbox -->
+<!-- value를 반드시 줘야 함. -->
+<input type="checkbox" name="pets" value="개">개
+<input type="checkbox" name="pets" value="고양이">고양이
+<input type="checkbox" name="pets" value="햄스터">햄스터
+<input type="checkbox" name="pets" value="금붕어">금붕어
+<input type="checkbox" name="pets" value="앵무새">앵무새
+<br/><br/>
+Introduction<br/>
+<textarea rows="5" cols="40">
+Hi...
+</textarea>
+<hr>
+<br/><br/>
+<!-- 버튼의 이름 value 속성에 적음 -->
+<input type="submit" value="Sending">
+<input type="reset" value="Clear">
+<input type="button" value="Button">
+</form>
+</div>
+</body>
+</html>

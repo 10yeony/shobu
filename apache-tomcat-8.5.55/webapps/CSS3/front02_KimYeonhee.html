@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Encore Theater</title>
+<style type="text/css">
+	header{
+		font-family: cursive;
+		font-weight: bold;
+	}
+	nav{
+		font-family: 굴림;
+	}
+	#wrap{
+		width: 40%;
+		margin: 0 auto;
+	}
+	fieldset{
+		border-right: none;
+	}
+	fieldset.timetable div{
+		text-align: center;
+	}
+	input[type=text], input[type=number]{
+		width: 200px;
+	}
+	img:hover{
+		opacity: 0.5;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<header>
+		<h1>Encore Theater</h1>
+	</header>
+	<nav>
+		<h2>쿵푸팬더 예매</h2>
+	</nav>
+	<section>
+		<img src="https://movie-phinf.pstatic.net/20111223_81/13246396769481IxBH_JPEG/movie_image.jpg"><br/>
+		<label>상영관</label> 
+		<select>
+			<option>CGV
+			<option>롯데시네마
+			<option>메가박스
+		</select>&nbsp
+		<label>날짜 선택</label>
+		<input type="text" name="date" placeholder="mm/dd/yyyy"><br/>
+		<fieldset class="timetable">
+			<legend>시간선택</legend>
+			<div>
+				<input type="radio" name="time" value="08:30">08:30 
+				<input type="radio" name="time" value="11:00">11:00 
+				<input type="radio" name="time" value="14:20">14:20 
+				<input type="radio" name="time" value="17:25">17:25 
+				<input type="radio" name="time" value="20:10">20:10 
+				<input type="radio" name="time" value="23:05">23:05 
+			</div>
+		</fieldset>
+		<p><label>요금</label> &nbsp<s>W9,000</s> &nbsp<u>W5,000</u></p>
+		<p><label>인원</label> <input type="number" name="amount" placeholder="0"></p>
+		<p><label>금액</label> <input type="number" name="price" placeholder="0"></p>
+		<p><input type="checkbox" name="option" value="check" checked>옵션</p>
+		<fieldset>
+			<input type="checkbox" name="food" value="popcorn">팝콘
+			<input type="checkbox" name="food" value="coke">콜라
+		</fieldset>
+	</section>
+</div>
+</body>
+</html>

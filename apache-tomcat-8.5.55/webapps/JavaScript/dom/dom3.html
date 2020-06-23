@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function() {
+		 //1.
+			/* var header1 = document.getElementById("header1");
+			var header2 = document.getElementById("header2");
+			header1.innerHTML = '<H2><font color = red>Using getElementById</H2>'; */
+		
+
+		//2.
+		var headers = document.getElementsByTagName('h1');
+		for(var i=0; i<headers.length; i++){
+			headers[i].innerHTML = "Using getElementsByName()";
+		}
+		alert(headers);
+		alert(headers.length);
+	}
+</script>
+</head>
+<body>
+	<h1 id="header1">Header - 1</h1>
+	<h1 id="header2">Header - 2</h1>
+</body>
+</html>

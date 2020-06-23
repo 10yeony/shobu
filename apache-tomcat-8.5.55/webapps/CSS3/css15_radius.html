@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>radius</title>
+<style type="text/css">
+	/* 모서리를 둥글게 할 때가 많은데 */
+	/* 모바일 기사, 영화 포스터 등 */
+	#show1{
+		border: 2px solid red;
+		padding: 10px;
+		border-radius: 25px;
+	}
+	#show2{
+		border: 2px solid red;
+		padding: 10px;
+		border-radius: 50px 20px;
+		/* 이웃하지 않은, 마주보는 것들끼리 묶어서 radius 줌  */
+	}
+</style>
+</head>
+<body>
+<h2>border-radius :: 25px</h2>
+<div id="show1">
+	<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+</div>
+<h2>border-radius :: 50px 20px</h2>
+<div id="show2">
+	<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+</div>
+</body>
+</html>
