@@ -49,14 +49,16 @@
 			  <ul id="pages">    
 			    <li>
 			      <div id='game1'>
-			    	<div class="home">
-			    		<img src="">
-			    		<span>선발투수: </span>
-			    	</div>
-			    	막대그래프배당
 			    	<div class="away">
-			    		<img src="">
-			    		<span>선발투수: </span>
+			    		<img src="img/team/kiwoom.png" alt="away">
+			    		<br>
+			    		<span>선발투수: 최원태</span>
+			    	</div>
+			    	<div class="graph"></div>
+			    	<div class="home">
+			    		<img src="img/team/lg.png" alt="home">
+			    		<br>
+			    		<span>선발투수: 김윤식</span>
 			    	</div>
 			      </div>
 			  </li>

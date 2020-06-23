@@ -167,3 +167,16 @@ a {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+
+
+
+
+
+
+#pages img{
+	width: 150px;
+}
+.away{
+	float: left;
+}
