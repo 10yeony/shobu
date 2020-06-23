@@ -49,10 +49,15 @@
 			  <ul id="pages">    
 			    <li>
 			      <div id='game1'>
-			    	팀로고 두개
-			    	선발투수 이름
-			    	가운데막대그래프
-			    	배당률?
+			    	<div class="home">
+			    		<img src="">
+			    		<span>선발투수: </span>
+			    	</div>
+			    	막대그래프배당
+			    	<div class="away">
+			    		<img src="">
+			    		<span>선발투수: </span>
+			    	</div>
 			      </div>
 			  </li>
 			  <li>
