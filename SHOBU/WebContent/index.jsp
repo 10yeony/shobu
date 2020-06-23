@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>쇼부</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/test.js"></script>
-<link rel="stylesheet" href="css/test.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/test.js"></script>
+	<script src="js/index.js"></script>
+	<link rel="stylesheet" href="css/test.css">
+	<link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -43,9 +44,53 @@
 	
 	<div class="card" id='versus'>
 		<button></button>
-		<div class='gameInfo'>
-		</div>
-		<button></button>
+		<div id="slider">
+			  <a id="prev" class="arrow"></a>
+			  <ul id="pages">    
+			    <li>
+			      <div id='game1'>
+			    	팀로고 두개
+			    	선발투수 이름
+			    	가운데막대그래프
+			    	배당률?
+			      </div>
+			  </li>
+			  <li>
+			   <div id='game2'>
+			    	팀로고 두개
+			    	선발투수 이름
+			    	가운데막대그래프
+			    	배당률?
+			      </div>
+			  </li>
+			    <li>
+			      <div id='game3'>
+			    	팀로고 두개
+			    	선발투수 이름
+			    	가운데막대그래프
+			    	배당률?
+			      </div>
+			  </li>
+			  <li>
+			   <div id='game4'>
+			    	팀로고 두개
+			    	선발투수 이름
+			    	가운데막대그래프
+			    	배당률?
+			      </div> 
+			  </li>
+			  <li>
+			    <div id='game5'>
+			    	팀로고 두개
+			    	선발투수 이름
+			    	가운데막대그래프
+			    	배당률?
+			      </div>
+			  </li>
+			</ul>
+			<a id="next" class="arrow"></a>
+			<ul class="navigation"></ul>
+			</div> 
 	</div>
 	
 	<div class="card" id='bul_history'>
