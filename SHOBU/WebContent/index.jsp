@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="css/index.css">
 </head>
 
-<body >
+<body>
 	
 	<!-- nav -->
 	<div class="area"></div>
@@ -43,7 +43,7 @@
 	
 	<!-- main -->
 	
-	<div class='card' id='versus'>
+	
 		<div id="slider">
 			  <a id="prev" class="arrow"></a>
 			  <ul id="pages">    
@@ -56,7 +56,20 @@
 			    		<span class="sp">최원태</span>
 			    	</div>
 			    	<div class="graph">
-			    		<canvas id="canvas" width="500" height="50"></canvas>
+			    		<figure>
+							  <div class="graphic">
+							    <div class="row">
+							      <div class="chart">
+							        <span class="block" title="away">
+							           <span class="value">43%</span>
+							        </span>
+							        <span class="block" title="home">
+							           <span class="value">57%</span>
+							        </span>
+							      </div>
+							    </div>
+							  </div>
+							</figure>
 			    	</div>
 			    	<div class="home">
 			    		<img src="img/team/lg.png" alt="home">
@@ -198,7 +211,8 @@
 			<a id="next" class="arrow"></a>
 			<ul class="navigation"></ul>
 			</div> 
-		</div>
+
+	
 	<div class="card" id='bul_history'>
 		<table class="content-table">
 				<thead>

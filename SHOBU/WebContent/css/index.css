@@ -187,12 +187,18 @@ figure {
 	position: relative;
 }
 .graphic {
-	padding: 0 20px;
+	padding-left: 20px;
 }
 
 @keyframes expand {
 	from {width: 0%;}
 	to {width: 100%;}
+}
+@media screen and (min-width: 768px) {
+	@keyframes expand {
+		from {width: 0%;}
+		to {width: calc(100% - 75px);}
+	}
 }
 .chart {
 	overflow: hidden;
@@ -237,7 +243,8 @@ figure {
 
 
 #bul_history{
-	width: 956px;
+	width: 1000px;
+	margin: 400px auto;
 	position:relative;
 }
 .content-table {
