@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.box{
+		width: 150px;
+		height: 150px;
+		background: #cccccc;
+		float: left; /* 박스 4개 다 붙인다 */
+		margin-right: 10px; /* 10px 여백을 두고 */
+	}
+	.vi{overflow: visible;}
+	.hi{overflow: hidden;}
+	.sc{overflow: scroll;}
+	.au{overflow: auto;}
+</style>
+</head>
+<body>
+	<div class="box vi"> <!-- box인데 box의 하위값으로 vi가 있다. vi=visible의 약자 -->
+		<h3>visible</h3>
+		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+	</div>
+	
+	<div class="box hi"> <!-- box인데 box의 하위값으로 hi가 있다. hi=hidden의 약자 -->
+		<h3>Hidden</h3>
+		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+	</div>
+	
+	<div class="box sc"> <!-- box인데 box의 하위값으로 sc가 있다. sc=scroll의 약자 -->
+		<h3>Scroll</h3>
+		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+	</div>
+	
+	<div class="box au"> <!-- box인데 box의 하위값으로 au가 있다. au=auto의 약자 -->
+		<h3>Auto</h3>
+		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+	</div>
+</body>
+</html>

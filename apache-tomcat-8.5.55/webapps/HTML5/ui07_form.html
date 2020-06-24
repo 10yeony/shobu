@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form tag</title>
+</head>
+<body>
+	<h2>Basic Form Tag</h2>
+	<form action="#">
+		<!--  폼의 이름 = vo의 필드명 = 테이블의 컬럼명 -->
+		<!-- 여기서는 폼의 이름이 id, pass, addr -->
+		<p>아이디 <input type="text" name="id"></p>
+		<p>비밀번호 <input type="password" name="pass"></p>
+		<p>사는 곳 <input type="text" name="addr"></p>
+		<!-- submit : 폼에 입력된 값을 모두 다 가지고 날아감 -->
+		<!-- 날아갈 곳을 정해줘야 함. <form action = "test.jsp"> 이런 식으로 -->
+		<input type="submit" value="전송">
+		<!-- 자바스크립트와 연결해주지 않으면 버튼은 아무것도 아님 -->
+		<input type="button" value="버튼">
+		<button>버튼2</button>
+	</form>
+</body>
+</html>

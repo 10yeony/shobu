@@ -1,0 +1,36 @@
+<!-- 
+css 전문적으로 하는 사람에게 박스모델 중요한 이슈
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.div1{
+		width: 300px;
+		height: 100px;
+		border: 1px solid red;
+	}
+	
+	.div2{
+		width: 300px;
+		height: 100px;
+		border: 1px solid red;
+		padding: 50px;
+		/* 여기까지 하면 가로 400px 세로 200px이 됨 */
+		
+		/* box-sizing: border-box; */
+		/* padding 50px 주면서 원래 크기 300px 100px로 됨 */
+		
+		box-sizing: content-box;
+		/* 이게 원래 디폴트임 */
+	}
+</style>
+</head>
+<body>
+<div class="div1">The Div is smaller...(width 300px height 100px)</div>
+<br/>
+<div class="div2">The Div is bigger...(width 300px height 100px)</div>
+</body>
+</html>

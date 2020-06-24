@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수 동작 원리</title>
+<script type="text/javascript">
+	// 익명함수는 미리 메모리에 올리지 않고 순서대로 실행됨
+	var calc = function(x,y){ //calc 변수 생성하고 함수 할당
+		return x + y;
+	}
+	
+	console.log(calc(5,3)); // 8이 출력됨.
+	
+	//오버라이딩(재정의)
+	var calc = function (x,y){ // 기존 calc 변수에 곱셈 기능을 가진 새로운 함수를 할당
+		return x * y;
+	}
+	
+	console.log(calc(5,3)); // 15가 출력됨.
+</script>
+</head>
+<body>
+
+</body>
+</html>

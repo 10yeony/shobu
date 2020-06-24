@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	*{
+		margin : 0;
+		padding : 0;
+		box-sizing: border-box;
+	}
+	
+	#header{
+		padding-left: 30px;
+		padding-bottom: 30px;
+	}
+	
+	#topnav{
+		background: black;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	
+	#topnav a:link {color: #8C8C8C; text-decoration: none;}
+	#topnav a:visited {color: #8C8C8C;}
+	
+	#topnav a{
+		margin: 70px;
+	}
+	
+	#title{
+		position:relative;
+		height: 200px;
+		/*background-image: url("https://www.wikileaks-kr.org/news/photo/202001/75096_53887_4521.png");
+		background-size: 70%;
+		background-repeat: no-repeat;
+		background-position: right; */
+		background-color: #ABF200;
+		border-radius: 20px;
+		margin: 20px 40px 30px;
+		padding: 30px;
+	}
+	
+	#title h1, #title p{
+		color: white;
+		margin: 10px;
+	}
+	
+	#title img{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 70%;
+		height: 200px;
+		border-radius: 20px;
+	}
+	
+	#aside{
+		background-color: lightgrey;
+		padding-top: 20px;
+		padding-left: 20px;
+		padding-bottom: 40%;
+		width: 25%;
+		float: right;
+	}
+	
+	#aside p{
+		padding-top: 10px;
+		padding-left: 30px;
+	}
+	
+	#aside a:link{color: grey; text-decoration: none;}
+	#aside a:visited{color: grey;}
+	
+	#section{
+		float: left;
+		width: 75%;
+		padding-left: 50px;
+		margin-right: 0;
+	}
+	
+	#article1{
+		margin-bottom: 30px;
+		width: 66%;
+	}
+	
+	#article1 p {
+		font-style: italic;
+		color: grey; 
+		margin-top: 20px;
+	}
+	
+	#article1 .name{
+		font-style: italic;
+		color: grey; 
+		font-weight: bold;
+		margin-right: 10px;
+	}
+	
+	#article2{
+		margin-right: 30px;
+	}
+	
+	#article2, #article3{
+		width: 45%;
+		float: left;
+	}
+	
+	#article2 p, #article3 p{
+		margin-bottom: 50px;
+	}
+	
+</style>
+</head>
+<body>
+<div id=header>
+	<h1>엔코아 극장</h1>
+</div>
+<div id=topnav>
+	<a href="#" id="movie" style="color: white">영화</a>
+	<a href="#">극장</a>
+	<a href="#">예매</a>
+	<a href="#">이벤트</a>
+	<a href="#"><img src="https://image.flaticon.com/icons/svg/448/448491.svg" width="20" hight="20"> 상영영화소개 RSS</a>
+</div>
+<div id="title">
+	<h1>무공해 힐링 시네마</h1>
+	<p>무공해 힐링 시네마는 새로운 개념의 영화장르의 한가지를<br/>말하는 것입니다. 지친 영혼을 위한 휴식을 주는 영화나, 마<br/>음을 정화시키고 치유하는 힘을 가진 영화들 ... .</p>
+	<img src="front03_workshop/img/movie_image.jpg">
+</div>
+<div id="aside">
+	<h2>Movies</h2>
+	<p>
+		<a href="#">현재상영작</a><br>
+		<a href="#">상영예정작</a><br>
+		<a href="#">영화뉴스</a><br>
+		<a href="#">테마뉴스</a><br>
+		<a href="#">맥스무비 예매순위</a>
+	</p>
+</div>
+<div id="section">
+	<div id="article1">
+		<h1>쿵 푸 팬 더</h1>
+		<p><span class="name">개 봉</span> <span class="summary">2011. 5. 26</span></p>
+		<p><span class="name">감 독</span> <span class="summary"><u>여 인 영</u></span></p>
+		<p><span class="name">등 급</span> <span class="summary">[국내] 전체 관람가</span></p>
+	</div>
+	<div id="article2">
+		<p><mark>하.면.된.다 - 포.스.작.렬</mark><br/>'평화의 계곡'에서 아버지의 국수 가게를 돕고 있는 팬<br/>더, 포. 아버지는 국수의 비법을 알려주어 가업을 잇게<br/>하고 싶지만, 포의 관심사는 오로지 '쿵푸 마스터'. 가게<br/>일은 뒷전으로 하고 쿵푸의 비법이 적힌 용문서의 전수<br/>자를 정하는 '무적의 5인방' 대결을 보러 시합장을 찾은<br/>포,</p>
+		<img src="https://cphoto.asiae.co.kr/listimglink/6/2016013122073062020_2.jpg" width="400" height="270">
+	</div>
+	<div id="article3">
+		<p>에게 떨어지는데... 포는 쿵푸마스터로 거듭날 수 있을<br/>까? 아니... 포가 쿵푸를 할 수는 있을까? 똥배 안에 숨겨<br/>진 포스를 깨우기 위한 포의 도전이 시작된다!</p>
+		<iframe width="400" height="230" src="https://www.youtube.com/embed/spERVfEyQxE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+</div>
+</body>
+</html>
