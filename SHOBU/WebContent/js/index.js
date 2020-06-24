@@ -114,4 +114,22 @@ $(function() {
 		$(this).parent().css('width', text);
 	});
 	//~graph
+  
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "red";
+  ctx.fillRect(0, 0, 500, 50);
+  ctx.fillStyle = "blue";
+  ctx.fillRect(500, 0, -500, 50);
+  let x = 300;
+  let y = 200;
+  function animation() {
+      y += 1;
+      ctx.fillStyle = "red";
+      ctx.fillRect(0, 0, y, 50);
+      if (y > x)
+          clearInterval(it);
+  }
+  var it = setInterval(animation, 1);
+
 });

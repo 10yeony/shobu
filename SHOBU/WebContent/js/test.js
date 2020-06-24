@@ -108,5 +108,4 @@ $(function() {
       $("#chat-circle").toggle('scale');
       $(".chat-box").toggle('scale');
     })
-    
   })

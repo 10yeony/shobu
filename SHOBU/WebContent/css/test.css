@@ -131,8 +131,11 @@ height: 100%;
 }
 
 .card {
+	overflow:hidden;
+	height:auto;
   padding: 24px;
   background-color: #202329;
+  left:20px;
 }
 
 table{
