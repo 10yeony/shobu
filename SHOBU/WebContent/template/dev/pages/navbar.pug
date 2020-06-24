@@ -1,0 +1,18 @@
+extends ../components/base/_skeleton
+include ../components/rd-navbar/_rd-navbar
+include ../components/breadcrumbs/_breadcrumbs
+
+block variables
+	- pageName = 'Navbar';
+
+block page
+	header.page-header
+		+rd-navbar
+
+	section.topbar
+		+breadcrumbs( breadcrumbs )
+
+	section.jumbotron
+		h1 RD Navbar
+		hr.my-3
+		p Full-function, powerful and flexible navigation is easier now.

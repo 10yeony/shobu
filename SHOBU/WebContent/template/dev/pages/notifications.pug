@@ -1,0 +1,335 @@
+extends ../components/base/_skeleton
+include ../components/alert/_alert
+include ../components/rd-navbar/_rd-navbar
+include ../components/breadcrumbs/_breadcrumbs
+
+block variables
+	- pageName = 'Notifications'
+
+block page
+	header.section.page-header
+		+rd-navbar
+
+	section.topbar
+		+breadcrumbs( breadcrumbs )
+
+	section.section-lg
+		.container-fluid.text-center
+			.row.row-30.justify-content-center
+				.col-12
+					h2 Creating #[span.text-primary Notifications] has never been easier
+					h3 Use data attributes or javascript to create the notification that's just right.
+				.col-xl-11
+					.panel
+						.panel-header
+							h3.panel-title Notification Contextuals
+						.panel-body
+							.row.row-30
+								.col
+									.group-5
+										h4 Primary
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-left( data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-up( data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-right( data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-down( data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Secondary
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-up( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-down( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='secondary', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Success
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-up( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-down( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='success', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Info
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-up( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-down( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='info', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Warning
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-up( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-down( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='warning', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Danger
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-up( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-down( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='danger', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Light
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-up( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-down( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='light', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										h4 Dark
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-up( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-down( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='dark', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+
+					.panel
+						.panel-header
+							h3.panel-title Without Box-Shadow
+						.panel-body
+							.row.row-30
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-left( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-up( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-right( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-down( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-up( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-down( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='secondary', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-up( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-down( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='success', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-up( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-down( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='info', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-up( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-down( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='warning', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-up( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-down( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='danger', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-up( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-down( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='light', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-up( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-down( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='dark', data-pnotify-no-shadow, data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+
+					.panel
+						.panel-header
+							h3.panel-title With Transparent BG
+						.panel-body
+							.row.row-30
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-left( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-up( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-top-right( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-down( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-primary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-up( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-down( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-secondary.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='secondary', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-up( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-down( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-success.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='success', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-up( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-down( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-info.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='info', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-up( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-down( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-warning.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='warning', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-up( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-down( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-danger.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='danger', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-up( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-down( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-light.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='light', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )
+								.col
+									.group-5
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-left( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackTopLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-up( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterTop' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-top-right( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text' )
+										div
+											.btn-group
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-left( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomLeft' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-down( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackCenterBottom' )
+												button.btn.btn-dark.pnotify-button.mdi-arrow-bottom-right( data-pnotify-theme='dark', data-pnotify-modifier='translucent', data-pnotify-title='Alert text', data-pnotify-text='Alert text', data-pnotify-stack='stackBottomRight' )

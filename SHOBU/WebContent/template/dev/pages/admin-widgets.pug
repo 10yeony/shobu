@@ -1,0 +1,989 @@
+extends ../components/base/_skeleton
+include ../components/progress/_progress
+include ../components/rd-navbar/_rd-navbar
+include ../components/breadcrumbs/_breadcrumbs
+
+block variables
+	- pageName = 'Admin Widgets';
+
+block page
+	header.section.page-header
+		+rd-navbar
+
+	section.topbar
+		+breadcrumbs( breadcrumbs )
+
+	section.section-md.section-transparent
+		.container-fluid
+			.row.row-30
+				.col-12
+					h2.text-center Small Data Widgets
+				.col-md-6
+					//- Column Graph
+					.panel
+						.panel-header
+							h3.panel-title Column Graph
+						.panel-body.p-0
+							.row.no-gutters
+								.col-sm-5
+									-
+										// colors [ primary, warning, success, info ]
+										var columnGraphChart = {
+											credits:  false,
+											colors: [ '#55b6ef', '#fddc31', '#6fbb47', '#4d8dce' ],
+											chart: {
+												type: 'column'
+											},
+											legend: {
+												enabled: false
+											},
+											title: {
+												text: null
+											},
+											xAxis: {
+												lineWidth: 0,
+												tickLength: 0,
+												minorTickLength: 0,
+												title: {
+													text: null
+												},
+												labels: {
+													enabled: false
+												}
+											},
+											yAxis: {
+												gridLineWidth: 0,
+												title: {
+													text: null
+												},
+												labels: {
+													enabled: false
+												}
+											},
+											tooltip: {
+												headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+												pointFormat:  '<tr><td style="color:{series.color}; padding: 0">{series.name}: </td>' +
+																				'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+												footerFormat: '</table>',
+												shared:       true,
+												useHTML:      true
+											},
+											plotOptions: {
+												column: {
+													groupPadding: 0.05,
+													pointPadding: 0.25,
+													borderWidth: 0
+												}
+											},
+											series: [
+												{
+													name: 'Behance',
+													data: [ 30 ]
+												},
+												{
+													name: 'Twitter',
+													data: [ 60 ]
+												},
+												{
+													name: 'Facebook',
+													data: [ 90 ]
+												},
+												{
+													name: 'Dribble',
+													data: [ 120 ]
+												}
+											]
+										}
+									.highcharts-container( data-highcharts-options= columnGraphChart )
+
+								.col-sm-7.border-sm-left.d-flex.flex-column.justify-content-center.pb-3.pb-sm-0
+									ul.list-unstyled.list-divided
+										li.d-flex.justify-content-between.px-3
+											div
+												span.fa-circle.pr-2.text-primary
+												span Behance
+											strong 24%
+										li.d-flex.justify-content-between.px-3
+											div
+												span.fa-circle.pr-2.text-warning
+												span Twitter
+											strong 7%
+										li.d-flex.justify-content-between.px-3
+											div
+												span.fa-circle.pr-2.text-success
+												span Facebook
+											strong 14%
+										li.d-flex.justify-content-between.px-3
+											div
+												span.fa-circle.pr-2.text-info
+												span Dribble
+											strong 21%
+
+					//- Area Graph
+					.panel
+						.panel-header
+							h3.panel-title Area Graph
+						.panel-menu.p-0
+							ul.list-unstyled.list-divided
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-male.pr-2.text-primary
+										span Male
+									strong 24%
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-female.pr-2.text-warning
+										span Female
+									strong 7%
+						.panel-body.p-0
+							-
+								// colors [ primary, warning ]
+								var linearFilterableChart = {
+									credits: false,
+									colors: [ '#55b6ef', '#fddc31' ],
+									chart: {
+										type: 'area',
+										spacingTop: 30,
+										spacingRight: 0
+									},
+									title: {
+										text: null
+									},
+									legend: {
+										enabled: false
+									},
+									xAxis: {
+										categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+									},
+									yAxis: {
+										min: 0,
+										tickInterval: 5,
+										title: {
+												text: null
+										}
+									},
+									series: [{
+										name: 'Male',
+										data: [7.0, 6, 9, 14, 18, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+									}, {
+										name: 'Female',
+										data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+									}]
+								}
+							.highcharts-container( data-highcharts-options= linearFilterableChart )
+
+					//- Bar Graph
+					.panel
+						.panel-header
+							h3.panel-title Bar Graph
+						.panel-body.p-0.pt-1
+							-
+								var barChart = {
+									colors: [ '#55b6ef', '#fddc31', '#6fbb47' ],
+									credits: false,
+									legend: {
+										verticalAlign: 'top',
+										margin: 0
+									},
+									chart: {
+										type: 'bar'
+									},
+									title: {
+										text: null
+									},
+									xAxis: {
+										showEmpty: false,
+										tickLength: 80,
+										offset: 1,
+										categories: ['TV', 'Radio'],
+										title: {
+											text: null
+										},
+										labels: {
+											align: 'right'
+										}
+									},
+									yAxis: {
+										min: 0,
+										gridLineWidth: 0,
+										showEmpty: false,
+										title: {
+											text: null
+										},
+										labels: {
+											enabled: false
+										}
+									},
+									tooltip: {
+										valueSuffix: ' millions'
+									},
+									series: [
+										{
+											name: 'Overall',
+											data: [100, 100]
+										},
+										{
+											name: 'Women',
+											data: [36, 55]
+										},
+										{
+											name: 'Men',
+											data: [65, 45]
+										}
+									]
+								}
+							.highcharts-container( data-highcharts-options= barChart, style='height:200px;' )
+
+					//- State Icon
+					.panel
+						.panel-header
+							h3.panel-title State Icon
+						.panel-body.p-0
+							.row.no-gutters
+								.col-sm-5.d-flex.justify-content-center.align-items-center
+									.stateface.stateface-mo.text-info.display-2.pt-3.py-sm-2( data-toggle='tooltip', title='Missouri' )
+								.col-sm-7.border-sm-left.d-flex.flex-column.justify-content-center
+									ul.list-unstyled.list-divided
+										li.d-flex.justify-content-between.px-3.py-2
+											div
+												span.fa-male.pr-2.text-primary
+												span Male
+											strong 54%
+										li.d-flex.justify-content-between.px-3.py-2
+											div
+												span.fa-female.pr-2.text-info
+												span Female
+											strong 46%
+										li.d-flex.justify-content-between.px-3.py-2
+											div
+												span.fa-child.pr-2.text-warning
+												span Unemployed
+											strong 14%
+
+					//- Visitor Geography
+					.panel
+						.panel-header
+							h3.panel-title Visitor Geography
+						.panel-body.p-0
+							-
+								var jvectorMapUSA = {
+									map: 'us_aea',
+									backgroundColor: 'transparent',
+									zoomAnimate: true,
+									regionStyle: {
+										initial: {
+											fill: '#e8e8e8'
+										},
+										hover: {
+											fill: '#c9caca'
+										}
+									},
+									series: {
+										regions: [{
+											scale: {
+												primary: '#55b6ef',
+												info: '#4d8dce',
+												warning: '#fddc31',
+												danger: '#fb6820'
+											},
+											attribute: 'fill',
+											values: {
+												"US-CA": 'primary',
+												"US-TX": 'info',
+												"US-MO": 'warning',
+												"US-NY": 'danger'
+											}
+										}]
+									}
+								}
+
+							.jvector-map-wrap( data-jvector-map= jvectorMapUSA )
+								.jvector-map-body
+							ul.list-unstyled.list-divided
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-circle.pr-2.text-info
+										span California
+									strong 24%
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-circle.pr-2.text-secondary
+										span Texas
+									strong 7%
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-circle.pr-2.text-warning
+										span Missouri
+									strong 14%
+								li.d-flex.justify-content-between.px-3.py-2
+									div
+										span.fa-circle.pr-2.text-danger
+										span New York
+									strong 7%
+
+				.col-md-6
+					//- Donut Chart
+					.panel
+						.panel-header
+							h3.panel-title Donut Chart
+						.panel-body
+							-
+								var circleChart = {
+									credits: false,
+									colors: [ '#55b6ef', '#fddc31', '#6fbb47', '#4d8dce' ],
+									title: {
+										text: null
+									},
+									tooltip: {
+										pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+									},
+									plotOptions: {
+										pie: {
+											dataLabels: {
+												enabled: true,
+												distance: 5,
+												style: {
+													fontWeight: 'bold'
+												}
+											},
+											center: ['50%', '50%']
+										}
+									},
+									series: [{
+										type: 'pie',
+										name: 'Browser share',
+										innerSize: '70%',
+										data: [
+											['Twitter', 30],
+											['Behance', 30],
+											['Facebook', 40]
+										]
+									}]
+								}
+							.highcharts-container.highcharts-container-lg( data-highcharts-options= circleChart, style='height:200px;' )
+
+					//- Pie Chart
+					.panel
+						.panel-header
+							h3.panel-title Pie Chart
+						.panel-body
+							-
+								var pieChart = {
+									credits: false,
+									colors: [ '#55b6ef', '#fddc31', '#6fbb47', '#4d8dce' ],
+									chart: {
+										type: 'pie'
+									},
+									title: {
+										text: null
+									},
+									legend: {
+										verticalAlign: 'middle',
+										align: 'right'
+									},
+									spacing: [ 0, 0, 0, 0 ],
+									tooltip: {
+										pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+									},
+									plotOptions: {
+										pie: {
+											allowPointSelect: true,
+											cursor: 'pointer',
+											dataLabels: {
+												enabled: false
+											},
+											showInLegend: true
+										}
+									},
+									series: [{
+										name: 'Brands',
+										colorByPoint: true,
+										data: [
+											{
+												name: 'Chrome',
+												y: 41.41,
+												sliced: true,
+												selected: true
+											},
+											{
+												name: 'Firefox',
+												y: 30.85
+											},
+											{
+												name: 'Edge',
+												y: 10.67
+											},
+											{
+												name: 'Safari',
+												y: 22.18
+											}
+										]
+									}]
+								}
+							.highcharts-container( data-highcharts-options= pieChart, style='height:200px;' )
+
+					//- Response Time
+					.panel
+						.panel-header
+							h3.panel-title Response Time
+						.panel-body
+							-
+								var basicColumn = {
+									credits: false,
+									chart: {
+										type: 'column',
+										padding: 0,
+										spacingTop: 10,
+										marginTop: 100,
+										marginLeft: 30,
+										marginRight: 30
+									},
+									legend: {
+										enabled: false
+									},
+									title: {
+										text: '30.8 hrs',
+										style: {
+											fontSize: 20,
+											fontWeight: 600
+										}
+									},
+									subtitle: {
+										text: 'Average First response time <br> in past 30 days',
+										style: {
+											color: '#AAA'
+										}
+									},
+									xAxis: {
+										lineWidth: 0,
+										tickLength: 0,
+										title: {
+											text: null
+										},
+										labels: {
+											enabled: true,
+											formatter: function () {
+												return this.value + "-" + ( this.value + 2 ) + "<br> hours";
+											}
+										},
+									},
+									yAxis: {
+										gridLineWidth: 0,
+										title: {
+											text: null
+										},
+										labels: {
+											enabled: false
+										}
+									},
+									tooltip: {
+										headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+										pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+											'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+										footerFormat: '</table>',
+										shared: true,
+										useHTML: true
+									},
+									plotOptions: {
+										column: {
+											colorByPoint: true,
+											colors: [ '#55b6ef', '#55b6ef', '#4d8dce', '#4d8dce' ],
+											groupPadding: 0,
+											pointPadding: 0.24,
+											borderWidth: 0
+										}
+									},
+									series: [
+										{
+											name: 'Yahoo',
+											data: [ 7, 6, 9, 14, 18, 21, 25 ]
+										}
+									],
+									dataLabels: {
+										enabled: true,
+										rotation: 0,
+										color: '#AAA',
+										align: 'center',
+										x: 0,
+										y: -8
+									}
+								}
+							.highcharts-container.highcharts-container-lg( data-highcharts-options= basicColumn )
+						.panel-footer.text-center A percent measure of tickets with #[strong.text-primary first] reply time
+
+					//- Sparklines
+					.panel
+						.panel-header
+							h3.panel-title Sparklines
+						.panel-body.p-0
+							.table-responsive
+								table.table.table-vertical-align
+									tbody
+										tr
+											th.text-center: .lead.fa-desktop.text-info
+											td Desktop Viewers
+											td( data-sparkline!= {
+												series: [
+													{data: [71, 78, 39, 66]}
+												]
+											} )
+										tr
+											th.text-center: .lead.fa-tablet.text-warning
+											td Tablet Viewers
+											td( data-sparkline!= {
+												colors: ['#fddc31'],
+												series: [
+													{data: [87, 44, 74, 41]}
+												]
+											} )
+										tr
+											th.text-center: .lead.fa-phone.text-success
+											td Customer Support
+											td( data-sparkline!= {
+												colors: ['#6fbb47'],
+												series: [
+													{data: [56, 12, 8, 25]}
+												]
+											} )
+
+					//- Area Graph
+					.panel
+						.panel-header
+							h3.panel-title Area Graph
+						.panel-body.p-0
+							-
+								var splineAreaChart = {
+									colors: [ '#55b6ef', '#fddc31', '#6fbb47' ],
+									credits: false,
+									chart: {
+										type: 'areaspline',
+										spacing: 0,
+										spacingTop: 20,
+										margin: -10,
+										marginTop: 15
+									},
+									title: {
+										text: null
+									},
+									legend: {
+										verticalAlign: 'top'
+									},
+									xAxis: {
+										allowDecimals: false,
+										tickColor: '#EEE',
+										labels: {
+											formatter: function() {
+												return this.value; // clean, unformatted number for year
+											}
+										}
+									},
+									yAxis: {
+										title: {
+											text: null
+										},
+										gridLineColor: 'transparent',
+										labels: {
+											enabled: false
+										}
+									},
+									plotOptions: {
+										areaspline: {
+											fillOpacity: 0.25,
+											marker: {
+												enabled: true,
+												symbol: 'circle',
+												radius: 2,
+												states: {
+													hover: {
+														enabled: true
+													}
+												}
+											}
+										}
+									},
+									series: [
+										{
+											name: 'USA',
+											data: [150, 260, 80, 100, 150,200, 240]
+										},
+										{
+											name: 'Russia',
+											data: [10, 20, 40, 120, 240, 180, 160]
+										},
+										{
+											name: 'China',
+											data: [60, 100, 180, 110, 100, 20, 40]
+										}
+									]
+								}
+							.highcharts-container( data-highcharts-options= splineAreaChart )
+
+	section.section-md.section-transparent
+		.container-fluid
+			.row.row-30
+				.col-12
+					h2.text-center Fullwidth Data Widgets
+				.col-md-12
+					//- Filter Toggle Bar Chart
+					.panel
+						.panel-header
+							h3.panel-title Filter Toggle Bar Chart
+						.panel-body.p-0
+							-
+								var filterableColumn = {
+									credits: false,
+									colors: [ '#55b6ef', '#fddc31', '#6fbb47', '#4d8dce' ],
+									chart: {
+										type: 'column',
+										zoomType: 'x',
+										marginTop: 40,
+										panning: true, // zoom on mouse selection
+										panKey: 'shift' // move chart at zoom
+									},
+									title: {
+										text: null
+									},
+									xAxis: {
+										categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+									},
+									yAxis: {
+										tickInterval: 5,
+										title: {
+											text: 'Traffic',
+											style: {
+												color: '#55b6ef',
+												fontWeight: '600'
+											}
+										}
+									},
+									series: [
+										{
+											name: 'Yahoo',
+											data: [7.0, 6, 9, 14, 18, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+										},
+										{
+											name: 'CNN',
+											data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+										},
+										{
+											visible: false,
+											name: 'Yahoo',
+											data: [1, 5, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+										},
+										{
+											visible: false,
+											name: 'Facebook',
+											data: [3, 1, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+										}
+									],
+									responsive: {
+										rules: [{
+											condition: {
+													maxWidth: 575
+											},
+											// Make the labels less space demanding on mobile
+											chartOptions: {
+												title: {
+													text: 'Traffic'
+												},
+												yAxis: {
+													title: {
+														text: ''
+													}
+												}
+											}
+										}]
+									}
+								}
+							.highcharts-container( data-highcharts-options= filterableColumn, style='height:400px;' )
+
+					//- Multi-Stat Panel
+					.panel
+						.panel-header
+							h3.panel-title Multi-Stat Panel
+						.panel-body.p-0
+							.container-fluid
+								.row
+									.col-md-4.pt-4.py-md-4
+										.list-block-container
+											h5.list-block-title.d-flex.justify-content-between.align-items-baseline
+												span Visitors
+												small 13,253 #[span.text-primary (8,251 unique)]
+											.list-block
+												-
+													var basicColumnSmall = {
+														chart: {
+															type: 'column',
+															marginTop: 30,
+															marginBottom: 30
+														},
+														credits: false,
+														colors: [ '#55b6ef', '#55b6ef', '#fddc31', '#fddc31', '#6fbb47', '#6fbb47' ],
+														title: {
+															text: null
+														},
+														legend: {
+															enabled: false
+														},
+														yAxis: {
+															max: 20,
+															gridLineWidth: 0,
+															title: {
+																text: null
+															},
+															labels: {
+																enabled: false
+															}
+														},
+														tooltip: {
+															headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+															pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+																							'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+															footerFormat: '</table>',
+															shared: true,
+															useHTML: true
+														},
+														plotOptions: {
+															column: {
+																colorByPoint: true
+															}
+														},
+														series: [{
+															name: 'Tokyo',
+															data: [12, 14, 20, 19, 8, 12, 14, 20, 5, 16, 8, 12, 14, 20, 19, 5, 16, 8, 12, 14, 20, 19, 5, 16, 8 ]
+														}]
+													}
+												.highcharts-container.highcharts-container-lg( data-highcharts-options= basicColumnSmall, style='height: 230px;' )
+
+									.col-md-4.pt-4.py-md-4.border-md-left
+										.list-block-container.list-block-lg
+											h5.list-block-title.d-flex.justify-content-between.align-items-baseline
+												span Top Referrals
+												small.text-primary.font-weight-bold View Report
+											.list-block
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span www.google.com
+													.font-weight-bold 1,926
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span www.yahoo.com
+													.font-weight-bold 1,254
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span www.Templatemonster.com
+													.font-weight-bold 783
+
+										.list-block-container.list-block-lg
+											h5.list-block-title.d-flex.justify-content-between.align-items-baseline
+												span Top Search Terms
+												small.text-primary.font-weight-bold View Report
+											.list-block
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span admin theme
+													.font-weight-bold 998
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span admin dashboard
+													.font-weight-bold 612
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														small.pr-2.fa-circle.text-warning
+														span admin template
+													.font-weight-bold 256
+
+									.col-md-4.py-4.border-md-left
+										.list-block-container.list-block-lg
+											h5.list-block-title.d-flex.justify-content-between.align-items-baseline
+												span Traffic Sources
+												small.text-primary.font-weight-bold View Report
+											.list-block
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-11-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted United States
+													.font-weight-bold 24%
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-08-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted Germany
+													.font-weight-bold 7%
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-07-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted France
+													.font-weight-bold 14%
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-09-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted Spain
+													.font-weight-bold 31%
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-10-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted Turkey
+													.font-weight-bold 22%
+
+												.list-block-item.d-flex.justify-content-between
+													div
+														img.mr-2( src='images/image-11-14x11.jpg', width='14', height='11', alt='' )
+														span.align-middle.text-muted United States
+													.font-weight-bold 24%
+
+					//- Bar Top - Table Bot
+					.panel( data-highcharts-double='container', data-file='./components/highcharts/highcharts.json' )
+						.panel-header
+							h3.panel-title
+								span.panel-icon.fa-pencil
+								= ' '
+								span Bar Top - Table Bot
+						.panel-body.p-0
+							.highcharts-container-double-detail( data-highcharts-double='detail', style='height:250px;' )
+						.panel-body.p-0
+							div( data-highcharts-double='master', style='height:100px;' )
+
+					//- Sparklines Table
+					.panel
+						.panel-header
+							h3.panel-title Sparklines Table
+						.panel-body.p-0
+							.table-responsive
+								table.table
+									thead
+										tr
+											th( style='min-width: 200px;' ) Name
+											th Count
+											th Memory
+											th CPU
+											th Disk I/O
+									tbody.text-muted
+										tr
+											td
+												h4 Apache
+												+progress( {
+													className: 'progress-info',
+													value: '50'
+												} )
+												p #[span.text-info 95%] 1,200 GB left
+											td
+												h4 12
+												div( data-sparkline!= {
+													colors: ['#55b6ef'],
+													series: [
+														{data: [71, 78, 39, 66]}
+													]
+												} )
+											td
+												h4 200 MB
+												div( data-sparkline!= {
+													colors: ['#55b6ef'],
+													series: [
+														{data: [68, 52, 80, 96]}
+													]
+												} )
+											td
+												h4 30%
+												div( data-sparkline!= {
+													colors: ['#55b6ef'],
+													series: [
+														{data: [3, 26, 41, 30]}
+													]
+												} )
+											td
+												h4 89 KB/s
+												div( data-sparkline!= {
+													colors: ['#55b6ef'],
+													series: [
+														{data: [24, 16, 11, 13]}
+													]
+												} )
+										tr
+											td
+												h4 Postfix
+												+progress( {
+													className: 'progress-warning',
+													value: '45'
+												} )
+												p #[span.text-warning 45%] 2,500 GB left
+											td
+												h4 42
+												div( data-sparkline!= {
+													colors: ['#fddc31'],
+													series: [
+														{data: [87, 44, 74, 41]}
+													]
+												} )
+											td
+												h4 300 MB
+												div( data-sparkline!= {
+													colors: ['#fddc31'],
+													series: [
+														{data: [29, 54, 73, 25]}
+													]
+												} )
+											td
+												h4 30%
+												div( data-sparkline!= {
+													colors: ['#fddc31'],
+													series: [
+														{data: [58, 10, 1, 16]}
+													]
+												} )
+											td
+												h4 127 KB/s
+												div( data-sparkline!= {
+													colors: ['#fddc31'],
+													series: [
+														{data: [38, 40, 11, 26]}
+													]
+												} )
+										tr
+											td
+												h4 MySQL
+												+progress( {
+													className: 'progress-success',
+													value: '80'
+												} )
+												p #[span.text-success 80%] 900 GB left
+											td
+												h4 26
+												div( data-sparkline!= {
+													colors: ['#6fbb47'],
+													series: [
+														{data: [56, 12, 8, 25]}
+													]
+												} )
+											td
+												h4 150 MB
+												div( data-sparkline!= {
+													colors: ['#6fbb47'],
+													series: [
+														{data: [69, 14, 53, 55]}
+													]
+												} )
+											td
+												h4 30%
+												div( data-sparkline!= {
+													colors: ['#6fbb47'],
+													series: [{data: [13, 2, 45, 30]}]
+												} )
+											td
+												h4 39 KB/s
+												div( data-sparkline!= {
+													colors: ['#6fbb47'],
+													series: [{data: [23, 12, 35, 20]}]
+												} )

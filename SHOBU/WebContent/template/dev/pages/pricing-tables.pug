@@ -1,0 +1,92 @@
+extends ../components/base/_skeleton
+include ../components/rd-navbar/_rd-navbar
+include ../components/breadcrumbs/_breadcrumbs
+
+block variables
+	- pageName = 'Pricing tables'
+
+block page
+	header.section.page-header
+		+rd-navbar
+
+	section.topbar
+		+breadcrumbs( breadcrumbs )
+
+	section.section-lg
+		.container
+			.row.row-30.text-center
+				.col-sm-6.col-lg-3
+					.card.shadow-sm
+						.card-header
+							h4.my-0.font-weight-normal Free
+						.card-body.pb-5
+							h1.card-title.pricing-card-title
+								| $0
+								small.text-muted / mo
+							ul.list-unstyled.list-md.mt-3.mb-4
+								li 10 users included
+								li 10 users included
+								li 2 GB of storage
+								li 2 GB of storage
+								li Email support
+								li Email support
+								li Help center access
+								li Help center access
+							button.btn.btn-lg.btn-block.btn-outline-primary( type='button' ) Sign up for free
+
+				.col-sm-6.col-lg-3
+					.card.shadow-sm
+						.card-header
+							h4.my-0.font-weight-normal Pro
+						.card-body.pb-5
+							h1.card-title.pricing-card-title
+								| $15
+								small.text-muted / mo
+							ul.list-unstyled.list-md.mt-3.mb-4
+								li 20 users included
+								li 20 users included
+								li 10 GB of storage
+								li 10 GB of storage
+								li Priority email support
+								li Priority email support
+								li Help center access
+								li Help center access
+							button.btn.btn-lg.btn-block.btn-primary( type='button' ) Get started
+
+				.col-sm-6.col-lg-3
+					.card.shadow-sm
+						.card-header
+							h4.my-0.font-weight-normal Enterprise
+						.card-body.pb-5
+							h1.card-title.pricing-card-title
+								| $29
+								small.text-muted / mo
+							ul.list-unstyled.list-md.mt-3.mb-4
+								li 30 users included
+								li 30 users included
+								li 15 GB of storage
+								li 15 GB of storage
+								li Phone and email support
+								li Phone and email support
+								li Help center access
+								li Help center access
+							button.btn.btn-lg.btn-block.btn-primary( type='button' ) Get in Touch
+
+				.col-sm-6.col-lg-3
+					.card.shadow-sm
+						.card-header
+							h4.my-0.font-weight-normal  Super Enterprise
+						.card-body.pb-5
+							h1.card-title.pricing-card-title
+								| $49
+								small.text-muted / mo
+							ul.list-unstyled.list-md.mt-3.mb-4
+								li 40 users included
+								li 40 users included
+								li 20 GB of storage
+								li 20 GB of storage
+								li Phone and email support
+								li Phone and email support
+								li Help center access
+								li Help center access
+							button.btn.btn-lg.btn-block.btn-primary( type='button' ) Get in Touch
