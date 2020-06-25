@@ -37,7 +37,6 @@
     <a href="index.jsp">메인</a><br>
     <a href="#">팀정보</a><br>
     <a href="#">선수정보</a><br>
-    <a href="#">경기일정</a><br>
     <a href="#">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
