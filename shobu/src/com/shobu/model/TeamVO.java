@@ -2,6 +2,7 @@ package com.shobu.model;
 
 public class TeamVO {
 	private String teamCode;
+	private String teamName;
 	private String image;
 	private int ranking;
 	private int games;
@@ -21,6 +22,25 @@ public class TeamVO {
 			double distance, double teamAVG, double teamEra, String stream, String games10) {
 		super();
 		this.teamCode = teamCode;
+		this.image = image;
+		this.ranking = ranking;
+		this.games = games;
+		this.win = win;
+		this.draw = draw;
+		this.lose = lose;
+		this.rate = rate;
+		this.distance = distance;
+		this.teamAVG = teamAVG;
+		this.teamEra = teamEra;
+		this.stream = stream;
+		this.games10 = games10;
+	}
+	
+	public TeamVO(String teamCode, String teamName, String image, int ranking, int games, int win, int draw, int lose,
+			double rate, double distance, double teamAVG, double teamEra, String stream, String games10) {
+		super();
+		this.teamCode = teamCode;
+		this.teamName = teamName;
 		this.image = image;
 		this.ranking = ranking;
 		this.games = games;
@@ -139,12 +159,24 @@ public class TeamVO {
 		this.games10 = games10;
 	}
 
+	
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
 	@Override
 	public String toString() {
-		return "TeamVO [teamCode=" + teamCode + ", image=" + image + ", ranking=" + ranking + ", games=" + games
-				+ ", win=" + win + ", draw=" + draw + ", lose=" + lose + ", rate=" + rate + ", distance=" + distance
-				+ ", teamAVG=" + teamAVG + ", teamEra=" + teamEra + ", stream=" + stream + ", games10=" + games10 + "]";
+		return "TeamVO [teamCode=" + teamCode + ", teamName=" + teamName + ", image=" + image + ", ranking=" + ranking
+				+ ", games=" + games + ", win=" + win + ", draw=" + draw + ", lose=" + lose + ", rate=" + rate
+				+ ", distance=" + distance + ", teamAVG=" + teamAVG + ", teamEra=" + teamEra + ", stream=" + stream
+				+ ", games10=" + games10 + "]";
 	}
+	
+	
 
 	
 }

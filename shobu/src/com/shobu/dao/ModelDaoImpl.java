@@ -192,6 +192,41 @@ public class ModelDaoImpl implements ModelDAO{
 				team.setTeamEra(rs.getDouble(11));
 				team.setStream(rs.getString(12));
 				team.setGames10(rs.getString(13));
+				
+				
+				switch(rs.getString(1)) {
+				case "OB":
+					team.setTeamName("두산베어스");
+					break;
+				case "KT":
+					team.setTeamName("kt위즈");
+					break;
+				case "LG":
+					team.setTeamName("LG트윈스");
+					break;
+				case "HT":
+					team.setTeamName("KIA타이거즈");
+					break;
+				case "LT":
+					team.setTeamName("롯데자이언츠");
+					break;
+				case "WO":
+					team.setTeamName("키움히어로즈");
+					break;
+				case "SK":
+					team.setTeamName("SK와이번스");
+					break;
+				case "SS":
+					team.setTeamName("삼성라이온즈");
+					break;
+				case "NC":
+					team.setTeamName("NC다이노스");
+					break;
+				case "HH":
+					team.setTeamName("한화이글스");
+					break;
+				}
+				
 				list.add(team);
 			}
 			
@@ -499,9 +534,28 @@ public class ModelDaoImpl implements ModelDAO{
 		
 	}
 	@Override
-	public ArrayList<MatchVO> selectMatch(String date) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MatchVO> selectMatch() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<MatchVO> match = new ArrayList<MatchVO>();
+		String query = "SELECT * FROM matches";
+		
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				match.add(new MatchVO(rs.getString("date"), rs.getString("time"), rs.getString("home"),
+						rs.getString("away"), rs.getString("homePitcher"), rs.getString("awayPitcher"), rs.getString("place")));
+			}
+			
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return match;
 	}
 	@Override
 	public ArrayList<MapVO> selectMap() throws SQLException {

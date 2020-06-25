@@ -51,7 +51,7 @@ public interface ModelDAO {
 	void register(MemberVO vo) throws SQLException;
 	
 	//06. Select Match by Date
-	ArrayList<MatchVO> selectMatch(String date) throws SQLException;
+	ArrayList<MatchVO> selectMatch() throws SQLException;
 	
 	//07.  Select Map
 	ArrayList<MapVO> selectMap() throws SQLException;

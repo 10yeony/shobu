@@ -11,6 +11,7 @@ public class ModelAndView {
 		this.path = path;
 		this.isRedirect = isRedirect;
 	}
+	
 	public String getPath() {return path;}
 	public void setPath(String path) {this.path = path;}
 	public boolean isRedirect() {return isRedirect;}

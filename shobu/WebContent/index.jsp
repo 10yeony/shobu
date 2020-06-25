@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
       document.getElementById("overlay").style.display = "none";
     }
    function init(){
-	  	//alert("!");
+	  	location.href="main.do";
    }
   </script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -277,136 +278,21 @@
     							</tr>
   							</thead>
   							<tbody>
-    							<tr>
-      								<td>1</td>
-      								<td>NC다이노스</td>
-      								<td>29</td>
-      								<th>0</th>
-      								<th>12</th>
-      								<th>0.707</th>
-      								<th> - </th>
-      								<th>0.297</th>
-      								<th>4.37</th>
-      								<th>2승</th>
-      								<th>5승5패</th>
-							    </tr>
-    							<tr>
-      								<td>2</td>
-      								<td>두산베어스</td>
-      								<td>26</td>
-      								<th>0</th>
-      								<th>16</th>
-      								<th>0.619</th>
-      								<th>3.5</th>
-      								<th>0.299</th>
-      								<th>5.00</th>
-      								<th>5승</th>
-      								<th>6승4패</th>
-    							</tr>
-    							<tr>
-      								<td>3</td>
-      								<td>키움히어로즈</td>
-      								<td>26</td>
-      								<th>0</th>
-      								<th>17</th>
-      								<th>0.605</th>
-      								<th>4.0</th>
-      								<th>0.267</th>
-      								<th>4.18</th>
-      								<th>6승</th>
-      								<th>8승2패</th>
-    							</tr>
-    							<tr>
-      								<td>4</td>
-      								<td>LG트윈스</td>
-      								<td>25</td>
-      								<th>0</th>
-      								<th>17</th>
-      								<th>0.595</th>
-      								<th>4.5</th>
-      								<th>0.293</th>
-      								<th>4.55</th>
-      								<th>4패</th>
-      								<th>5승5패</th>
-    							</tr>
-    							<tr>
-      								<td>5</td>
-      								<td>KIA타이거즈</td>
-      								<td>23</td>
-      								<th>0</th>
-      								<th>19</th>
-      								<th>0.548</th>
-      								<th>6.5</th>
-      								<th>0.278</th>
-      								<th>4.25</th>
-      								<th>2패</th>
-      								<th>6승4패</th>
-    							</tr>
-    							<tr>
-      								<td>6</td>
-      								<td>삼성라이온즈</td>
-      								<td>22</td>
-      								<th>0</th>
-      								<th>22</th>
-      								<th>0.500</th>
-      								<th>8.5</th>
-      								<th>0.260</th>
-      								<th>4.30</th>
-      								<th>3승</th>
-      								<th>7승3패</th>
-    							</tr>
-    							<tr>
-      								<td>7</td>
-      								<td>롯데자이언츠</td>
-      								<td>21</td>
-      								<th>0</th>
-      								<th>21</th>
-      								<th>0.500</th>
-      								<th>8.5</th>
-      								<th>0.270</th>
-      								<th>4.56</th>
-      								<th>1승</th>
-      								<th>4승6패</th>
-    							</tr>
-    							<tr>
-      								<td>8</td>
-      								<td>KT위즈</td>
-      								<td>18</td>
-      								<th>0</th>
-      								<th>24</th>
-      								<th>0.429</th>
-      								<th>11.5</th>
-      								<th>0.291</th>
-      								<th>5.84</th>
-      								<th>1패</th>
-      								<th>6승4패</th>
-    							</tr>
-    							<tr>
-      								<td>9</td>
-      								<td>SK와이번스</td>
-      								<td>12</td>
-      								<th>0</th>
-      								<th>30</th>
-      								<th>0.286</th>
-      								<th>17.5</th>
-      								<th>0.239</th>
-      								<th>4.79</th>
-      								<th>7패</th>
-      								<th>1승9패</th>
-    							</tr>
-    							<tr>
-      								<td>10</td>
-      								<td>한화이글스</td>
-      								<td>10</td>
-      								<th>0</th>
-      								<th>34</th>
-      								<th>0.227</th>
-      								<th>20.5</th>
-      								<th>0.235</th>
-      								<th>5.93</th>
-      								<th>3패</th>
-      								<th>3승7패</th>
-    							</tr>
+	  							<c:forEach items="${teams}" var="team">
+	    							<tr>
+	      								<td>{team.ranking}</td>
+	      								<td>{team.teamName}</td>
+	      								<td>{team.win}</td>
+	      								<th>{team.draw}</th>
+	      								<th>{team.lose}</th>
+	      								<th>{team.rate}</th>
+	      								<th>{team.distance}</th>
+	      								<th>{team.teamAVG}</th>
+	      								<th>{team.teamEra}</th>
+	      								<th>{team.stream}</th>
+	      								<th>{team.games10}</th>
+	    							</tr>
+	    						</c:forEach>
   							</tbody>
 						</table>
         		<!-- ~TEAM Rank -->
