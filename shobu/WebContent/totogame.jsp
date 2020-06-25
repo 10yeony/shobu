@@ -161,7 +161,7 @@
 		  <p>
 		  
 	      <!-- 회원 랭킹 시작 -->
-		  <table class="content-table" style="width: 100%; margin: 0 auto;">
+		  <table class="content-table" style="width: 70%; margin: 0 auto;">
   		    <thead>
     		  <tr>
       		    <th>순위</th>
