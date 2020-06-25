@@ -9,7 +9,8 @@ public class InsertController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
-		return null;
+		ModelAndView mv = null;
+		return mv;
 	
 	}
 
