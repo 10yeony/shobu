@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+.graph{
+	width: 60%;
+	margin: 0  auto;
+}
+
+/* Bar Graph Horizontal */
+.bar-graph{
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  opacity: 0;
+}
+
+.bar-graph-horizontal {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.bar-graph-horizontal .bar-away{
+  float: left;
+  margin-bottom: 8px;
+  width: 69.6%; /*변경*/
+  display:contents;
+}
+.bar-graph-horizontal .bar-home{
+  float: right;
+  margin-bottom: 8px;
+  width: 30.4%; /*변경*/
+   display:contents;
+}
+
+
+.bar-graph-horizontal .bar-away .bar {
+  border-radius: 3px;
+  height: 55px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+}
+
+.bar-graph-horizontal .bar-home .bar {
+  border-radius: 3px;
+  height: 55px;
+  float: right;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+}
+
+.bar-graph-one .bar::after {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  color: #fff;
+  content: attr(data-percentage);
+  font-weight: 700;
+  position: absolute;
+  right: 16px;
+  top: 17px;
+}
+
+.bar-graph-one .bar-away .bar {
+  background-color: #64b2d1;
+  -webkit-animation: show-bar-one 1.2s 0.1s forwards;
+  -moz-animation: show-bar-one 1.2s 0.1s forwards;
+  animation: show-bar-one 1.2s 0.1s forwards;
+}
+
+.bar-graph-one .bar-home .bar {
+  background-color: #5292ac;
+  -webkit-animation: show-bar-two 1.2s 0.2s forwards;
+  -moz-animation: show-bar-two 1.2s 0.2s forwards;
+  animation: show-bar-two 1.2s 0.2s forwards;
+}
+
+/* Bar Graph Horizontal Animations */
+@-webkit-keyframes show-bar-one {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 69.6%; /*변경*/
+  }
+}
+
+@-webkit-keyframes show-bar-two {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 30.4%; /*변경*/
+  }
+}
+@-webkit-keyframes fade-in-text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*~Graph*/
+
+/*carosel Control button shodow*/
+.carousel-control {
+    opacity: .1;
+}
+
+/*carosel dot*/
+.carousel-indicators li {
+    border: 1px solid #00907e;
+}
+
+.carousel-indicators .active {
+    background-color: #00907e;
+}
