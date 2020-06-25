@@ -16,6 +16,9 @@
       document.getElementById("nav").style.display = "none";
       document.getElementById("overlay").style.display = "none";
     }
+   function init(){
+	  	alert("!");
+   }
   </script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,7 +28,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body onload="init();">
   <!-- 슬라이드 메뉴바 -->
   <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
     <div style="background-color: #00907e; height: 60px;">토토</div>
@@ -76,7 +79,7 @@
 			      <div class="item active">
 			      <table class="game">
 			      	<tr>
-			      		<td class="home"><img class="teamlogo" src="img/team/hanhwa.png"></td> 
+			      		<td class="home"><img class="teamlogo" src="image/team/HH.png"></td> 
 			      		<td class="graph"> 
 			      			<section class="bar-graph bar-graph-horizontal bar-graph-one">
 							  <div class="bar-away">
@@ -87,13 +90,22 @@
 							  </div>
 							</section>
 						</td> 
-			      		<td class="away"><img class="teamlogo" src="img/team/samsung.png"></td>
+			      		<td class="away"><img class="teamlogo" src="image/team/SS.png"></td>
 			      	</tr>
 			      	<tr class='bold'>
-			      		<td>선발투수</td> <td>경기장</td> <td>선발투수</td>
+			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
 			      	</tr>
 			      	<tr>
-			      		<td>이름ㅇ</td> <td>시간</td> <td>이름ㅇ</td>
+			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">승패</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">이닝</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
 			      </table>
 			      </div>
@@ -101,7 +113,7 @@
 			      <div class="item">
 			       <table class="game">
 			      	<tr>
-			      		<td class="home"><img class="teamlogo" src="img/team/kiwoom.png"></td> 
+			      		<td class="home"><img class="teamlogo" src="image/team/WO.png"></td> 
 			      		<td class="graph"> 
 			      			<section class="bar-graph bar-graph-horizontal bar-graph-one">
 							  <div class="bar-away">
@@ -112,13 +124,22 @@
 							  </div>
 							</section>
 						</td> 
-			      		<td class="away"><img class="teamlogo" src="img/team/lg.png"></td>
+			      		<td class="away"><img class="teamlogo" src="image/team/LG.png"></td>
 			      	</tr>
 			      	<tr class='bold'>
-			      		<td>선발투수</td> <td>경기장</td> <td>선발투수</td>
+			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
 			      	</tr>
 			      	<tr>
-			      		<td>이름ㅇ</td> <td>시간</td> <td>이름ㅇ</td>
+			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">승패</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">이닝</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
 			      </table>
 			      </div>
@@ -126,7 +147,7 @@
 			      <div class="item">
 			        <table class="game">
 			      	<tr>
-			      		<td class="home"><img class="teamlogo" src="img/team/doosan.png"></td> 
+			      		<td class="home"><img class="teamlogo" src="image/team/OB.png"></td> 
 			      		<td class="graph"> 
 			      			<section class="bar-graph bar-graph-horizontal bar-graph-one">
 							  <div class="bar-away">
@@ -137,13 +158,22 @@
 							  </div>
 							</section>
 						</td> 
-			      		<td class="away"><img class="teamlogo" src="img/team/sk.png"></td>
+			      		<td class="away"><img class="teamlogo" src="image/team/SK.png"></td>
 			      	</tr>
 			      	<tr class='bold'>
-			      		<td>선발투수</td> <td>경기장</td> <td>선발투수</td>
+			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
 			      	</tr>
 			      	<tr>
-			      		<td>이름ㅇ</td> <td>시간</td> <td>이름ㅇ</td>
+			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">승패</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">이닝</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
 			      </table>
 			      </div>
@@ -151,7 +181,7 @@
 			       <div class="item">
 			        <table class="game">
 			      	<tr>
-			      		<td class="home"><img class="teamlogo" src="img/team/nc.png"></td> 
+			      		<td class="home"><img class="teamlogo" src="image/team/NC.png"></td> 
 			      		<td class="graph"> 
 			      			<section class="bar-graph bar-graph-horizontal bar-graph-one">
 							  <div class="bar-away">
@@ -162,13 +192,22 @@
 							  </div>
 							</section>
 						</td> 
-			      		<td class="away"><img class="teamlogo" src="img/team/kt.png"></td>
+			      		<td class="away"><img class="teamlogo" src="image/team/KT.png"></td>
 			      	</tr>
 			      	<tr class='bold'>
-			      		<td>선발투수</td> <td>경기장</td> <td>선발투수</td>
+			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
 			      	</tr>
 			      	<tr>
-			      		<td>이름ㅇ</td> <td >시간</td> <td>이름ㅇ</td>
+			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">승패</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">이닝</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
 			      </table>
 			      </div>
@@ -176,7 +215,7 @@
 			       <div class="item">
 			        <table class="game">
 			      	<tr>
-			      		<td class="home"><img class="teamlogo" src="img/team/kia.png"></td> 
+			      		<td class="home"><img class="teamlogo" src="image/team/HT.png"></td> 
 			      		<td class="graph"> 
 			      			<section class="bar-graph bar-graph-horizontal bar-graph-one">
 							  <div class="bar-away">
@@ -187,13 +226,22 @@
 							  </div>
 							</section>
 						</td> 
-			      		<td class="away"><img class="teamlogo" src="img/team/lotte.png"></td>
+			      		<td class="away"><img class="teamlogo" src="image/team/LT.png"></td>
 			      	</tr>
 			      	<tr class='bold'>
-			      		<td>선발투수</td> <td>경기장</td> <td>선발투수</td>
+			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
 			      	</tr>
 			      	<tr>
-			      		<td>이름ㅇ</td> <td>시간</td> <td>이름ㅇ</td>
+			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">승패</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">이닝</td> <td>이름ㅇ</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
 			      </table>
 			    </div>

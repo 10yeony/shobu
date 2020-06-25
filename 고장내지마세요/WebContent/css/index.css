@@ -1,5 +1,25 @@
 @charset "UTF-8";
 
+
+.game{
+	width:70%;
+	margin: 20px auto 70px auto;
+	text-align:center;
+}
+.teamlogo{
+	width:100%;
+}
+
+.bold{
+	font-weight: bold;
+	font-size:medium;
+}
+
+.lab{
+	color: #9FA2A6;
+	font-weight: bold;
+}
+
 .graph{
 	width: 60%;
 	margin: 0  auto;
