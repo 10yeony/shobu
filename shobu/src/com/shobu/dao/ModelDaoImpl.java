@@ -42,7 +42,8 @@ public class ModelDaoImpl implements ModelDAO{
 	@Override
 	public Connection getConnection() throws SQLException {
 		return ds.getConnection();
-	}*/
+	}
+	*/
 	
 	
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
@@ -69,6 +70,7 @@ public class ModelDaoImpl implements ModelDAO{
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 		ModelDaoImpl ds = ModelDaoImpl.getInstance();
+		System.out.println(ds.login("ccc", "9876"));
 	}
 
 	

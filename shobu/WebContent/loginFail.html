@@ -266,9 +266,9 @@ body.is-login{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+alert("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
 window.onload = function(){
   const cards = document.querySelectorAll('.card');
-  var file = document.getElementById('');
 
   /* View Controller
                                                   -----------------------------------------*/
@@ -304,7 +304,7 @@ window.onload = function(){
 <body>
 <div class="container">
   <div class="card-wrap">
-    <div class="card border-0 shadow card--welcome is-show" id="welcome">
+    <div class="card border-0 shadow card--welcome" id="welcome">
       <div class="card-body">
         <h2 class="card-title">WELCOME</h2>
         <p>쇼부에 오신 것을 환영합니다.</p>
@@ -327,14 +327,14 @@ window.onload = function(){
           </div>
           <div class="form-group">
           	<p style="text-align:left;"><img width="80px" src="image/profile/default.png"></p>
-            <input type="file" name="profile" id="profile">
+            <input type="file" name="profile">
           </div>
           <button type="submit" class="btn btn-lg">등록</button>
         </form>
       </div>
       <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
     </div>
-    <div class="card border-0 shadow card--login" id="login">
+    <div class="card border-0 shadow card--login is-show" id="login">
       <div class="card-body">
         <h2 class="card-title">Welcome Back!</h2>
         <p>로그인 해주세요.</p>
