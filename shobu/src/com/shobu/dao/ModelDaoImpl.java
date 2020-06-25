@@ -1,6 +1,7 @@
 package com.shobu.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.shobu.config.ServerInfo;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
@@ -21,8 +23,9 @@ import com.shobu.model.TeamVO;
 import com.shobu.model.totoVO;
 
 public class ModelDaoImpl implements ModelDAO{
+	/*
+	//실제로는 DataSource 사용
 	private DataSource ds;
-	
 	private static ModelDaoImpl dao = new ModelDaoImpl();
 	private ModelDaoImpl() {
 		try {
@@ -36,14 +39,36 @@ public class ModelDaoImpl implements ModelDAO{
 	public static ModelDaoImpl getInstance() {
 		return dao;
 	}
-	
-	public static void main(String[] args) {
-		ModelDaoImpl.getInstance();
-	}
-	
 	@Override
 	public Connection getConnection() throws SQLException {
 		return ds.getConnection();
+	}*/
+	
+	
+	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
+	private static ModelDaoImpl ds = new ModelDaoImpl();
+	private ModelDaoImpl() {
+		try {
+			Class.forName(ServerInfo.DRIVER_NAME);
+			System.out.println("Driver Loading Success...");
+		}catch(ClassNotFoundException e){
+			System.out.println("Driver Loading Fail...."); 
+		}
+	}
+	public static ModelDaoImpl getInstance() {
+		return ds;
+	}
+	@Override
+	public Connection getConnection() throws SQLException {
+		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASS);
+		System.out.println("Database Connection......");
+		return conn;
+	}
+	
+	
+	//단위 테스트
+	public static void main(String[] args) throws Exception {
+		ModelDaoImpl ds = ModelDaoImpl.getInstance();
 	}
 
 	
@@ -488,16 +513,94 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	
+	
 	@Override
 	public boolean login(String id, String pass) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM members WHERE id=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("password").equals(pass)) {
+					return true;
+				}
+			}
+			return false;
+		}finally{
+			closeAll(rs, ps, conn);
+		}
 	}
 	@Override
 	public void register(MemberVO vo) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO members (id, password, nickname, image, point) VALUES (?,?,?,?,0)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getPassword());
+			ps.setString(3, vo.getNickname());
+			ps.setString(4, vo.getImage());
+			System.out.println(ps.executeUpdate()+"줄 추가");
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
+	@Override
+	public MemberVO FindMemberById(String id) throws SQLException{
+		MemberVO vo = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM members WHERE id=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				vo = new MemberVO(rs.getString("id"),
+								rs.getString("password"),
+								rs.getString("nickname"),
+								rs.getString("image"),
+								rs.getInt("point"));
+			}
+			return vo;
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+	}
+	public MemberVO FindMemberByNickname(String nickname) throws SQLException{
+		MemberVO vo = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM members WHERE nickname=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, nickname);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				vo = new MemberVO(rs.getString("id"),
+								rs.getString("password"),
+								rs.getString("nickname"),
+								rs.getString("image"),
+								rs.getInt("point"));
+			}
+			return vo;
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+	}
+	
 	@Override
 	public ArrayList<MatchVO> selectMatch(String date) throws SQLException {
 		// TODO Auto-generated method stub
