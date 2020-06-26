@@ -5,6 +5,7 @@ import com.shobu.controller.LoginController;
 import com.shobu.controller.MainController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;
+import com.shobu.controller.UpdateController;
 
 public class HandlerMapping {
 	private static HandlerMapping handler = new HandlerMapping();
