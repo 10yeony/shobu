@@ -5,8 +5,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="content-script-type" content="text/javascript">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>쇼부 Shobu</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/index.css">
     <script>
     // Open and close the sidebar on medium and small screens
     function navOpen() {
@@ -18,10 +23,6 @@
       document.getElementById("overlay").style.display = "none";
     }
   </script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <script src="js/index.js"></script>
@@ -93,6 +94,9 @@
 			      	</tr>
 			      	<tr class='bold'>
 			      		<td>선발투수</td> <td>경기장<br>시간ㄴ</td> <td>선발투수</td>
+			      	</tr>
+			      	<tr>
+			      		<td>이름ㅇ</td> <td class="lab">유</td> <td>이름ㅇ</td>
 			      	</tr>
 			      	<tr>
 			      		<td>이름ㅇ</td> <td class="lab">경기</td> <td>이름ㅇ</td>
@@ -276,22 +280,6 @@
     							</tr>
   							</thead>
   							<tbody id="teamrank">
-  							<tr><td></td></tr>
-	  							<c:forEach items="${teams}" var="team">
-	    							<tr>
-	      								<td>${team.ranking}</td>
-	      								<td>${team.teamName}</td>
-	      								<td>${team.win}</td>
-	      								<th>${team.draw}</th>
-	      								<th>${team.lose}</th>
-	      								<th>${team.rate}</th>
-	      								<th>${team.distance}</th>
-	      								<th>${team.teamAVG}</th>
-	      								<th>${team.teamEra}</th>
-	      								<th>${team.stream}</th>
-	      								<th>${team.games10}</th>
-	    							</tr>
-	    						</c:forEach>
   							</tbody>
 						</table>
         		<!-- ~TEAM Rank -->

@@ -172,7 +172,7 @@ public class ModelDaoImpl implements ModelDAO{
 			String query = "insert into team values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, vo.getTeamCode());
-			ps.setString(2, "image/"+vo.getTeamCode()+".jpg");
+			ps.setString(2, "image/"+vo.getTeamCode()+".png");
 			ps.setInt(3, vo.getRanking());
 			ps.setInt(4, vo.getGames());
 			ps.setInt(5, vo.getWin());
