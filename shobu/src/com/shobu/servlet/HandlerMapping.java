@@ -3,6 +3,7 @@ package com.shobu.servlet;
 import com.shobu.controller.Controller;
 import com.shobu.controller.LoginController;
 import com.shobu.controller.MainController;
+import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;
 
 public class HandlerMapping {
@@ -44,6 +45,14 @@ public class HandlerMapping {
 		else if(command.equals("register.do")){
 			controller = new RegisterController();
 			System.out.println("RegisterController 생성됨");	
+		}
+		else if(command.equals("update.do")){
+			controller = new UpdateController();
+			System.out.println("UpdateController 생성됨");	
+		}
+		else if(command.equals("playerlist.do")) {
+			controller = new Playerlist();
+			System.out.println("Playerlist 생성됨");
 		}
 		return controller;
 	}

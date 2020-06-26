@@ -11,6 +11,7 @@ import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
 import com.shobu.model.MatchVO;
 import com.shobu.model.MemberVO;
+import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
@@ -26,7 +27,8 @@ public interface ModelDAO {
 	void updateHitter(HitterVO vo, int playerId) throws SQLException;
 	void updatePitcher(PitcherVO vo, int playerId) throws SQLException;
 	void updateTeam(TeamVO vo) throws SQLException;
-	
+	void updateMatch(MatchVO vo) throws SQLException;
+	void updatePitcher3(Pitcher3VO vo) throws SQLException;
 	//01. Select Team
 	ArrayList<TeamVO> selectAllTeam() throws SQLException;
 	TeamVO selectTeam(String teamCode) throws SQLException;
