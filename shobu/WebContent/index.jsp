@@ -34,9 +34,9 @@
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
     <a href="main.do">메인</a><br>
-    <a href="#">팀정보</a><br>
+    <a href="teampage.jsp">팀정보</a><br>
     <a href="#">선수정보</a><br>
-    <a href="#">모의토토</a><br>
+    <a href="toto.jsp">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
 ​
