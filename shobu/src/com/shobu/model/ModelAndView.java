@@ -6,6 +6,11 @@ public class ModelAndView {
 	
 	public ModelAndView() {}
 	
+	public ModelAndView(String path) {
+		super();
+		this.path = path;
+	}
+	
 	public ModelAndView(String path, boolean isRedirect) {
 		super();
 		this.path = path;

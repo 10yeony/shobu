@@ -50,6 +50,10 @@ public interface ModelDAO {
 	//05. Register
 	void register(MemberVO vo) throws SQLException;
 	
+	//06. Search Member
+	MemberVO FindMemberById(String id) throws SQLException;
+	MemberVO FindMemberByNickname(String nickname) throws SQLException;
+	
 	//06. Select Match by Date
 	ArrayList<MatchVO> selectMatch() throws SQLException;
 	
