@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -648,9 +650,11 @@ public class ModelDaoImpl implements ModelDAO{
 		ResultSet rs = null;
 		ArrayList<MatchVO> match = new ArrayList<MatchVO>();
 		String query = "SELECT * FROM matches";
+		Map<String, String> logo = new HashMap<String, String>();
 		
 		try {
 			conn = getConnection();
+			logo = getLogo(conn);
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -658,6 +662,7 @@ public class ModelDaoImpl implements ModelDAO{
 				match.add(new MatchVO(rs.getString("date"), rs.getString("time"), rs.getString("home"),
 						rs.getString("away"), rs.getString("homePitcher"), rs.getString("awayPitcher"), rs.getString("place")));
 			}
+			
 			
 		}finally {
 			closeAll(rs, ps, conn);
@@ -696,13 +701,58 @@ public class ModelDaoImpl implements ModelDAO{
 		// TODO Auto-generated method stub
 		
 	}
-
-	public ArrayList<String> getImg() throws SQLException{
-		ArrayList<String> logo = new ArrayList<>();
+	
+	public Map<String, String> getLogo(Connection conn) throws SQLException{
+		Map<String, String> logo = new HashMap<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT teamCode,image FROM team";
+		
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				switch(rs.getString(1)) {
+				case "OB":
+					logo.put("두산",rs.getString(2));
+					break;
+				case "KT":
+					logo.put("KT",rs.getString(2));
+					break;
+				case "LG":
+					logo.put("LG",rs.getString(2));
+					break;
+				case "HT":
+					logo.put("KIA",rs.getString(2));
+					break;
+				case "LT":
+					logo.put("롯데",rs.getString(2));
+					break;
+				case "WO":
+					logo.put("키움",rs.getString(2));
+					break;
+				case "SK":
+					logo.put("SK",rs.getString(2));
+					break;
+				case "SS":
+					logo.put("삼성",rs.getString(2));
+					break;
+				case "NC":
+					logo.put("NC",rs.getString(2));
+					break;
+				case "HH":
+					logo.put("한화",rs.getString(2));
+					break;
+				}
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
 		
 		return logo;
 	}
-	
 	
 
 }
