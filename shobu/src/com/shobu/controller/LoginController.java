@@ -24,7 +24,7 @@ public class LoginController implements Controller {
 				MemberVO member = ModelDaoImpl.getInstance().FindMemberById(id);
 				System.out.println(member.getId());
 				req.getSession().setAttribute("member", member);
-				mv = new ModelAndView("index.jsp");
+				mv = new ModelAndView("loginSuccess.jsp");
 			}else {
 				mv = new ModelAndView("loginFail.html");
 			}

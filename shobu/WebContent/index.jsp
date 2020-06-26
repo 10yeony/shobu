@@ -53,8 +53,8 @@
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">썸네일</span>
-        <span style="position: relative; top: 25%;">아이디</span>
+        <span style="position: relative; top: 25%;">${member.id}</span>
+        <span style="position: relative; top: 25%;">${member.image}</span>
       </div>
     </header>
 ​
