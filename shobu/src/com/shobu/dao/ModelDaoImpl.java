@@ -173,7 +173,7 @@ public class ModelDaoImpl implements ModelDAO{
 		
 		try {
 			conn = getConnection();
-			String query = "select * from team";
+			String query = "select * from team order by ranking;";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			

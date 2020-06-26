@@ -17,9 +17,7 @@
       document.getElementById("nav").style.display = "none";
       document.getElementById("overlay").style.display = "none";
     }
-   function init(){
-	  	location.href="main.do";
-   }
+  	
   </script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,13 +27,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body onload="init();">
+<body>
   <!-- 슬라이드 메뉴바 -->
   <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
     <div style="background-color: #343d52; height: 60px;">토토</div>
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
-    <a href="index.jsp">메인</a><br>
+    <a href="main.do">메인</a><br>
     <a href="#">팀정보</a><br>
     <a href="#">선수정보</a><br>
     <a href="#">모의토토</a><br>
@@ -280,17 +278,17 @@
   							<tbody>
 	  							<c:forEach items="${teams}" var="team">
 	    							<tr>
-	      								<td>{team.ranking}</td>
-	      								<td>{team.teamName}</td>
-	      								<td>{team.win}</td>
-	      								<th>{team.draw}</th>
-	      								<th>{team.lose}</th>
-	      								<th>{team.rate}</th>
-	      								<th>{team.distance}</th>
-	      								<th>{team.teamAVG}</th>
-	      								<th>{team.teamEra}</th>
-	      								<th>{team.stream}</th>
-	      								<th>{team.games10}</th>
+	      								<td>${team.ranking}</td>
+	      								<td>${team.teamName}</td>
+	      								<td>${team.win}</td>
+	      								<th>${team.draw}</th>
+	      								<th>${team.lose}</th>
+	      								<th>${team.rate}</th>
+	      								<th>${team.distance}</th>
+	      								<th>${team.teamAVG}</th>
+	      								<th>${team.teamEra}</th>
+	      								<th>${team.stream}</th>
+	      								<th>${team.games10}</th>
 	    							</tr>
 	    						</c:forEach>
   							</tbody>
