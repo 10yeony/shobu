@@ -360,7 +360,7 @@ public class PlayerUpdate {
 	public PitcherVO updatePitcher(int playerId, String teamCode) {
 		PitcherVO pitcher = new PitcherVO();
 		try {
-			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
+			Document doc = Jsoup.connect("http://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
 			Elements links = doc.select("tbody").eq(1);
 			pitcher.setGames(Integer.parseInt(links.select("td").eq(0).text()));
 			pitcher.setInning(links.select("td").eq(1).text());
@@ -389,7 +389,7 @@ public class PlayerUpdate {
 	public HitterVO updateHitter(int playerId, String teamCode) {
 		HitterVO hitter = new HitterVO();
 		try {
-			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
+			Document doc = Jsoup.connect("http://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
 			Elements links = doc.select("tbody").eq(1);
 			hitter.setGames(Integer.parseInt(links.select("td").eq(0).text()));
 			hitter.setRate(Double.parseDouble(links.select("td").eq(1).text()));
