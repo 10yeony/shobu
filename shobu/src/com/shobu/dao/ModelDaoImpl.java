@@ -5,13 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.shobu.config.ServerInfo;
+import com.shobu.crawling.PlayerUpdate;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
@@ -23,7 +26,7 @@ import com.shobu.model.TeamVO;
 import com.shobu.model.totoVO;
 
 public class ModelDaoImpl implements ModelDAO{
-	/*
+	
 	//실제로는 DataSource 사용
 	private DataSource ds;
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -43,9 +46,9 @@ public class ModelDaoImpl implements ModelDAO{
 	public Connection getConnection() throws SQLException {
 		return ds.getConnection();
 	}
-	*/
 	
 	
+/*	
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
@@ -69,11 +72,8 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
-		ModelDaoImpl ds = ModelDaoImpl.getInstance();
-		System.out.println(ds.login("ccc", "9876"));
 	}
-
-	
+*/	
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
 		if(ps!=null) ps.close();		
@@ -639,6 +639,28 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(rs, ps, conn);
 		}
 	}
+	@Override
+	public void updateMatch(MatchVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = getConnection();
+			String query = "insert into matches values(?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getDate());
+			ps.setString(2, vo.getTime());
+			ps.setString(3, vo.getHome());
+			ps.setString(4, vo.getAway());
+			ps.setString(5, vo.getHomePitcher());
+			ps.setString(6, vo.getAwayPitcher());
+			ps.setString(7, vo.getPlace());
+			ps.executeUpdate();
+		} finally {
+			closeAll(ps, conn);
+		}
+		
+	}
 	
 	@Override
 	public ArrayList<MatchVO> selectMatch() throws SQLException {
@@ -690,6 +712,7 @@ public class ModelDaoImpl implements ModelDAO{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	
 	
