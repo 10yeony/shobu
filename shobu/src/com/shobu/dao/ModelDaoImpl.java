@@ -662,6 +662,7 @@ public class ModelDaoImpl implements ModelDAO{
 		
 		return match;
 	}
+	
 	@Override
 	public ArrayList<MapVO> selectMap() throws SQLException {
 		// TODO Auto-generated method stub
