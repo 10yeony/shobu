@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>쇼부 SHOBU</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Josefin+Sans:300,600&amp;display=swap">
+<style>
+body{
+  display:-webkit-box;
+  display:flex;
+  height:100vh;
+  min-height:35rem;
+  -webkit-box-align:center;
+          align-items:center;
+  -webkit-box-pack:center;
+          justify-content:center;
+  font-family:'Josefin Sans', sans-serif;
+}
+
+.card{
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:100%;
+  padding-top:1rem;
+  padding-bottom:1rem;
+	-webkit-transform:translate(-50%,-50%);
+	        transform:translate(-50%,-50%);
+}
+
+.card-wrap{
+	position:relative;
+  margin:0 auto;
+}
+
+@media (min-width: 769px){
+
+.card-wrap{
+    max-width:450px
+}
+  }
+
+.card-body{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+          flex-direction:column;
+  -webkit-box-align:center;
+          align-items:center;
+  -webkit-box-pack:center;
+          justify-content:center;
+  text-align:center;
+}
+
+.card-body p{
+    font-size:1.1rem;
+  }
+
+.card-title{
+  font-weight:bold;
+  font-size:1.8rem;
+}
+
+.badge-wrap{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-pack:center;
+          justify-content:center;
+}
+
+.badge-wrap a.badge{
+    display:-webkit-box;
+    display:flex;
+    -webkit-box-align:center;
+            align-items:center;
+    -webkit-box-pack:center;
+            justify-content:center;
+    width:2.5rem;
+    height:2.5rem;
+    margin:0 .2rem;
+    padding:0;
+    opacity:.7;
+    border-radius:50%;
+    -webkit-transition:opacity .3s ease-in;
+    transition:opacity .3s ease-in;
+    font-size:1rem;
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+  }
+
+.badge-wrap a.badge:hover{
+      opacity:1;
+      color:#fff;
+    }
+
+.btn{
+  color:#fff !important;
+	width:10em;
+	-webkit-transition:all .4s;
+	transition:all .4s;
+	border-radius:20px;
+	border:2px solid transparent;
+}
+.btn.btn-back{
+  position:absolute;
+  top:0;
+  left:0;
+  border-radius:0;
+  width:3rem;
+  height:3rem;
+  font-size:1.5rem;
+  border:0;
+}
+.btn.btn-back:hover{
+    border:0 !important;
+  }
+
+.form-control{
+  font-family:'Handle', cursive;
+}
+
+.form-control::-webkit-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+  }
+
+.form-control::-moz-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+  }
+
+.form-control:-ms-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+  }
+
+.form-control::-ms-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+  }
+
+.form-control::placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+  }
+.card--welcome{
+  z-index:3;
+}
+.card--welcome .card-title{
+    color:#343D52;
+  }
+.card--welcome .btn-wrap{
+    display:-webkit-box;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+            flex-direction:column;
+  }
+.card--welcome .btn{
+    color:#fff;
+    -webkit-transition:all .3s;
+    transition:all .3s;
+  }
+.card--welcome .btn:hover{
+      background-color:#343D52;
+      font-weight:bold;
+    }
+.card--welcome .btn-register{
+    margin-bottom:.8em;
+    background-color:#343D52;
+  }
+.card--welcome .btn-register:hover{
+      color:#343D52;
+    }
+.card--welcome .btn-login{
+    background-color:#343D52;
+  }
+.card--register .card-title{
+    color:#343D52;
+  }
+.card--register .badge{
+    background-color:#343D52;
+  }
+.card--register .btn{
+    background-color:#343D52;
+  }
+.card--register .btn:hover{
+			background-color:#fff;
+			color:#343D52 !important;
+			font-weight:bold;
+			border:2px solid #343D52;
+		}
+.card--register .btn:focus{
+      box-shadow:0 0 0 0.2rem #343D52;
+    }
+.card--register .form-control{
+    color:#343D52;
+    border-color:#343D52;
+  }
+.card--register .form-control:focus{
+      box-shadow:0 0 0 0.2rem #343D52;
+    }
+.card--login .card-title{
+    color:#343D52;
+  }
+.card--login .badge{
+    background-color:#343D52;
+  }
+.card--login .btn{
+    background-color:#343D52;
+  }
+.card--login .btn:hover{
+			background-color:#fff;
+			color:#343D52 !important;
+			font-weight:bold;
+			border:2px solid #343D52;
+		}
+.card--login .btn:focus{
+      box-shadow:0 0 0 0.2rem #343D52;
+    }
+.card--login .form-control{
+    color:#343D52;
+    border-color:#343D52;
+  }
+.card--login .form-control:focus{
+      box-shadow:0 0 0 0.2rem #343D52;
+    }
+body{
+	background:-webkit-gradient(linear, left top, right top, from(#0b8793), color-stop(#360033), color-stop(#3A6073), to(#16222A));
+	background:linear-gradient(to right, #0b8793, #360033, #3A6073, #16222A);
+  background-size:500% 500%;
+  -webkit-transition:background 3s ease;
+  transition:background 3s ease;
+  background-position:50% 50%;
+}
+body.is-register{
+  	background-position:0% 50%;
+	}
+body.is-login{
+    background-position:100% 50%;
+  }
+.card{
+	-webkit-transition:all .3s .1s ease-out;
+	transition:all .3s .1s ease-out;
+}
+.card:not(.is-show){
+		opacity:0;
+		-webkit-transform:translate(-50%,-50%) rotateX(95deg);
+		        transform:translate(-50%,-50%) rotateX(95deg);
+	}
+.card.is-show{
+		opacity:1;
+		-webkit-transform:translate(-50%,-50%);
+		        transform:translate(-50%,-50%);
+    z-index:5;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+window.onload = function(){
+  const cards = document.querySelectorAll('.card');
+  var file = document.getElementById('');
+
+  /* View Controller
+                                                  -----------------------------------------*/
+  const btns = document.querySelectorAll('.js-btn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', on_btn_click, true);
+    btn.addEventListener('touch', on_btn_click, true);
+  });
+
+  function on_btn_click(e) {
+    const nextID = e.currentTarget.getAttribute('data-target');
+    const next = document.getElementById(nextID);
+    if (!next) return;
+    bg_change(nextID);
+    view_change(next);
+    return false;
+  }
+
+  /* Add class to the body */
+  function bg_change(next) {
+    document.body.className = '';
+    document.body.classList.add('is-' + next);
+  }
+
+  /* Add class to a card */
+  function view_change(next) {
+    cards.forEach(card => {card.classList.remove('is-show');});
+    next.classList.add('is-show');
+  }
+} 
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="card-wrap">
+    <div class="card border-0 shadow card--welcome is-show" id="welcome">
+      <div class="card-body">
+        <h2 class="card-title">WELCOME</h2>
+        <p>쇼부에 오신 것을 환영합니다.</p>
+        <div class="btn-wrap"><a class="btn btn-lg btn-register js-btn" data-target="register">회원 가입</a><a class="btn btn-lg btn-login js-btn" data-target="login">로그인</a></div>
+      </div>
+    </div>
+    <div class="card border-0 shadow card--register" id="register">
+      <div class="card-body">
+        <h2 class="card-title">회원 가입</h2>
+        <p class="card-text">아래의 내용을 입력해주세요.</p>
+        <form method="post" enctype="multipart/form-data" action="register.do">
+          <div class="form-group">
+            <input class="form-control" type="text" name="id" placeholder="아이디" required="required"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="비밀번호" required="required"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="nickname" placeholder="닉네임" required="required"/>
+          </div>
+          <div class="form-group">
+          	<p style="text-align:left;"><img width="80px" src="image/profile/default.png"></p>
+            <input type="file" name="profile" id="profile">
+          </div>
+          <button type="submit" class="btn btn-lg">등록</button>
+        </form>
+      </div>
+      <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+    </div>
+    <div class="card border-0 shadow card--login" id="login">
+      <div class="card-body">
+        <h2 class="card-title">Welcome Back!</h2>
+        <p>로그인 해주세요.</p>
+        <form method="post" action="login.do">
+          <div class="form-group">
+            <input class="form-control" type="text" name="id" placeholder="아이디" required="required"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="비밀번호" required="required"/>
+          </div>
+          <p></p>
+          <button type="submit" class="btn btn-lg">로그인</button>
+        </form>
+      </div>
+      <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
