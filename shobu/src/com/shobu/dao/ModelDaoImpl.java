@@ -31,6 +31,7 @@ import com.shobu.model.totoVO;
 public class ModelDaoImpl implements ModelDAO{
 
 	//실제로는 DataSource 사용
+	
 	private DataSource ds;
 	private static ModelDaoImpl dao = new ModelDaoImpl();
 	private ModelDaoImpl() {
@@ -49,8 +50,7 @@ public class ModelDaoImpl implements ModelDAO{
 	public Connection getConnection() throws SQLException {
 		return ds.getConnection();
 	}
-	
-/*	
+	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 
 	private static ModelDaoImpl ds = new ModelDaoImpl();
@@ -77,6 +77,7 @@ public class ModelDaoImpl implements ModelDAO{
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 	}*/
+	
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
 		if(ps!=null) ps.close();		
@@ -195,7 +196,7 @@ public class ModelDaoImpl implements ModelDAO{
 			String query = "insert into team values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, vo.getTeamCode());
-			ps.setString(2, "image/"+vo.getTeamCode()+".png");
+			ps.setString(2, "image/team/"+vo.getTeamCode()+".png");
 			ps.setInt(3, vo.getRanking());
 			ps.setInt(4, vo.getGames());
 			ps.setInt(5, vo.getWin());
@@ -693,6 +694,8 @@ public class ModelDaoImpl implements ModelDAO{
 		ArrayList<MatchVO> match = new ArrayList<MatchVO>();
 		String query = "SELECT * FROM matches";
 		Map<String, String> logo = new HashMap<String, String>();
+		String home = "";
+		String away = "";
 		
 		try {
 			conn = getConnection();
@@ -705,7 +708,16 @@ public class ModelDaoImpl implements ModelDAO{
 						rs.getString("away"), rs.getString("homePitcher"), rs.getString("awayPitcher"), rs.getString("place")));
 			}
 			
-			
+			for(int i =0; i<match.size();i++) {
+				home = match.get(i).getHome();
+				away = match.get(i).getAway();
+				System.out.println("Home: "+home+"Away: "+away);
+				
+				if(logo.containsKey(home) && logo.containsKey(away)) {
+					match.get(i).setHomeImg(logo.get(home));
+					match.get(i).setAwayImg(logo.get(away));
+				}
+			}
 		}finally {
 			closeAll(rs, ps, conn);
 		}

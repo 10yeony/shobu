@@ -5,11 +5,14 @@ public class MatchVO {
 	private String time;
 	private String home;
 	private String homeImg;
+	private double homeRatio;
 	private String away;
 	private String awayImg;
+	private double awayRatio;
 	private String homePitcher;
 	private String awayPitcher;
 	private String place;
+	//선발투수경기수 승패 이닝 ERA추가
 	
 	public MatchVO() {}
 	
@@ -25,20 +28,22 @@ public class MatchVO {
 		this.place = place;
 	}
 	
-	public MatchVO(String date, String time, String home, String homeImg, String away, String awayImg,
-			String homePitcher, String awayPitcher, String place) {
+	public MatchVO(String date, String time, String home, String homeImg, double homeRatio, String away, String awayImg,
+			double awayRatio, String homePitcher, String awayPitcher, String place) {
 		super();
 		this.date = date;
 		this.time = time;
 		this.home = home;
 		this.homeImg = homeImg;
+		this.homeRatio = homeRatio;
 		this.away = away;
 		this.awayImg = awayImg;
+		this.awayRatio = awayRatio;
 		this.homePitcher = homePitcher;
 		this.awayPitcher = awayPitcher;
 		this.place = place;
 	}
-	
+
 	public String getDate() {
 		return date;
 	}
@@ -111,11 +116,29 @@ public class MatchVO {
 		this.awayImg = awayImg;
 	}
 
+	public double getHomeRatio() {
+		return homeRatio;
+	}
+
+	public void setHomeRatio(double homeRatio) {
+		this.homeRatio = homeRatio;
+	}
+
+	public double getAwayRatio() {
+		return awayRatio;
+	}
+
+	public void setAwayRatio(double awayRatio) {
+		this.awayRatio = awayRatio;
+	}
+
 	@Override
 	public String toString() {
-		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", away=" + away
-				+ ", awayImg=" + awayImg + ", homePitcher=" + homePitcher + ", awayPitcher=" + awayPitcher + ", place="
-				+ place + "]";
+		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", homeRatio="
+				+ homeRatio + ", away=" + away + ", awayImg=" + awayImg + ", awayRatio=" + awayRatio + ", homePitcher="
+				+ homePitcher + ", awayPitcher=" + awayPitcher + ", place=" + place + "]";
 	}
+
+	
 	
 }
