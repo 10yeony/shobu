@@ -7,6 +7,23 @@ $(function() {
 		success:function(r){
 			console.log("Main.jsp get Json");
 			
+			$.each(r.matchs,function(idx,match){
+				
+				//build indicator
+				if(idx==0){
+					$(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+idx+'" class="active"></li>');
+				}else{
+					$(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+idx+'"></li>');
+				}
+				
+				//input carousel-inner
+				if(idx==0){
+					$(".carousel-inner").append('<div class="item active">');
+				}else{
+					$(".carousel-inner").append('<div class="item">');
+				}
+			});//~Match each
+			
 			$.each(r.teams,function(index,teams){
 				$("#teamrank").append("<tr>");
 				$("#teamrank").append("<td>"+teams.ranking+"</td>");
@@ -21,7 +38,7 @@ $(function() {
 				$("#teamrank").append("<td>"+teams.stream+"</td>");
 				$("#teamrank").append("<td>"+teams.games10+"</td>");
 				$("#teamrank").append("</tr>");
-			});//~each
+			});//~Team each
 			
 		}//~callback
 		

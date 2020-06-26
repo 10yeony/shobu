@@ -58,25 +58,20 @@
         <span style="position: relative; top: 25%;">아이디</span>
       </div>
     </header>
-​
-    <section>
+​	
+	<!-- contents영역 -->
+	
+	<section>
       <!-- 상단 여백 처리-->
       <div style="padding-top: 60px;"></div>
-​
-       <div class="w3-col w3-panel w3-padding-16" style="width: 100%;">
-          	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+      	<div class="w3-col w3-panel w3-padding-16" style="width: 100%;">
+      		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			    <!-- Indicators -->
-			    <ol class="carousel-indicators">
-			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			      <li data-target="#myCarousel" data-slide-to="1"></li>
-			      <li data-target="#myCarousel" data-slide-to="2"></li>
-			      <li data-target="#myCarousel" data-slide-to="3"></li>
-			      <li data-target="#myCarousel" data-slide-to="4"></li>
-			    </ol>
+			    <ol class="carousel-indicators"></ol>
 			
 			    <!-- Wrapper for slides -->
 			    <div class="carousel-inner">
-			      <div class="item active">
+			      <!-- <div class="item active">
 			      <table class="game">
 			      	<tr>
 			      		<td class="away"><img class="teamlogo" src="image/team/HH.png"></td> 
@@ -246,7 +241,7 @@
 			      	<tr>
 			      		<td>이름ㅇ</td> <td class="lab">ERA</td> <td>이름ㅇ</td>
 			      	</tr>
-			      </table>
+			      </table> -->
 			    </div>
 			
 			    <!-- Left and right controls -->
@@ -284,8 +279,7 @@
 						</table>
         		<!-- ~TEAM Rank -->
         </div>
-     	
-    </section>
-  </div>
+      </div>
+     </section>
 </body>
 </html>

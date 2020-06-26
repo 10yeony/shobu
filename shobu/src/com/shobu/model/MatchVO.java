@@ -4,15 +4,17 @@ public class MatchVO {
 	private String date;
 	private String time;
 	private String home;
+	private String homeImg;
 	private String away;
+	private String awayImg;
 	private String homePitcher;
 	private String awayPitcher;
 	private String place;
 	
 	public MatchVO() {}
 	
-	public MatchVO(String date, String time, String home, String away, String homePitcher, String awayPitcher,
-			String place) {
+	public MatchVO(String date, String time, String home, String away,
+			String homePitcher, String awayPitcher, String place) {
 		super();
 		this.date = date;
 		this.time = time;
@@ -22,7 +24,21 @@ public class MatchVO {
 		this.awayPitcher = awayPitcher;
 		this.place = place;
 	}
-
+	
+	public MatchVO(String date, String time, String home, String homeImg, String away, String awayImg,
+			String homePitcher, String awayPitcher, String place) {
+		super();
+		this.date = date;
+		this.time = time;
+		this.home = home;
+		this.homeImg = homeImg;
+		this.away = away;
+		this.awayImg = awayImg;
+		this.homePitcher = homePitcher;
+		this.awayPitcher = awayPitcher;
+		this.place = place;
+	}
+	
 	public String getDate() {
 		return date;
 	}
@@ -79,12 +95,27 @@ public class MatchVO {
 		this.place = place;
 	}
 
+	public String getHomeImg() {
+		return homeImg;
+	}
+
+	public void setHomeImg(String homeImg) {
+		this.homeImg = homeImg;
+	}
+
+	public String getAwayImg() {
+		return awayImg;
+	}
+
+	public void setAwayImg(String awayImg) {
+		this.awayImg = awayImg;
+	}
+
 	@Override
 	public String toString() {
-		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", away=" + away + ", homePitcher="
-				+ homePitcher + ", awayPitcher=" + awayPitcher + ", place=" + place + "]";
+		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", away=" + away
+				+ ", awayImg=" + awayImg + ", homePitcher=" + homePitcher + ", awayPitcher=" + awayPitcher + ", place="
+				+ place + "]";
 	}
-	
-	
 	
 }
