@@ -10,7 +10,6 @@ import com.shobu.model.MemberVO;
 import com.shobu.model.ModelAndView;
 
 public class LoginController implements Controller {
-
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
 		ModelAndView mv = null;
@@ -34,5 +33,4 @@ public class LoginController implements Controller {
 		}
 		return mv;
 	}
-
 }
