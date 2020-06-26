@@ -13,6 +13,181 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
+/* 공통 css */
+@charset "UTF-8";
+.game{
+	width:70%;
+	margin: 20px auto 70px auto;
+	text-align:center;
+}
+.teamlogo{
+	width:100%;
+}
+
+.bold{
+	font-weight: bold;
+	font-size:medium;
+}
+
+.lab{
+	color: #9FA2A6;
+	font-weight: bold;
+}
+
+.graph{
+	width: 60%;
+	margin: 0  auto;
+}
+
+/* Bar Graph Horizontal */
+.bar-graph{
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  opacity: 0;
+}
+
+.bar-graph-horizontal {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.bar-graph-horizontal .bar-away{
+  float: left;
+  margin-bottom: 8px;
+  width: 69.6%; /*변경*/
+  display:contents;
+}
+.bar-graph-horizontal .bar-home{
+  float: right;
+  margin-bottom: 8px;
+  width: 30.4%; /*변경*/
+   display:contents;
+}
+
+
+.bar-graph-horizontal .bar-away .bar {
+  border-radius: 3px;
+  height: 55px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+}
+
+.bar-graph-horizontal .bar-home .bar {
+  border-radius: 3px;
+  height: 55px;
+  float: right;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+}
+
+.bar-graph-one .bar::after {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  color: #fff;
+  content: attr(data-percentage);
+  font-weight: 700;
+  position: absolute;
+  right: 16px;
+  top: 17px;
+}
+
+.bar-graph-one .bar-away .bar {
+  background-color: #64b2d1;
+  -webkit-animation: show-bar-one 1.2s 0.1s forwards;
+  -moz-animation: show-bar-one 1.2s 0.1s forwards;
+  animation: show-bar-one 1.2s 0.1s forwards;
+}
+
+.bar-graph-one .bar-home .bar {
+  background-color: #5292ac;
+  -webkit-animation: show-bar-two 1.2s 0.2s forwards;
+  -moz-animation: show-bar-two 1.2s 0.2s forwards;
+  animation: show-bar-two 1.2s 0.2s forwards;
+}
+
+/* Bar Graph Horizontal Animations */
+@-webkit-keyframes show-bar-one {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 69.6%; /*변경*/
+  }
+}
+
+@-webkit-keyframes show-bar-two {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 30.4%; /*변경*/
+  }
+}
+@-webkit-keyframes fade-in-text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*~Graph*/
+
+/*carosel Control button shodow*/
+.carousel-control {
+    opacity: .1;
+}
+
+/*carosel dot*/
+.carousel-indicators li {
+    border: 1px solid #343D52;
+}
+
+.carousel-indicators .active {
+    background-color: #343D52;
+}
+
+/*Team Ranking Talbe*/
+
+.content-table {
+  		border-collapse: collapse;
+  		margin: 25px 0;
+  		font-size: 0.9em;
+  		min-width: 400px;
+  		border-radius: 5px 5px 0 0;
+  		overflow: hidden;
+  		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	}
+	.content-table thead tr {
+  		background-color: #343d52;
+  		color: #FFFFFF;
+  		text-align: left;
+  		font-weight: bold;
+	}
+	.content-table th,
+	.content-table td {
+  		padding: 12px 15px;
+	}
+	.content-table tbody tr {
+		border-bottom: 1px solid #DDDDDD;
+	}
+	.content-table tbody tr:nth-of-type(even) {
+		background-color: #F3F3F3;
+		color: #343d52;
+	}
+	.content-table tbody tr:nth-of-type(odd) {
+		background-color: #FFFFFF;
+	}
+	.content-table tbody tr:last-of-type {
+		border-bottom: 2px solid #009879;
+	}
+		
+		/* 모의토토 페이지 css */
 		.game{ margin-bottom: 0; }
 		.teamlogo{ width:50px; height:50px; }
 		.bar-graph-horizontal .bar-away .bar, .bar-graph-horizontal .bar-home .bar { height:30px; }

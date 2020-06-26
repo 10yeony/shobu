@@ -21,15 +21,17 @@ public class LoginController implements Controller {
 			boolean flag = ModelDaoImpl.getInstance().login(id, password);
 			System.out.println(flag);
 			if(flag==true) {
-				MemberVO vo = ModelDaoImpl.getInstance().FindMemberById(id);
-				System.out.println(vo.getId());
-				req.getSession().setAttribute("vo", vo);
+				MemberVO member = ModelDaoImpl.getInstance().FindMemberById(id);
+				System.out.println(member.getId());
+				req.getSession().setAttribute("member", member);
+				req.setAttribute("loginFlag", true);
 				mv = new ModelAndView("index.jsp");
 			}else {
+				req.setAttribute("loginFlag", false);
 				mv = new ModelAndView("loginFail.html");
 			}
 		} catch (SQLException e) {
-			System.out.println("SQL Exception Occurs");
+			e.printStackTrace();
 		}
 		return mv;
 	}

@@ -21,12 +21,12 @@ public class HandlerMapping {
 			controller = new MainController();
 			System.out.println("MainController 생성됨");
 		}
-//		else if(command.equals("logout.do")) {
-//			controller = new LogoutController();
-//			System.out.println("LogoutController 생성됨");	
-//		}
+		else if(command.equals("logout.do")) {
+			controller = new LogoutController();
+			System.out.println("LogoutController 생성됨");	
+		}
 		else if(command.equals("login.do")) {
-			new LoginController();
+			controller = new LoginController();
 			System.out.println("LoginController 생성됨");	
 		}
 //		else if(command.equals("memberlist.do")) {
