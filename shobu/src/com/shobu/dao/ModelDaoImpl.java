@@ -23,7 +23,7 @@ import com.shobu.model.TeamVO;
 import com.shobu.model.totoVO;
 
 public class ModelDaoImpl implements ModelDAO{
-	/*
+
 	//실제로는 DataSource 사용
 	private DataSource ds;
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -43,10 +43,10 @@ public class ModelDaoImpl implements ModelDAO{
 	public Connection getConnection() throws SQLException {
 		return ds.getConnection();
 	}
-	*/
 	
 	
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
+	/*
 	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
 		try {
@@ -65,6 +65,7 @@ public class ModelDaoImpl implements ModelDAO{
 		System.out.println("Database Connection......");
 		return conn;
 	}
+	*/
 	
 	
 	//단위 테스트

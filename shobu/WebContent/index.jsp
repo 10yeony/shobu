@@ -17,7 +17,6 @@
       document.getElementById("nav").style.display = "none";
       document.getElementById("overlay").style.display = "none";
     }
-  	
   </script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,6 +24,7 @@
   <link rel="stylesheet" href="css/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -33,10 +33,10 @@
     <div style="background-color: #343d52; height: 60px;">토토</div>
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
-    <a href="main.do">메인</a><br>
-    <a href="#">팀정보</a><br>
+    <a href="index.jsp">메인</a><br>
+    <a href="teampage.jsp">팀정보</a><br>
     <a href="#">선수정보</a><br>
-    <a href="#">모의토토</a><br>
+    <a href="toto.jsp">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
 ​
@@ -275,7 +275,8 @@
       								<th>최근10경기</th>
     							</tr>
   							</thead>
-  							<tbody>
+  							<tbody id="teamrank">
+  							<tr><td></td></tr>
 	  							<c:forEach items="${teams}" var="team">
 	    							<tr>
 	      								<td>${team.ranking}</td>

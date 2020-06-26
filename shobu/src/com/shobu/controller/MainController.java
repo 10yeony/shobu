@@ -1,9 +1,13 @@
 package com.shobu.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 
 import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.MatchVO;
@@ -20,21 +24,29 @@ public class MainController implements Controller {
 		ArrayList<MatchVO> matchs = null;
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
 		
+		//for Ajax
+		JSONObject json = new JSONObject();
+		
+		
 		try {
+			PrintWriter out = res.getWriter();
 			
 			teams = dao.selectAllTeam();
-			//matchs = dao.selectMatch();
-			req.setAttribute("teams", teams);
-			//req.setAttribute("matchs", matchs);
-			System.out.println(teams);
-			//System.out.println(matchs);
+			matchs = dao.selectMatch();
+			json.put("teams", teams);
+			json.put("matchs", matchs);
 			
+			System.out.println(teams);
+			System.out.println(matchs);
+			
+			out.print(json);
+		
 		}catch (Exception e) {
 			e.printStackTrace();
-			//System.out.println("MainController Error*****");
+			System.out.println("MainController Error*****");
 		}
 		
-		return new ModelAndView("index.jsp", false);
+		return null;
 	}
 
 }
