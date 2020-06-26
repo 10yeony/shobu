@@ -23,11 +23,11 @@ public class MainController implements Controller {
 		try {
 			
 			teams = dao.selectAllTeam();
-			matchs = dao.selectMatch();
+			//matchs = dao.selectMatch();
 			req.setAttribute("teams", teams);
-			req.setAttribute("matchs", matchs);
+			//req.setAttribute("matchs", matchs);
 			System.out.println(teams);
-			System.out.println(matchs);
+			//System.out.println(matchs);
 			
 		}catch (Exception e) {
 			e.printStackTrace();

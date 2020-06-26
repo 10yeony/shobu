@@ -573,6 +573,7 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(rs, ps, conn);
 		}
 	}
+	
 	@Override
 	public void register(MemberVO vo) throws SQLException {
 		Connection conn = null;
@@ -590,6 +591,7 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(ps, conn);
 		}
 	}
+	
 	@Override
 	public MemberVO FindMemberById(String id) throws SQLException{
 		MemberVO vo = null;
