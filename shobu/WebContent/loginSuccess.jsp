@@ -52,17 +52,17 @@
     <header class="w3-container w3-top" style="background-color: #343d52; height: 60px;">
       <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
       <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
-      	<img width="50px" height="50px" src="${vo.image}">
+      	<img width="50px" height="50px" src="${member.image}">
       </span>
       <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">${vo.id} 님</span>
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
         <span style="position: relative; top: 25%;">
-          <img width="50px" height="50px" src="${vo.image}">
+          <img width="50px" height="50px" src="${member.image}">
         </span>
         <span style="position: relative; top: 25%;">
-          ${vo.id} 님
+          ${member.id} 님
         </span>
       </div>
     </header>

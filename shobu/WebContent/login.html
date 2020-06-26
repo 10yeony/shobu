@@ -270,8 +270,7 @@ window.onload = function(){
   const cards = document.querySelectorAll('.card');
   var file = document.getElementById('');
 
-  /* View Controller
-                                                  -----------------------------------------*/
+  /* View Controller */
   const btns = document.querySelectorAll('.js-btn');
   btns.forEach(btn => {
     btn.addEventListener('click', on_btn_click, true);
@@ -286,19 +285,35 @@ window.onload = function(){
     view_change(next);
     return false;
   }
-
-  /* Add class to the body */
+  
+  /* class를 body에 추가 */
   function bg_change(next) {
     document.body.className = '';
     document.body.classList.add('is-' + next);
   }
 
-  /* Add class to a card */
+  /* class를 card에 추가 */
   function view_change(next) {
     cards.forEach(card => {card.classList.remove('is-show');});
     next.classList.add('is-show');
   }
-} 
+}
+
+/* 파일 업로드시 이미지 파일만 업로드하도록 제한 */
+function chk_file_type(obj) {
+  var file_kind = obj.value.lastIndexOf('.');
+  var file_name = obj.value.substring(file_kind+1,obj.length);
+  var file_type = file_name.toLowerCase();
+
+  var check_file_type = ['jpg','gif','png','jpeg','bmp'];
+
+  if(check_file_type.indexOf(file_type)==-1){
+    alert('이미지 파일만 선택할 수 있습니다.');
+    var parent_Obj=obj.parentNode
+    var node = parent_Obj.replaceChild(obj.cloneNode(true),obj);
+    return false;
+  }
+}
 </script>
 </head>
 <body>
@@ -316,6 +331,10 @@ window.onload = function(){
         <h2 class="card-title">회원 가입</h2>
         <p class="card-text">아래의 내용을 입력해주세요.</p>
         <form method="post" enctype="multipart/form-data" action="register.do">
+          <div class="form-group" style="text-align: center;">
+          	<p style="text-align:left;"><img width="80px" src="image/profile/default.png"></p>
+            <input type="file" name="profile" id="profile" accept="image/gif, image/jpeg, image/png" onchange="chk_file_type(this)">
+          </div>
           <div class="form-group">
             <input class="form-control" type="text" name="id" placeholder="아이디" required="required"/>
           </div>
@@ -324,10 +343,6 @@ window.onload = function(){
           </div>
           <div class="form-group">
             <input class="form-control" type="text" name="nickname" placeholder="닉네임" required="required"/>
-          </div>
-          <div class="form-group">
-          	<p style="text-align:left;"><img width="80px" src="image/profile/default.png"></p>
-            <input type="file" name="profile" id="profile">
           </div>
           <button type="submit" class="btn btn-lg">등록</button>
         </form>
