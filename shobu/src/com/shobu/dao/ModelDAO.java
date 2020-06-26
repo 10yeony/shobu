@@ -15,7 +15,6 @@ import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.totoVO;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 
 public interface ModelDAO {
 	Connection getConnection() throws SQLException ;
@@ -27,8 +26,6 @@ public interface ModelDAO {
 	void updateHitter(HitterVO vo, int playerId) throws SQLException;
 	void updatePitcher(PitcherVO vo, int playerId) throws SQLException;
 	void updateTeam(TeamVO vo) throws SQLException;
-	void updateMatch(MatchVO vo) throws SQLException;
-	
 	
 	//01. Select Team
 	ArrayList<TeamVO> selectAllTeam() throws SQLException;
