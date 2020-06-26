@@ -61,8 +61,10 @@ public class UpdateController implements Controller {
 			
 			ArrayList<PlayerVO> playerlist = ModelDaoImpl.getInstance().selectAllPlayer();
 			for(int i = 0; i<playerlist.size(); i++) {
-				if(playerlist.get(i).getPosition().equals("투수")) 
+				if(playerlist.get(i).getPosition().equals("투수")) {
 					ModelDaoImpl.getInstance().updatePitcher(pu.updatePitcher(playerlist.get(i).getPlayerId(), playerlist.get(i).getTeamCode()), playerlist.get(i).getPlayerId());
+					ModelDaoImpl.getInstance().updatePitcher3(pu.updatePitcher3(playerlist.get(i).getPlayerId()));
+				}
 				else
 					ModelDaoImpl.getInstance().updateHitter(pu.updateHitter(playerlist.get(i).getPlayerId(), playerlist.get(i).getTeamCode()), playerlist.get(i).getPlayerId());
 			}

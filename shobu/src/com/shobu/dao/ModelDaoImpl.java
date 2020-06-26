@@ -5,18 +5,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.shobu.config.ServerInfo;
+import com.shobu.crawling.PlayerUpdate;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
 import com.shobu.model.MatchVO;
 import com.shobu.model.MemberVO;
+import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
@@ -44,9 +48,9 @@ public class ModelDaoImpl implements ModelDAO{
 		return ds.getConnection();
 	}
 	
-	
+/*	
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
-	/*
+
 	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
 		try {
@@ -65,16 +69,12 @@ public class ModelDaoImpl implements ModelDAO{
 		System.out.println("Database Connection......");
 		return conn;
 	}
-	*/
+
 	
 	
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
-		ModelDaoImpl ds = ModelDaoImpl.getInstance();
-		System.out.println(ds.login("ccc", "9876"));
-	}
-
-	
+	}*/
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
 		if(ps!=null) ps.close();		
@@ -93,13 +93,16 @@ public class ModelDaoImpl implements ModelDAO{
 		PreparedStatement ps = null;
 		try {
 			conn = getConnection();
-			String query = "insert into player values(?,?,?,?,?)";
+			String query = "insert into player values(?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, vo.getPlayerId());
 			ps.setString(2, vo.getTeamCode());
 			ps.setString(3, vo.getName());
 			ps.setString(4, vo.getPosition());
 			ps.setString(5, vo.getImage());
+			ps.setInt(6, vo.getNumber());
+			ps.setString(7, vo.getBirth());
+			ps.setString(8, vo.getType());
 			ps.executeUpdate();
 		} finally {
 			closeAll(ps, conn);
@@ -164,6 +167,24 @@ public class ModelDaoImpl implements ModelDAO{
 		
 	}
 	@Override
+	public void updatePitcher3(Pitcher3VO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "insert into pitcher3 values(?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, vo.getPlayerId());
+			ps.setString(2, vo.getDay1());
+			ps.setString(3, vo.getDay2());
+			ps.setString(4, vo.getDay3());
+			ps.executeUpdate();
+			
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+	@Override
 	public void updateTeam(TeamVO vo) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -172,7 +193,7 @@ public class ModelDaoImpl implements ModelDAO{
 			String query = "insert into team values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, vo.getTeamCode());
-			ps.setString(2, "image/"+vo.getTeamCode()+".jpg");
+			ps.setString(2, "image/"+vo.getTeamCode()+".png");
 			ps.setInt(3, vo.getRanking());
 			ps.setInt(4, vo.getGames());
 			ps.setInt(5, vo.getWin());
@@ -640,7 +661,28 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(rs, ps, conn);
 		}
 	}
-	
+	@Override
+	public void updateMatch(MatchVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = getConnection();
+			String query = "insert into matches values(?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getDate());
+			ps.setString(2, vo.getTime());
+			ps.setString(3, vo.getHome());
+			ps.setString(4, vo.getAway());
+			ps.setString(5, vo.getHomePitcher());
+			ps.setString(6, vo.getAwayPitcher());
+			ps.setString(7, vo.getPlace());
+			ps.executeUpdate();
+		} finally {
+			closeAll(ps, conn);
+		}
+		
+	}
 	@Override
 	public ArrayList<MatchVO> selectMatch() throws SQLException {
 		Connection conn = null;
@@ -691,6 +733,7 @@ public class ModelDaoImpl implements ModelDAO{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	
 	
