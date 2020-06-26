@@ -691,6 +691,11 @@ public class ModelDaoImpl implements ModelDAO{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void updateMatch(MatchVO vo) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	
