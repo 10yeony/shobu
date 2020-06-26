@@ -732,12 +732,6 @@ public class ModelDaoImpl implements ModelDAO{
 	public void updatePoint(String id, int point) throws SQLException {
 		// TODO Auto-generated method stub
 	}
-	@Override
-	public void updateMatch(MatchVO vo) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public ArrayList<String> getImg() throws SQLException{
 		ArrayList<String> logo = new ArrayList<>();
 		
