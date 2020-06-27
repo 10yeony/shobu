@@ -21,7 +21,7 @@ public class RegisterController implements Controller {
     	String nickname ="";
     	String fileName ="";
     	String originFileName ="";
-    	String uploadPath = req.getRealPath("image");
+    	String uploadPath = req.getRealPath("image/profile");
     	System.out.println(uploadPath);
     	try {
     		MultipartRequest multi = new MultipartRequest(
@@ -31,7 +31,7 @@ public class RegisterController implements Controller {
     				"UTF-8",
     				new DefaultFileRenamePolicy());
     		id = multi.getParameter("id");
-    		password = multi.getParameter("password");
+    		password = multi.getParameter("passwordCheck");
     		nickname = multi.getParameter("nickname");
     		
     		fileName = multi.getFilesystemName("profile");
@@ -44,7 +44,7 @@ public class RegisterController implements Controller {
     			ModelDaoImpl.getInstance().register(new MemberVO(id,
 																password,
 																nickname,
-																"image/"+fileName));
+																"image/profile/"+fileName));
     		}
     		PrintWriter out = res.getWriter();
 			out.println("<html><head><script>alert('"+id+" 님, 로그인해주세요.');</script></head></html>");

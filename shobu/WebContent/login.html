@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Josefin+Sans:300,600&amp;display=swap">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body{
   display:-webkit-box;
@@ -128,20 +127,22 @@ body{
   font-size: inherit;
   line-height: normal;
   vertical-align: middle;
-  background-color: #5cb85c;
+  background-color: #343D52;
   cursor: pointer;
-  border: 1px solid #4cae4c;
+  border: 1px solid #343D52;
   border-radius: .25em;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
 }
 
 .filebox label:hover, .check:hover {
-  background-color: #6ed36e;
+  background-color: #fff;
+  color: #343D52;
 }
 
 .filebox label:active, .check:active {
-  background-color: #367c36;
+  background-color: #fff;
+  color: #343D52;
 }
 
 .filebox input[type="file"] {
@@ -338,8 +339,20 @@ window.onload = function(){
 
 $(function(){
 	var profileImg;
+	var password;
+	var passwordCheck;
 	
 	$("#profile").on("change", handleImgFileSelect); //이미지 파일 업로드시 함수 호출
+	
+	$("#deleteFile").click(function(){
+		var flag = confirm("프로필 사진을 삭제하시겠습니까?");
+		if(!flag){
+			return;
+		}else{
+			$('#profileImg').attr('src', 'image/profile/default.png');
+			$('#profile').val('');
+		}
+	});
 	
 	
 	/* 아이디 중복 확인 */
@@ -398,17 +411,38 @@ $(function(){
 		}//click
 	});
 	
-	/* 제출 전 아이디 및 닉네임 중복 확인 여부 체크 */
+	/* 비밀번호 형식 체크 */
+	$('input[name=password]').keyup(function(){
+		var length = $(this).val().length;
+		if(length<3){
+			$('#comparePW').text('3자 이상 10자 이하로 입력하세요');
+		}else{
+			$('#comparePW').text(' ');
+		}
+	});
+	/* 비밀번호 일치 체크 */
+	$('input[name=passwordCheck]').keyup(function(){
+		password = $('input[name=password]').val();
+		passwordCheck = $(this).val();
+		if(password != passwordCheck){
+			$('#comparePW').text('입력하신 비밀번호와 다릅니다');
+		}
+	});
+	
+	/* 제출 전 아이디 및 닉네임 중복 확인 여부 & 비밀번호 일치 여부 체크 */
 	$('form:eq(0)').submit(function(){
 		var idCheck = $('input[type=hidden]:eq(0)').val();
 		var nicknameCheck = $('input[type=hidden]:eq(1)').val();
-		var filename = $('input[type=file]').val();
-		$('#profileImg').attr('src', 'filename');
+		password = $('input[name=password]').val();
+		passwordCheck = $('input[name=passwordCheck]').val();
 		if(idCheck=="notIdCheck"){
 			alert("아이디 중복 확인을 해주세요");
 			return false;
 		}else if(nicknameCheck=="notNicknameCheck"){
 			alert("닉네임 중복 확인을 해주세요");
+			return false;
+		}else if(password != passwordCheck){
+			alert("입력하신 비밀번호가 다릅니다.");
 			return false;
 		}
 	});
@@ -465,27 +499,33 @@ function handleImgFileSelect(e) {
       <div class="card-body">
         <h2 class="card-title">회원 가입</h2>
         <p class="card-text">아래의 내용을 입력해주세요.</p>
-        <form method="post" enctype="multipart/form-data" action="register.do">
+        <form method="post" enctype="multipart/form-data" action="register.do" autocomplete="off">
           <div class="form-group">
-            <input class="form-control" type="text" name="id" placeholder="아이디" required="required"/>
-            <button type="button" class="check">중복 확인</button>
+            <input class="form-control" type="text" name="id" placeholder="아이디" required="required" style="display:inline; width:68%; vertical-align:text-bottom;"/>
+            <button type="button" class="check" style="vertical-align:text-bottom;">중복 확인</button>
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" name="nickname" placeholder="닉네임" required="required"/>
-            <button type="button" class="check">중복 확인</button>
+            <input class="form-control" type="text" name="nickname" placeholder="닉네임" required="required" style="display:inline; width:68%; vertical-align:text-bottom;"/>
+            <button type="button" class="check" style="vertical-align:text-bottom;">중복 확인</button>
           </div>
           <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="비밀번호" required="required"/>
+            <input class="form-control" type="password" name="password" placeholder="비밀번호" required="required" maxlength="10"/>
           </div>
           <div class="form-group">
-          	<img width="80px" height="80px" src="image/default.png" id="profileImg">
-          	<span class="filebox" style="vertical-align:text-top; margin-left:10px;">
+            <input class="form-control" type="password" name="passwordCheck" placeholder="비밀번호 확인" required="required" maxlength="10"/>
+            <div id="comparePW" style="color:red; text-align:left; margin-top:3px;"></div>
+          </div>
+          <div class="form-group">
+          	<img width="80px" height="80px" src="image/profile/default.png" id="profileImg" style="vertical-align:text-bottom;">
+          	<span class="filebox" style="vertical-align:text-bottom; margin-left:5px;">
               <label for="profile">프로필 사진 업로드</label>
               <input type="file" name="profile" id="profile" accept="image/gif, image/jpeg, image/png">
+              <button type="button" class="check" id="deleteFile" style="vertical-align:baseline;">삭제</button>
             </span>
           </div>
           <input type="hidden" value="notIdCheck">
           <input type="hidden" value="notNicknameCheck">
+          <input type="hidden" value="">
           <button type="submit" class="btn btn-lg">등록</button>
         </form>
       </div>
@@ -495,7 +535,7 @@ function handleImgFileSelect(e) {
       <div class="card-body">
         <h2 class="card-title">Welcome Back!</h2>
         <p>로그인 해주세요.</p>
-        <form method="post" action="login.do">
+        <form method="post" action="login.do" autocomplete="off">
           <div class="form-group">
             <input class="form-control" type="text" name="id" placeholder="아이디" required="required"/>
           </div>

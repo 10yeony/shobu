@@ -23,7 +23,7 @@ public class MemberVO {
 		this.id = id;
 		this.password = password;
 		this.nickname = nickname;
-		this.image = "image/default.png";
+		this.image = "image/profile/default.png";
 		this.point = 0; //회원가입시 포인트 0점 부여
 	}
 	public MemberVO(String id, String password, String nickname, String image, int point) {
