@@ -27,7 +27,7 @@ public class RegisterController implements Controller {
     		MultipartRequest multi = new MultipartRequest(
     				req, 
     				uploadPath,
-    				5*1024*1024,
+    				5*1024*1000,
     				"UTF-8",
     				new DefaultFileRenamePolicy());
     		id = multi.getParameter("id");
