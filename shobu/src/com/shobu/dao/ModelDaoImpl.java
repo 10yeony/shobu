@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 
 import com.shobu.config.ServerInfo;
 import com.shobu.crawling.PlayerUpdate;
+import com.shobu.datasource.DataSourceManager;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
@@ -31,25 +32,16 @@ import com.shobu.model.totoVO;
 public class ModelDaoImpl implements ModelDAO{
 
 	//실제로는 DataSource 사용
-
-	private DataSource ds;
+	
+	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
-	private ModelDaoImpl() {
-		try {
-			InitialContext ic = new InitialContext();			
-			ds = (DataSource)ic.lookup("java:comp/env/jdbc/mysql");
-			System.out.println("DataSource Lookup Success..");
-		}catch(NamingException e) {
-			e.printStackTrace();
-			//System.out.println("DataSource Lookup failed...");
-		}
-	}	
+	private ModelDaoImpl() {}	
 	public static ModelDaoImpl getInstance() {
 		return dao;
 	}
 	@Override
 	public Connection getConnection() throws SQLException {
-		return ds.getConnection();
+		return dsm.getConnection();
 	}
 	
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
@@ -71,23 +63,23 @@ public class ModelDaoImpl implements ModelDAO{
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASS);
 		System.out.println("Database Connection......");
 		return conn;
-	}
+	}*/
 
 	
 	
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
-	}*/
+	}
 	
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
-		if(ps!=null) ps.close();		
-		if(conn != null) conn.close();
+		dsm.close(ps);
+		dsm.close(conn);
 	}
 
 	@Override
 	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		if(rs != null)	rs.close();
+		dsm.close(rs);
 		closeAll(ps, conn);		
 		
 	}

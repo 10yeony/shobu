@@ -18,7 +18,7 @@ public class UpdateController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
-		String path = "index.jsp";
+		String path ="toto.jsp";
 		PlayerUpdate pu = new PlayerUpdate();
 		
 		try {
