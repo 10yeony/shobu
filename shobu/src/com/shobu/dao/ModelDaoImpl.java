@@ -32,7 +32,6 @@ import com.shobu.model.totoVO;
 public class ModelDaoImpl implements ModelDAO{
 
 	//실제로는 DataSource 사용
-	
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
 	private ModelDaoImpl() {}	
@@ -43,10 +42,20 @@ public class ModelDaoImpl implements ModelDAO{
 	public Connection getConnection() throws SQLException {
 		return dsm.getConnection();
 	}
+	@Override
+	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
+		dsm.close(ps);
+		dsm.close(conn);
+	}
+	@Override
+	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
+		dsm.close(rs);
+		closeAll(ps, conn);		
+	}
 	
+	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
-
-	/*private static ModelDaoImpl ds = new ModelDaoImpl();
+	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
 		try {
 			Class.forName(ServerInfo.DRIVER_NAME);
@@ -63,26 +72,22 @@ public class ModelDaoImpl implements ModelDAO{
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASS);
 		System.out.println("Database Connection......");
 		return conn;
-	}*/
-
-	
-	
+	}
+	@Override
+	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException{
+		if(ps!=null) ps.close();		
+		if(conn != null) conn.close();
+	}
+	@Override
+	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException{		
+		if(rs != null)	rs.close();
+		closeAll(ps, conn);		
+	}
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 	}
+	*/
 	
-	@Override
-	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
-		dsm.close(ps);
-		dsm.close(conn);
-	}
-
-	@Override
-	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		dsm.close(rs);
-		closeAll(ps, conn);		
-		
-	}
 	@Override
 	public void updatePlayer(PlayerVO vo) throws SQLException {
 		Connection conn = null;

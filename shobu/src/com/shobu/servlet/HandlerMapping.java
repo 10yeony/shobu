@@ -1,9 +1,11 @@
 package com.shobu.servlet;
 
 import com.shobu.controller.Controller;
+import com.shobu.controller.IdCheckController;
 import com.shobu.controller.LoginController;
 import com.shobu.controller.LogoutController;
 import com.shobu.controller.MainController;
+import com.shobu.controller.NicknameCheckController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;
 import com.shobu.controller.UpdateController;
@@ -30,6 +32,18 @@ public class HandlerMapping {
 			controller = new LoginController();
 			System.out.println("LoginController 생성됨");	
 		}
+		else if(command.equals("register.do")){
+			controller = new RegisterController();
+			System.out.println("RegisterController 생성됨");	
+		}
+		else if(command.equals("idCheck.do")){
+			controller = new IdCheckController();
+			System.out.println("IdCheckController 생성됨");	
+		}
+		else if(command.equals("nicknameCheck.do")){
+			controller = new NicknameCheckController();
+			System.out.println("NicknameCheckController 생성됨");	
+		}
 //		else if(command.equals("memberlist.do")) {
 //			controller = new MemberListController();
 //			System.out.println("MemberListController 생성됨");	
@@ -44,10 +58,6 @@ public class HandlerMapping {
 //			System.out.println("IdCheckController 생성됨");	
 //			
 //		}
-		else if(command.equals("register.do")){
-			controller = new RegisterController();
-			System.out.println("RegisterController 생성됨");	
-		}
 		else if(command.equals("update.do")){
 			controller = new UpdateController();
 			System.out.println("UpdateController 생성됨");	

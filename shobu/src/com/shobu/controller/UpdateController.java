@@ -78,7 +78,7 @@ public class UpdateController implements Controller {
 		}catch (Exception e) {
 			// TODO: handle exception
 	}
-		return new ModelAndView(path);
+		return null;
 	}
 
 }
