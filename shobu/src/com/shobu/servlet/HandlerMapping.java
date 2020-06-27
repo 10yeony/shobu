@@ -2,6 +2,7 @@ package com.shobu.servlet;
 
 import com.shobu.controller.Controller;
 import com.shobu.controller.LoginController;
+import com.shobu.controller.LogoutController;
 import com.shobu.controller.MainController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;

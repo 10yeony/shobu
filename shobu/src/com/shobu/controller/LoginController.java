@@ -25,7 +25,7 @@ public class LoginController implements Controller {
 				System.out.println(member.getId());
 				req.getSession().setAttribute("member", member);
 				req.setAttribute("loginFlag", true);
-				mv = new ModelAndView("index.jsp");
+				mv = new ModelAndView("frame.jsp");
 			}else {
 				req.setAttribute("loginFlag", false);
 				mv = new ModelAndView("loginFail.html");

@@ -47,15 +47,25 @@
 ​
   <!-- 상단 서치바, 유저정보(썸네일, 아이디) -->
   <div class="w3-main" style="margin-left:250px;">
-    <header class="w3-container w3-top" style="background-color: #343d52; height: 60px;">
+    <header class="w3-container w3-top" style="background-color: #343d52; color: white; height: 60px;">
+      <a href="../login.html">로그인</a> 
+      <a href="logout.do">로그아웃</a>
       <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">썸네일</span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">아이디</span>
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
+      	<img src="${member.image}" width="40px" height="40px">
+      </span>
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
+      	${member.name} 님
+      </span>
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">썸네일</span>
-        <span style="position: relative; top: 25%;">아이디</span>
+        <span style="position: relative; top: 25%;">
+          <img src="${member.image}" width="40px" height="40px">
+        </span>
+        <span style="position: relative; top: 25%;">
+          ${member.name} 님
+        </span>
       </div>
     </header>
 ​	
@@ -66,6 +76,7 @@
         <div class="load-html" id="body" data-source="index.jsp"></div>
       </div>
     </section>
+   </div>
     
 <script>
 $(function () {

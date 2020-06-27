@@ -17,7 +17,7 @@ public class DataSourceManager {
 	private DataSourceManager() {
 		try {
 			Context initCtx = new InitialContext();
-			dataSource = (DataSource) initCtx.lookup("java:comp/env/MariaDB");
+			dataSource = (DataSource) initCtx.lookup("java:comp/env/jdbc/mysql");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
