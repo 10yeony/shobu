@@ -791,10 +791,10 @@ public class ModelDaoImpl implements ModelDAO{
 					logo.put("롯데",rs.getString(2)+",#002955");
 					break;
 				case "WO":
-					logo.put("키움",rs.getString(2)+",#002955");
+					logo.put("키움",rs.getString(2)+",#820024");
 					break;
 				case "SK":
-					logo.put("SK",rs.getString(2)+",#820024");
+					logo.put("SK",rs.getString(2)+",#FF0000");
 					break;
 				case "SS":
 					logo.put("삼성",rs.getString(2)+",#074CA1");

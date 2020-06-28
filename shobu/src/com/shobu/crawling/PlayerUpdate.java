@@ -45,7 +45,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -91,7 +91,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -137,7 +137,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -183,7 +183,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -229,7 +229,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -276,7 +276,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -322,7 +322,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -368,7 +368,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -414,7 +414,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);
@@ -459,7 +459,7 @@ public class PlayerUpdate {
 					player.setTeamCode(teamCode);
 					player.setName(name);
 					player.setPosition(position);
-					player.setImage("image/"+playerId+".jpg");
+					player.setImage("image/player/"+playerId+".jpg");
 					player.setNumber(number);
 					player.setBirth(birth);
 					player.setType(type);

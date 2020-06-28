@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
-  <!--삭제필 -->
+  <!--삭제필요 -->
   <style type="text/css">
   	.game{
 	width:70%;
@@ -96,14 +96,12 @@
 	}
 	
 	.bar-graph-one .bar-away .bar {
-	  background-color: #64b2d1;
 	  -webkit-animation: show-bar-one 1.2s 0.1s forwards;
 	  -moz-animation: show-bar-one 1.2s 0.1s forwards;
 	  animation: show-bar-one 1.2s 0.1s forwards;
 	}
 	
 	.bar-graph-one .bar-home .bar {
-	  background-color: #5292ac;
 	  -webkit-animation: show-bar-two 1.2s 0.2s forwards;
 	  -moz-animation: show-bar-two 1.2s 0.2s forwards;
 	  animation: show-bar-two 1.2s 0.2s forwards;
@@ -204,14 +202,14 @@
 
 <body>
   <!-- 슬라이드 메뉴바 -->
-  <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
     <div style="background-color: #343d52; height: 60px;">토토</div>
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
-    <a href="index.jsp">메인</a><br>
-    <a href="teampage.jsp">팀정보</a><br>
+    <a href="#" id="main">메인</a><br>
+    <a href="#" id="team">팀정보</a><br>
     <a href="#">선수정보</a><br>
-    <a href="toto.jsp">모의토토</a><br>
+    <a href="#" id="toto">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
 ​
@@ -221,15 +219,25 @@
 ​
   <!-- 상단 서치바, 유저정보(썸네일, 아이디) -->
   <div class="w3-main" style="margin-left:250px;">
-    <header class="w3-container w3-top" style="background-color: #343d52; height: 60px;">
+    <header class="w3-container w3-top" style="background-color: #343d52; color: white; height: 60px;">
+      <a href="../login.html">로그인</a> 
+      <a href="logout.do">로그아웃</a>
       <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">썸네일</span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">아이디</span>
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
+      	<img src="${member.image}" width="40px" height="40px">
+      </span>
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
+      	${member.name} 님
+      </span>
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">썸네일</span>
-        <span style="position: relative; top: 25%;">아이디</span>
+        <span style="position: relative; top: 25%;">
+          <img src="${member.image}" width="40px" height="40px">
+        </span>
+        <span style="position: relative; top: 25%;">
+          ${member.name} 님
+        </span>
       </div>
     </header>
 ​	

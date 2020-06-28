@@ -83,14 +83,12 @@
 }
 
 .bar-graph-one .bar-away .bar {
-  background-color: #64b2d1;
   -webkit-animation: show-bar-one 1.2s 0.1s forwards;
   -moz-animation: show-bar-one 1.2s 0.1s forwards;
   animation: show-bar-one 1.2s 0.1s forwards;
 }
 
 .bar-graph-one .bar-home .bar {
-  background-color: #5292ac;
   -webkit-animation: show-bar-two 1.2s 0.2s forwards;
   -moz-animation: show-bar-two 1.2s 0.2s forwards;
   animation: show-bar-two 1.2s 0.2s forwards;
