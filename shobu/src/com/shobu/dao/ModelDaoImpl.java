@@ -32,6 +32,7 @@ import com.shobu.model.totoVO;
 public class ModelDaoImpl implements ModelDAO{
 
 	//실제로는 DataSource 사용
+	
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
 	private ModelDaoImpl() {}	
@@ -85,8 +86,9 @@ public class ModelDaoImpl implements ModelDAO{
 	}
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
-	}
-	*/
+		ModelDaoImpl dao = ModelDaoImpl.getInstance();
+	}*/
+	
 	
 	@Override
 	public void updatePlayer(PlayerVO vo) throws SQLException {
@@ -712,8 +714,20 @@ public class ModelDaoImpl implements ModelDAO{
 				System.out.println("Home: "+home+"Away: "+away);
 				
 				if(logo.containsKey(home) && logo.containsKey(away)) {
-					match.get(i).setHomeImg(logo.get(home));
-					match.get(i).setAwayImg(logo.get(away));
+					String[] homeTmp = logo.get(home).split(",");
+					String[] awayTmp = logo.get(away).split(",");;
+					String homeLogo = homeTmp[0];
+					String homeColor = homeTmp[1];
+					String awayLogo = awayTmp[0];
+					String awayColor = awayTmp[1];
+					
+					System.out.println("homeLogo: "+homeLogo+" homeColor: "+homeColor+" awayLogo: "+awayLogo+" awayColor: "+awayColor);
+					
+					
+					match.get(i).setHomeImg(homeLogo);
+					match.get(i).setHomeColor(homeColor);
+					match.get(i).setAwayImg(awayLogo);
+					match.get(i).setAwayColor(awayColor);
 				}
 			}
 		}finally {
@@ -762,34 +776,34 @@ public class ModelDaoImpl implements ModelDAO{
 			while(rs.next()) {
 				switch(rs.getString(1)) {
 				case "OB":
-					logo.put("두산",rs.getString(2));
+					logo.put("두산",rs.getString(2)+",#131230");
 					break;
 				case "KT":
-					logo.put("KT",rs.getString(2));
+					logo.put("KT",rs.getString(2)+",#000000");
 					break;
 				case "LG":
-					logo.put("LG",rs.getString(2));
+					logo.put("LG",rs.getString(2)+",#C30452");
 					break;
 				case "HT":
-					logo.put("KIA",rs.getString(2));
+					logo.put("KIA",rs.getString(2)+",#C70125");
 					break;
 				case "LT":
-					logo.put("롯데",rs.getString(2));
+					logo.put("롯데",rs.getString(2)+",#002955");
 					break;
 				case "WO":
-					logo.put("키움",rs.getString(2));
+					logo.put("키움",rs.getString(2)+",#002955");
 					break;
 				case "SK":
-					logo.put("SK",rs.getString(2));
+					logo.put("SK",rs.getString(2)+",#820024");
 					break;
 				case "SS":
-					logo.put("삼성",rs.getString(2));
+					logo.put("삼성",rs.getString(2)+",#074CA1");
 					break;
 				case "NC":
-					logo.put("NC",rs.getString(2));
+					logo.put("NC",rs.getString(2)+",#315288");
 					break;
 				case "HH":
-					logo.put("한화",rs.getString(2));
+					logo.put("한화",rs.getString(2)+",#FF6600");
 					break;
 				}
 			}

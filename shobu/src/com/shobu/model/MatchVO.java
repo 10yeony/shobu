@@ -5,14 +5,15 @@ public class MatchVO {
 	private String time;
 	private String home;
 	private String homeImg;
+	private String homeColor;
 	private double homeRatio;
 	private String away;
 	private String awayImg;
+	private String awayColor;
 	private double awayRatio;
 	private String homePitcher;
 	private String awayPitcher;
 	private String place;
-	//선발투수경기수 승패 이닝 ERA추가
 	
 	public MatchVO() {}
 	
@@ -28,16 +29,21 @@ public class MatchVO {
 		this.place = place;
 	}
 	
-	public MatchVO(String date, String time, String home, String homeImg, double homeRatio, String away, String awayImg,
-			double awayRatio, String homePitcher, String awayPitcher, String place) {
+	
+
+	public MatchVO(String date, String time, String home, String homeImg, String homeColor, double homeRatio,
+			String away, String awayImg, String awayColor, double awayRatio, String homePitcher, String awayPitcher,
+			String place) {
 		super();
 		this.date = date;
 		this.time = time;
 		this.home = home;
 		this.homeImg = homeImg;
+		this.homeColor = homeColor;
 		this.homeRatio = homeRatio;
 		this.away = away;
 		this.awayImg = awayImg;
+		this.awayColor = awayColor;
 		this.awayRatio = awayRatio;
 		this.homePitcher = homePitcher;
 		this.awayPitcher = awayPitcher;
@@ -131,14 +137,29 @@ public class MatchVO {
 	public void setAwayRatio(double awayRatio) {
 		this.awayRatio = awayRatio;
 	}
+	
+	public String getHomeColor() {
+		return homeColor;
+	}
+
+	public void setHomeColor(String homeColor) {
+		this.homeColor = homeColor;
+	}
+
+	public String getAwayColor() {
+		return awayColor;
+	}
+
+	public void setAwayColor(String awayColor) {
+		this.awayColor = awayColor;
+	}
 
 	@Override
 	public String toString() {
-		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", homeRatio="
-				+ homeRatio + ", away=" + away + ", awayImg=" + awayImg + ", awayRatio=" + awayRatio + ", homePitcher="
-				+ homePitcher + ", awayPitcher=" + awayPitcher + ", place=" + place + "]";
+		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", homeColor="
+				+ homeColor + ", homeRatio=" + homeRatio + ", away=" + away + ", awayImg=" + awayImg + ", awayColor="
+				+ awayColor + ", awayRatio=" + awayRatio + ", homePitcher=" + homePitcher + ", awayPitcher="
+				+ awayPitcher + ", place=" + place + "]";
 	}
 
-	
-	
 }

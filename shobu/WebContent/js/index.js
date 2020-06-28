@@ -19,29 +19,29 @@ $(function() {
 				//input carousel-inner
 				//변경시 String만 수정
 				var string = '<table class="game">'+
-							'<tr><td class="away"><img class="teamlogo" src="'+match.awayImg+'"></td>'+
-							'<td class="graph">'+
-							'<section class="bar-graph bar-graph-horizontal bar-graph-one">'+
-							'<div class="bar-away">'+
-							'<div class="bar" data-percentage="'+69.6%+'"></div>'+
-							'</div>'+
-							'<div class="bar-home">'+
-							    '<div class="bar" data-percentage="'+30.4%+'></div>'+
-							  '</div>'+
-							'</section></td>'+
-							'<td class="home"><img class="teamlogo" src="'+match.homeImg+'"></td></tr>'+
-							'<tr class="bold">'+
-								'<td>'+match.homePitcher+'</td> <td>'
-								+match.place+'<br>'+match.time+'</td> <td>'+match.awayPitcher+'</td>'+
-							'</tr>'+'</table></div>';
-				if(idx==0){
-					$(".carousel-inner").append('<div class="item active">');
-					$(".carousel-inner").append(string);
-					
-				}else{
-					$(".carousel-inner").append('<div class="item">');
-					$(".carousel-inner").append(string);
-				}
+							 	'<tr>'+
+							 		'<td class="away"><img class="teamlogo" src="'+match.awayImg+'"></td>'+
+							 		'<td class="graph">'+
+							 			'<section class="bar-graph bar-graph-horizontal bar-graph-one">'+
+							 				'<div class="bar-away">'+
+							 					'<div class="bar" data-percentage='+match.awayRatio+'%></div>'+
+							 				'</div>'+
+							 				'<div class="bar-home">'+
+							 					'<div class="bar" data-percentage='+match.homeRatio+'%></div>'+
+							 				'</div>'+
+							 			'</section> </td>'+
+							 		'<td class="home"><img class="teamlogo" src='+match.homeImg+'></td>'+
+							 	'</tr>'
+							 	'<tr class ="bold">'+
+							 		'<td>'+match.awayPitcher+'</td> <td>'+match.place+'<br>'+match.time+'</td> <td>'+match.homePitcher+'</td>'+
+							 	'</tr>'
+							 '</table>'+
+							'</div>';
+				if(idx==0) $(".carousel-inner").append('<div class="item active">');
+				else $(".carousel-inner").append('<div class="item">');
+			
+				$(".carousel-inner").append(string);
+				
 			});//~Match each
 			
 			$.each(r.teams,function(index,teams){
