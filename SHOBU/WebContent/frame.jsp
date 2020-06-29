@@ -73,7 +73,7 @@
 	
 	<section>
       <div class="container-fluid">
-        <div class="load-html" id="body" data-source="index.jsp"></div>
+        <div class="load-html" id="body" data-source="test_index.jsp"></div>
       </div>
     </section>
    </div>
@@ -85,21 +85,21 @@ $(function () {
     });
     
     $('#main').click(function(){
-    	$('#body').attr('data-source','index.jsp');
+    	$('#body').attr('data-source','test_index.jsp');
     	$('.load-html').each(function () {
             $(this).load(this.dataset.source);
         });
     });
     
     $('#team').click(function(){
-    	$('#body').attr('data-source','team.html');
+    	$('#body').attr('data-source','test_team.html');
     	$('.load-html').each(function () {
             $(this).load(this.dataset.source);
         });
     });
 	
     $('#toto').click(function(){
-    	$('#body').attr('data-source','toto.jsp');
+    	$('#body').attr('data-source','test_toto.jsp');
     	$('.load-html').each(function () {
             $(this).load(this.dataset.source);
         });
