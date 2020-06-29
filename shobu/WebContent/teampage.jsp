@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>쇼부 SHOBU</title>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
