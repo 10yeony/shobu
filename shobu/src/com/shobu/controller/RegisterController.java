@@ -28,16 +28,6 @@ public class RegisterController implements Controller {
     	String uploadPath = req.getRealPath("image/profile");
     	System.out.println(uploadPath);
     	try {
-    		/*
-    		int i = -1;
-          	i = fileName.lastIndexOf("."); // 파일 확장자 위치
-          	String realFileName = now + fileName.substring(i, fileName.length());  //현재시간과 확장자 합치기
-   
-    		File oldFile = new File(savePath + fileName);
-    		File newFile = new File(savePath + realFileName);
-   
-    		oldFile.renameTo(newFile); // 파일명 변경
-    		 */
     		MultipartRequest multi = new MultipartRequest(req, 
     													uploadPath,
     													5*1024*1000,
@@ -52,7 +42,6 @@ public class RegisterController implements Controller {
     		int i = -1;
           	i = fileName.lastIndexOf("."); // 파일 확장자 위치
           	String saveFileName = now + "_"+ id + fileName.substring(i, fileName.length());  //현재시간과 확장자 합치기
-          	System.out.println(saveFileName);
           	
           	File oldFile = new File(uploadPath, fileName); //예전 파일
     		File newFile = new File(uploadPath, saveFileName); //현재 파일
@@ -74,7 +63,7 @@ public class RegisterController implements Controller {
 			out.println("<html><head><script>alert('"+nickname+"님, 로그인해주세요.');</script></head></html>");
 			req.getRequestDispatcher("index.jsp").include(req, res);
     	}catch(Exception e) {
-    		e.printStackTrace();
+    		//e.printStackTrace();
     	}
     	return null;
 	}
