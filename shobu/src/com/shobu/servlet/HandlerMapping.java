@@ -8,6 +8,7 @@ import com.shobu.controller.MainController;
 import com.shobu.controller.NicknameCheckController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;
+import com.shobu.controller.TotoController;
 import com.shobu.controller.UpdateController;
 
 public class HandlerMapping {
@@ -44,18 +45,13 @@ public class HandlerMapping {
 			controller = new NicknameCheckController();
 			System.out.println("NicknameCheckController 생성됨");	
 		}
-//		else if(command.equals("memberlist.do")) {
-//			controller = new MemberListController();
-//			System.out.println("MemberListController 생성됨");	
-//		}
+		else if(command.equals("toto.do")) {
+			controller = new TotoController();
+			System.out.println("TotoController 생성됨");	
+		}
 //		else if(command.equals("update.do")) {
 //			controller = new UpdateController();
 //			System.out.println("UpdateController 생성됨");	
-//			
-//		}
-//		else if(command.equals("idcheck.do")) {
-//			controller = new IdCheckController();
-//			System.out.println("IdCheckController 생성됨");	
 //			
 //		}
 		else if(command.equals("update.do")){
