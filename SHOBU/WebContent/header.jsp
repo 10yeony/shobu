@@ -25,7 +25,6 @@
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -34,10 +33,10 @@
     <div style="background-color: #343d52; height: 60px;">토토</div>
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
-    <a href="#" id="main">메인</a><br>
-    <a href="#" id="team">팀정보</a><br>
-    <a href="#">선수정보</a><br>
-    <a href="#" id="toto">모의토토</a><br>
+    <a href="index.jsp">메인</a><br>
+    <a href="team.jsp">팀정보</a><br>
+    <a href="teampage.jsp">선수정보</a><br>
+    <a href="toto.jsp">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
 ​
@@ -70,42 +69,6 @@
     </header>
 ​	
 	<!-- contents영역 -->
-	
-	<section>
-      <div class="container-fluid">
-        <div class="load-html" id="body" data-source="test_index.jsp"></div>
-      </div>
-    </section>
-   </div>
-    
-<script>
-$(function () {
-    $('.load-html').each(function () {
-        $(this).load(this.dataset.source);
-    });
-    
-    $('#main').click(function(){
-    	$('#body').attr('data-source','test_index.jsp');
-    	$('.load-html').each(function () {
-            $(this).load(this.dataset.source);
-        });
-    });
-    
-    $('#team').click(function(){
-    	$('#body').attr('data-source','test_team.html');
-    	$('.load-html').each(function () {
-            $(this).load(this.dataset.source);
-        });
-    });
-	
-    $('#toto').click(function(){
-    	$('#body').attr('data-source','test_toto.jsp');
-    	$('.load-html').each(function () {
-            $(this).load(this.dataset.source);
-        });
-    });
-});
-</script>
 
 </body>
 </html>
