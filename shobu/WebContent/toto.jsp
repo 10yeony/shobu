@@ -186,13 +186,12 @@
 		.bar-graph-one .bar::after{ top: 6px; }
 		.bar-graph-horizontal { max-width:100%; }
 		.content-table tbody tr:last-of-type { border-bottom: 2px solid #343D52; }
-	</style>  
+	</style>
 </head>
 
 <body onload="init();">
  	<!-- header -->
  	<%@ include file="header.jsp"%>
- 	
     <section>
       <!-- 상단 여백 처리-->
       <div style="padding-top: 20px;"></div>
