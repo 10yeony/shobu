@@ -14,8 +14,9 @@
   .menu{
   	width: 25px;
   	margin: 20px 10px;
+  	text-decoration:none;
   }
-  #menu a:-webkit-any-link,#login a:-webkit-any-link{
+  .menu a:-webkit-any-link, #menu a:-webkit-any-link,#login a:-webkit-any-link{
   	text-decoration:none;
   }
   #login{
@@ -100,7 +101,10 @@
 <body>
   <!-- 슬라이드 메뉴바 -->
   <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
-    <div style="background-color: #343d52; height: 60px;">토토</div>
+    <div style="background-color: #343d52; height: 60px; padding-top:8px; padding-left:10px;">
+      <img src="image/frontlogo.png" style="width:40px; height:40px;">
+      <img src="image/backlogo.png" style="width:100px; height:20px;">
+    </div>
     <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
     <!-- 입력 -->
     <div id='menu' style="padding: 10px 20px;">
@@ -141,13 +145,10 @@
       	<c:choose>
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님 &nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<a href="#" onclick="document.getElementById('id01').style.display='block'">정보수정</a>
+				<a class="menu" href="#" onclick="document.getElementById('id01').style.display='block'">정보수정</a>
 				<span> | </span>
-				<a href="#" onclick="document.getElementById('id02').style.display='block'">결과보기</a>
+				<a class="menu" href="#" onclick="document.getElementById('id02').style.display='block'">결과보기</a>
 			</c:when>
-			<c:otherwise>
-				<a href="../login.html"><span>로그인</span></a>
-			</c:otherwise>
 		</c:choose>
       </span>
 ​
@@ -164,13 +165,10 @@
           <c:choose>
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님 &nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<a href="#" onclick="document.getElementById('id01').style.display='block'">정보수정</a>
+				<a class="menu" href="#" onclick="document.getElementById('id01').style.display='block'">정보수정</a>
 				<span> | </span>
-				<a href="#" onclick="document.getElementById('id02').style.display='block'">결과보기</a>
+				<a class="menu" href="#" onclick="document.getElementById('id02').style.display='block'">결과보기</a>
 			</c:when>
-			<c:otherwise>
-				<a href="../login.html"><span>로그인</span></a>
-			</c:otherwise>
 		</c:choose>
         </span>
       </div>
@@ -178,86 +176,98 @@
 ​	
 	<!-- contents영역 -->
 	<!-- 정보수정 시작 -->
-<div class="w3-container">
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-        <img src="${member.image}" alt="Avatar" style="width:200px; height:200px;" class="w3-circle w3-margin-top">
-      </div>
+    <div class="w3-container">
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+          <div class="w3-center"><br>
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">
+              &times;
+            </span>
+            <img src="${member.image}" alt="Avatar" style="width:200px; height:200px;" class="w3-circle w3-margin-top">
+          </div><!-- .w3-center -->
 
-      <form class="w3-container" action="memberUpdate.do">
-        <div class="w3-section">
-          <label><b>아이디</b></label>
-          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${member.id}" name="id" readonly>
-          <label><b>닉네임</b></label>
-          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${member.nickname}" name="nickname" required>
-          <label><b>비밀번호</b></label>
-          <input class="w3-input w3-border w3-margin-bottom" type="password" value="${member.password}" name="password" required>
-          <label><b>비밀번호 확인</b></label>
-          <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" required>
-          <button class="w3-block w3-section w3-padding" type="submit">변경</button>
-        </div>
-        </form>
-    </div>
-  </div>
-</div><!-- 정보수정 끝 -->
+          <form class="w3-container" action="memberUpdate.do">
+            <div class="w3-section">
+              <label>
+                <b>아이디</b>
+              </label>
+              <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${member.id}" name="id" readonly>
+              <label>
+                <b>닉네임</b>
+              </label>
+              <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${member.nickname}" name="nickname" required>
+              <label>
+                <b>비밀번호</b>
+              </label>
+              <input class="w3-input w3-border w3-margin-bottom" type="password" value="${member.password}" name="password" required>
+              <label>
+                <b>비밀번호 확인</b>
+              </label>
+              <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" required>
+              <button class="w3-block w3-section w3-padding" type="submit">변경</button>
+            </div><!-- .w3-section -->
+          </form>
+        </div><!-- .w3-modal-content -->
+      </div><!-- .w3-modal -->
+    </div><!-- .w3-container -->
+    <!-- 정보수정 끝 -->
   
-  <!-- 결과보기 시작 -->
-<div class="w3-container">
-  <div id="id02" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-      </div>
-      <div class="w3-section" style="padding:40px;">
-        <h6 style="text-align:center; margin:-20px;"><b>내가 선택한 팀</b></h6>
-        <table class="content-table" style="width: 50%; margin: 0 auto;">
-  		    <thead>
-              <p style="text-align:right;">6/12 경기</p>
-    		  <tr>
-      		    <th>팀1 vs 팀2</th>
-      			<th>팀3 vs 팀4</th>
-      			<th>팀5 vs 팀6</th>
-                <th>팀7 vs 팀8</th>
-                <th>팀9 vs 팀10</th>
-    		  </tr>
-  			</thead>
-  			<tbody>
-    		    <tr>
+    <!-- 결과보기 시작 -->
+    <div class="w3-container">
+      <div id="id02" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+          <div class="w3-center"><br>
+            <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          </div><!-- w3-center -->
+          <div class="w3-section" style="padding:40px;">
+            <h6 style="text-align:center; margin:-20px;"><b>내가 선택한 팀</b></h6>
+              <table class="content-table" style="width: 50%; margin: 0 auto;">
+  		        <thead>
+                  <p style="text-align:right;">6/12 경기</p>
+    		      <tr>
+      		        <th>팀1 vs 팀2</th>
+      			    <th>팀3 vs 팀4</th>
+      			    <th>팀5 vs 팀6</th>
+                    <th>팀7 vs 팀8</th>
+                    <th>팀9 vs 팀10</th>
+    		      </tr>
+  			    </thead>
+  			    <tbody>
+    		      <tr>
       		        <td style="background:#BB8980;">로고1</td>
       			    <td>로고2</td>
       			    <td style="background:#BB8980;">로고3</td>
                     <td style="background:#BB8980;">로고4</td>
                     <td>로고5</td>
-			    </tr>
-  			</tbody>
-		  </table>
-        <h6 style="text-align:center; margin-top:50px;"><b>내 포인트 현황</b></h6>
-        <table class="content-table" style="width: 50%; margin: 0 auto;">
-  		    <thead>
-    		  <tr>
-      		    <th>날짜</th>
-      			<th>획득한 포인트</th>
-      			<th>누적 포인트</th>
-    		  </tr>
-  			</thead>
-  			<tbody>
-    		    <tr>
+			      </tr>
+  			    </tbody>
+		      </table>
+              <h6 style="text-align:center; margin-top:50px;"><b>내 포인트 현황</b></h6>
+              <table class="content-table" style="width: 50%; margin: 0 auto;">
+  		        <thead>
+    		      <tr>
+      		        <th>날짜</th>
+      			    <th>획득한 포인트</th>
+      			    <th>누적 포인트</th>
+    		      </tr>
+  			    </thead>
+  			    <tbody>
+    		      <tr>
       		        <td>06/12</td>
       			    <td>+16p</td>
       			    <td>128p</td>
-			    </tr>
-                <tr>
+			      </tr>
+                  <tr>
       		        <td>06/11</td>
       			    <td>+16p</td>
       			    <td>112p</td>
-			    </tr>
-  			</tbody>
-		  </table>
-      </div>
-    </div>
-  </div>
-</div><!-- 결과보기 끝 -->
+			      </tr>
+  			    </tbody>
+		      </table>
+            </div><!-- .w3-section -->
+          </div><!-- .w3-modal-content -->
+        </div><!-- .w3-modal -->
+      </div><!-- .w3-container -->
+      <!-- 결과보기 끝 -->
 </body>
 </html>
