@@ -6,6 +6,11 @@
 	margin: 20px auto 70px auto;
 	text-align:center;
 }
+.game th{
+	text-align:center;
+	height: 200px;
+	}
+
 .teamlogo{
 	width:100%;
 }
