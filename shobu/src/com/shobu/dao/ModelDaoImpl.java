@@ -777,8 +777,8 @@ public class ModelDaoImpl implements ModelDAO{
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				match.add(new MatchVO(rs.getString("date"), rs.getString("time"), rs.getString("home"),
-						rs.getString("away"), rs.getString("homePitcher"), rs.getString("awayPitcher"), rs.getString("place")));
+				match.add(new MatchVO(rs.getString("date"), rs.getString("time"), rs.getString("away"),
+						rs.getString("home"), rs.getString("awayPitcher"), rs.getString("homePitcher"), rs.getString("place")));
 			}
 			
 			for(int i =0; i<match.size();i++) {
@@ -789,12 +789,12 @@ public class ModelDaoImpl implements ModelDAO{
 				if(logo.containsKey(home) && logo.containsKey(away)) {
 					String[] homeTmp = logo.get(home).split(",");
 					String[] awayTmp = logo.get(away).split(",");;
-					String homeLogo = homeTmp[0];
-					String homeColor = homeTmp[1];
-					String awayLogo = awayTmp[0];
-					String awayColor = awayTmp[1];
+					String awayLogo = homeTmp[0];
+					String awayColor = homeTmp[1];
+					String homeLogo = awayTmp[0];
+					String homeColor = awayTmp[1];
 					
-					System.out.println("homeLogo: "+homeLogo+" homeColor: "+homeColor+" awayLogo: "+awayLogo+" awayColor: "+awayColor);
+					System.out.println("awayLogo: "+awayLogo+" awayColor: "+awayColor+" homeLogo: "+homeLogo+" homeColor: "+homeColor);
 					
 					
 					match.get(i).setHomeImg(homeLogo);
@@ -858,7 +858,7 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	
 	
-	/* ================= 팀별 로고 불러오기 =================  */
+	/* ================= 팀별 로고 불러오기 alc  =================  */
 	public Map<String, String> getLogo(Connection conn) throws SQLException{
 		Map<String, String> logo = new HashMap<>();
 		PreparedStatement ps = null;

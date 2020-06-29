@@ -34,7 +34,7 @@
     <a href="index.jsp">메인</a><br>
     <a href="team.jsp">팀정보</a><br>
     <a href="teampage.jsp">선수정보</a><br>
-    <a href="toto.jsp">모의토토</a><br>
+    <a href="toto.do">모의토토</a><br>
     <a href="#">토토 판매점</a><br>
   </nav>
 ​
