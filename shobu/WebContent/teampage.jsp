@@ -8,46 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/charts.js"></script>
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
   
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="css/teampage.css">
   <script src="js/teampage.js"></script>
 </head>
 
 <body>
-  <!-- 슬라이드 메뉴바 -->
-  <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
-    <div style="background-color: #00907e; height: 60px;">토토</div>
-    <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
-    <!-- 입력 -->
-    기록실
-  </nav>
-
-  <!-- 메뉴바 클릭 시 화면 어둡게 처리 -->
-  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="navClose()" style="cursor:pointer" id="overlay">
-  </div>
-
-  <!-- 상단 서치바, 유저정보(썸네일, 아이디) -->
-  <div class="w3-main" style="margin-left:250px;">
-    <header class="w3-container w3-top" style="background-color: #00c3aa; height: 60px;">
-      <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">썸네일</span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">아이디</span>
-
-      <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
-        style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">썸네일</span>
-        <span style="position: relative; top: 25%;">아이디</span>
-      </div>
-    </header>
+  	
+  	<%@ include file="header.jsp"%>
 
     <section>
       <!-- 상단 여백 처리-->
@@ -275,7 +247,7 @@ series.strokeWidth = 3;
       
       
     </section>
-  </div>
+  </div> <!-- 없으면 nav영역 어긋남 -->
 
   <script>
     // Open and close the sidebar on medium and small screens
