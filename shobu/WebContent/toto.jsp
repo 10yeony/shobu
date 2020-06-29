@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>쇼부 Shobu</title>
-  	<link rel="stylesheet" href="css/index.css">
-	<style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼부 Shobu</title>
+<link rel="stylesheet" href="css/index.css">
+<style>
 /* 공통 css */
 @charset "UTF-8";
 .game{
@@ -211,7 +211,10 @@
 	#select:hover { background-color:#fff; color:#343D52; }
 
 	#select:active { background-color:#fff; color:#343D52; }
-	</style>
+</style>
+<script>
+	
+</script>
 </head>
 
 <body>
