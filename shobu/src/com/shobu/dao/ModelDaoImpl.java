@@ -32,7 +32,6 @@ import com.shobu.model.totoVO;
 public class ModelDaoImpl implements ModelDAO{
 
 	//실제로는 DataSource 사용
-	
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
 	private ModelDaoImpl() {}	
@@ -90,6 +89,10 @@ public class ModelDaoImpl implements ModelDAO{
 	}*/
 	
 	
+	
+	/* ================= 업데이트 ===================== */
+	
+	/* 선수 업데이트 */
 	@Override
 	public void updatePlayer(PlayerVO vo) throws SQLException {
 		Connection conn = null;
@@ -110,8 +113,9 @@ public class ModelDaoImpl implements ModelDAO{
 		} finally {
 			closeAll(ps, conn);
 		}
-		
 	}
+	
+	/* 타자 업데이트 */
 	@Override
 	public void updateHitter(HitterVO vo, int playerId) throws SQLException {
 		Connection conn = null;
@@ -139,8 +143,9 @@ public class ModelDaoImpl implements ModelDAO{
 		} finally {
 			closeAll(ps, conn);
 		}
-		
 	}
+	
+	/* 투수 업데이트 */
 	@Override
 	public void updatePitcher(PitcherVO vo, int playerId) throws SQLException {
 		Connection conn = null;
@@ -167,8 +172,9 @@ public class ModelDaoImpl implements ModelDAO{
 		} finally {
 			closeAll(ps, conn);
 		}
-		
 	}
+	
+	/* 투수 최근 3경기 업데이트 */
 	@Override
 	public void updatePitcher3(Pitcher3VO vo) throws SQLException {
 		Connection conn = null;
@@ -187,6 +193,8 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(ps, conn);
 		}
 	}
+	
+	/* 팀 업데이트 */
 	@Override
 	public void updateTeam(TeamVO vo) throws SQLException {
 		Connection conn = null;
@@ -214,8 +222,14 @@ public class ModelDaoImpl implements ModelDAO{
 		} finally {
 			closeAll(ps, conn);
 		}
-		
 	}
+	/* ================================================ */
+	
+	
+	
+	/* ================= 선수 및 팀 정보 불러오기 ===================== */
+	
+	/* 모든 팀 정보 불러오기 */
 	@Override
 	public ArrayList<TeamVO> selectAllTeam() throws SQLException {
 		ArrayList<TeamVO> list = new ArrayList<>();
@@ -244,7 +258,6 @@ public class ModelDaoImpl implements ModelDAO{
 				team.setTeamEra(rs.getDouble(11));
 				team.setStream(rs.getString(12));
 				team.setGames10(rs.getString(13));
-				
 				
 				switch(rs.getString(1)) {
 				case "OB":
@@ -287,6 +300,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	
+	/* 팀 코드로 특정 팀 불러오기 */
 	@Override
 	public TeamVO selectTeam(String teamCode) throws SQLException {
 		TeamVO team = new TeamVO();
@@ -321,6 +336,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return team;
 	}
+	
+	/* 선수ID로 특정 타자 불러오기 */
 	@Override
 	public HitterVO selectHitter(int playerId) throws SQLException {
 		HitterVO hitter = new HitterVO();
@@ -357,6 +374,8 @@ public class ModelDaoImpl implements ModelDAO{
 		
 		return hitter;
 	}
+	
+	/* 모든 타자 불러오기 */
 	@Override
 	public ArrayList<HitterVO> selectAllHitter() throws SQLException {
 		ArrayList<HitterVO> list = new ArrayList<>();
@@ -393,6 +412,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	
+	/* 선수ID로 특정 투수 불러오기 */
 	@Override
 	public PitcherVO selectPitcher(int playerId) throws SQLException {
 		PitcherVO pitcher = new PitcherVO();
@@ -427,6 +448,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return pitcher;
 	}
+	
+	/* 모든 투수 불러오기 */
 	@Override
 	public ArrayList<PitcherVO> selectAllPitcher() throws SQLException {
 		ArrayList<PitcherVO> list = new ArrayList<>();
@@ -464,6 +487,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	
+	/* 모든 선수 불러오기 */
 	@Override
 	public ArrayList<PlayerVO> selectAllPlayer() throws SQLException {
 		ArrayList<PlayerVO> list = new ArrayList<>();
@@ -493,6 +518,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	
+	/* 선수 ID로 특정 선수 불러오기 */
 	@Override
 	public PlayerVO selectPlayer(int playerId) throws SQLException {
 		PlayerVO player= new PlayerVO();
@@ -519,6 +546,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return player;
 	}
+	
+	/* 이름으로 특정 선수 불러오기(동명이인) */
 	@Override
 	public PlayerVO selectPlayer(String name) throws SQLException {
 		PlayerVO player= new PlayerVO();
@@ -545,6 +574,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return player;
 	}
+	
+	/* 팀 코드로 선수 목록 불러오기 */
 	@Override
 	public ArrayList<PlayerVO> selectByTeamName(String teamCode) throws SQLException {
 		ArrayList<PlayerVO> list = new ArrayList<>();
@@ -575,8 +606,13 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
+	/* ================================================ */
 	
 	
+	
+	/* ================= 회원 관리 ===================== */
+	
+	/* 로그인 */
 	@Override
 	public boolean login(String id, String pass) throws SQLException {
 		Connection conn = null;
@@ -599,6 +635,7 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 	}
 	
+	/* 회원 가입 */
 	@Override
 	public void register(MemberVO vo) throws SQLException {
 		Connection conn = null;
@@ -617,6 +654,7 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 	}
 	
+	/* ID로 회원 찾기 */
 	@Override
 	public MemberVO FindMemberById(String id) throws SQLException{
 		MemberVO vo = null;
@@ -641,6 +679,8 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(rs, ps, conn);
 		}
 	}
+	
+	/* 닉네임으로 회원 찾기 */
 	public MemberVO FindMemberByNickname(String nickname) throws SQLException{
 		MemberVO vo = null;
 		Connection conn = null;
@@ -664,6 +704,37 @@ public class ModelDaoImpl implements ModelDAO{
 			closeAll(rs, ps, conn);
 		}
 	}
+	
+	/* 포인트 순으로 모의 토토 랭킹 Top5 멤버 가져오기 */
+	public ArrayList<MemberVO> FindTop5MemberByPoint() throws SQLException{
+		ArrayList<MemberVO> memberList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM members ORDER BY point DESC LIMIT 5;";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				memberList.add(new MemberVO(rs.getString("id"),
+											rs.getString("password"),
+											rs.getString("nickname"),
+											rs.getString("image"),
+											rs.getInt("point")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return memberList;
+	}
+	/* ================================================ */
+	
+	
+	
+	/* ================= 경기 관련 ===================== */
+	
+	/* 경기 업데이트 */
 	@Override
 	public void updateMatch(MatchVO vo) throws SQLException {
 		Connection conn = null;
@@ -686,6 +757,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		
 	}
+	
+	/* 모든 경기 불러오기 */
 	@Override
 	public ArrayList<MatchVO> selectMatch() throws SQLException {
 		Connection conn = null;
@@ -733,35 +806,59 @@ public class ModelDaoImpl implements ModelDAO{
 		}finally {
 			closeAll(rs, ps, conn);
 		}
-		
 		return match;
 	}
+	/* ================================================ */
 	
+	
+	
+	/* ================= 지도 상에 나타낼 토토판매점 ===================== */
 	@Override
 	public ArrayList<MapVO> selectMap() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/* ================================================ */
+	
+	
+	
+	/* ================= 채팅 관련 ================= */
+	
+	/* 채팅 불러오기 */
 	@Override
 	public ArrayList<ChatVO> selectChat() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/* 채팅 추가하기 */
 	@Override
 	public void insertChat(ChatVO vo) throws SQLException {
 		// TODO Auto-generated method stub
-		
 	}
+	/* ================================================ */
+	
+	
+	
+	/* ================= 모의 토토 및 결과 ================= */
+	
+	/* 경기 후 모의 토토와 비교대조 후 추가할 포인트 리턴 */
 	@Override
 	public int resultToto(totoVO vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	/* 회원 id와 추가할 포인트를 받고 해당 회원 포인트 업데이트 */
 	@Override
 	public void updatePoint(String id, int point) throws SQLException {
 		// TODO Auto-generated method stub
 	}
+	/* ================================================ */
 	
+	
+	
+	/* ================= 팀별 로고 불러오기 =================  */
 	public Map<String, String> getLogo(Connection conn) throws SQLException{
 		Map<String, String> logo = new HashMap<>();
 		PreparedStatement ps = null;
@@ -810,8 +907,7 @@ public class ModelDaoImpl implements ModelDAO{
 		}finally {
 			closeAll(rs, ps, conn);
 		}
-		
 		return logo;
 	}
-
+	/* ================================================ */
 }

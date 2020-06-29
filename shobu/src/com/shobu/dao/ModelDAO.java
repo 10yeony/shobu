@@ -55,9 +55,11 @@ public interface ModelDAO {
 	//06. Search Member
 	MemberVO FindMemberById(String id) throws SQLException;
 	MemberVO FindMemberByNickname(String nickname) throws SQLException;
+	ArrayList<MemberVO> FindTop5MemberByPoint() throws SQLException;
 	
 	//06. Select Match by Date
 	ArrayList<MatchVO> selectMatch() throws SQLException;
+	
 	//07.  Select Map
 	ArrayList<MapVO> selectMap() throws SQLException;
 	
