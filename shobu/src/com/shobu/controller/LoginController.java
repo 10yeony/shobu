@@ -1,7 +1,10 @@
 package com.shobu.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,14 +27,19 @@ public class LoginController implements Controller {
 				MemberVO member = ModelDaoImpl.getInstance().FindMemberById(id);
 				System.out.println(member.getId());
 				req.getSession().setAttribute("member", member);
-				req.setAttribute("loginFlag", true);
 				mv = new ModelAndView("index.jsp");
 			}else {
-				req.setAttribute("loginFlag", false);
-				mv = new ModelAndView("loginFail.html");
+				PrintWriter out = res.getWriter();
+				out.print("<html><head><script>alert(\"아이디 또는 비밀번호를 잘못 입력하셨습니다.\");</script></head></html>");
+				req.getRequestDispatcher("login.html").include(req, res);
+				return null;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+		} catch (IOException e) {
+			//e.printStackTrace();
+		} catch (ServletException e) {
+			//e.printStackTrace();
 		}
 		return mv;
 	}
