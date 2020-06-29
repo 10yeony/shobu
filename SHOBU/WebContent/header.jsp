@@ -89,7 +89,7 @@
       <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 23%;">
       	<c:choose>
 			<c:when test="${member != null}">
-				<span>${member.name} 님</span>
+				<span>${member.nickname} 님</span>
 			</c:when>
 			<c:otherwise>
 				<a href="../login.html"><span>로그인</span></a>
@@ -112,7 +112,7 @@
         <span style="position: relative; top: 23%;">
           <c:choose>
 			<c:when test="${member != null}">
-				<span>${member.name} 님</span>
+				<span>${member.nickname} 님</span>
 			</c:when>
 			<c:otherwise>
 				<a href="../login.html"><span>로그인</span></a>
