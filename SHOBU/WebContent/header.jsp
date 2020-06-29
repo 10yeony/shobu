@@ -76,7 +76,7 @@
   <div class="w3-main" style="margin-left:250px;">
     <header class="w3-container w3-top" style="background-color: #343d52; color: white; height: 60px;">
       <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: absolute; bottom:15px">
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 20%;">
       <c:choose>
 			<c:when test="${member != null}">
 				<img src="${member.image}" width="40px" height="40px" alt="memberImg"> 
@@ -86,7 +86,7 @@
 			</c:otherwise>
 		</c:choose>
       </span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 23%;">
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 20%;">
       	<c:choose>
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님</span>
@@ -99,7 +99,7 @@
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">
+        <span style="position: relative; top: -10px;">
           <c:choose>
 			<c:when test="${member != null}">
 				<img src="${member.image}" width="40px" height="40px" alt="memberImg"> 
@@ -109,7 +109,7 @@
 			</c:otherwise>
 		</c:choose>
         </span>
-        <span style="position: relative; top: 23%;">
+        <span style="position: relative; top: 3px;">
           <c:choose>
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님</span>

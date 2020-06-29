@@ -138,6 +138,9 @@
 	}
 	
 	/*carosel dot*/
+	.carousel-indicators{
+	 	z-index: 2;
+	}
 	.carousel-indicators li {
 	    border: 1px solid #343D52;
 	}
