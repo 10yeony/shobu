@@ -15,9 +15,11 @@
 	width:70%;
 	margin: 20px auto 70px auto;
 	text-align:center;
+	margin-bottom:0; 
 }
 .teamlogo{
-	width:100%;
+	width:50px; 
+	height:50px; 
 }
 
 .bold{
@@ -44,7 +46,7 @@
 }
 
 .bar-graph-horizontal {
-  max-width: 90%;
+  max-width:100%;
   margin: 0 auto;
 }
 
@@ -63,7 +65,7 @@
 
 .bar-graph-horizontal .bar-away .bar {
   border-radius: 3px;
-  height: 55px;
+  height: 30px;
   float: left;
   overflow: hidden;
   position: relative;
@@ -72,7 +74,7 @@
 
 .bar-graph-horizontal .bar-home .bar {
   border-radius: 3px;
-  height: 55px;
+  height: 30px;
   float: right;
   overflow: hidden;
   position: relative;
@@ -87,19 +89,17 @@
   content: attr(data-percentage);
   font-weight: 700;
   position: absolute;
-  right: 16px;
-  top: 17px;
+  right: 16px; 
+  top:6px; 
 }
 
 .bar-graph-one .bar-away .bar {
-  background-color: #64b2d1;
   -webkit-animation: show-bar-one 1.2s 0.1s forwards;
   -moz-animation: show-bar-one 1.2s 0.1s forwards;
   animation: show-bar-one 1.2s 0.1s forwards;
 }
 
 .bar-graph-one .bar-home .bar {
-  background-color: #5292ac;
   -webkit-animation: show-bar-two 1.2s 0.2s forwards;
   -moz-animation: show-bar-two 1.2s 0.2s forwards;
   animation: show-bar-two 1.2s 0.2s forwards;
@@ -181,16 +181,6 @@
 	
 		
 	/* 모의토토 페이지 css */
-	.game { margin-bottom:0; }
-	
-	.teamlogo{ width:50px; height:50px; }
-	
-	.bar-graph-horizontal .bar-away .bar, .bar-graph-horizontal .bar-home .bar { height:30px; }
-	
-	.bar-graph-one .bar::after{ top:6px; }
-	
-	.bar-graph-horizontal { max-width:100%; }
-	
 	.content-table tbody tr:last-of-type { border-bottom:2px solid #343D52; }
 	
 	#select {
@@ -213,7 +203,6 @@
 	#select:active { background-color:#fff; color:#343D52; }
 </style>
 <script>
-	
 </script>
 </head>
 
@@ -229,128 +218,36 @@
        <h3 style="text-align: center;">모의 토토</h3>
        <form action="toto.do" method="post">
          <!-- 첫번째 선택지 -->
-	     <table class="game">
-	       <tr>
-		     <td class="away">
-		       <img class="teamlogo" src="image/team/HH.png">
-		       <input type="radio" name="match1" value="HH">
-		     </td> 
-			 <td class="graph"> 
-			   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-				 <div class="bar-away">
-				   <div class="bar" data-percentage="69.6%"></div>
-				 </div>
-				 <div class="bar-home">
-				   <div class="bar" data-percentage="30.4%"></div>
-				 </div>
-			   </section>
-			 </td> 
-			 <td class="home">
-			   <input type="radio" name="match1" value="SS">
-			   <img class="teamlogo" src="image/team/SS.png" width="50">
-			 </td>
-		   </tr>
-		 </table>
+         <c:forEach items="${matchs}" var="match">
+		     <table class="game">
+		       <tr>
+			     <td class="away">
+			       <img class="teamlogo" src="${match.awayImg}">
+			       <input type="radio" name="match1" value="${match.away}">
+			     </td> 
+				 <td class="graph"> 
+				   <section class="bar-graph bar-graph-horizontal bar-graph-one">
+					 <div class="bar-away">
+					   <div class="bar" data-percentage="${match.awayRatio}%" style="background-color:${match.awayColor}};"></div>
+					 </div>
+					 <div class="bar-home">
+					   <div class="bar" data-percentage="${match.homeRatio}%" style="background-color:${match.homeColor}};"></div>
+					 </div>
+				   </section>
+				 </td> 
+				 <td class="home">
+				   <input type="radio" name="match1" value="${match.home}">
+				   <img class="teamlogo" src="${match.homeImg}" width="50">
+				 </td>
+			   </tr>
+			 </table>
+		 </c:forEach>
 		 
-		 <!-- 두번째 선택지 -->
-		 <table class="game">
-		   <tr>
-		     <td class="away">
-		       <img class="teamlogo" src="image/team/WO.png">
-		       <input type="radio" name="match2" value="WO">
-		     </td> 
-			 <td class="graph"> 
-			   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-			     <div class="bar-away">
-			       <div class="bar" data-percentage="69.6%"></div>
-				 </div>
-				 <div class="bar-home">
-				   <div class="bar" data-percentage="30.4%"></div>
-				 </div>
-			   </section>
-			 </td> 
-			 <td class="home">
-			   <input type="radio" name="match2" value="LG">
-			   <img class="teamlogo" src="image/team/LG.png">
-			 </td>
-		   </tr>
-		 </table>
-		 
-		 <!-- 세번째 선택지 -->
-		 <table class="game">
-		   <tr>
-		     <td class="away">
-		       <img class="teamlogo" src="image/team/OB.png">
-		       <input type="radio" name="match3" value="OB">
-		     </td> 
-			 <td class="graph"> 
-			   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-			     <div class="bar-away">
-				   <div class="bar" data-percentage="69.6%"></div>
-				 </div>
-				 <div class="bar-home">
-				   <div class="bar" data-percentage="30.4%"></div>
-			     </div>
-			   </section>
-			 </td> 
-			 <td class="home">
-			   <input type="radio" name="match3" value="SK">
-			   <img class="teamlogo" src="image/team/SK.png">
-			 </td>
-		   </tr>
-		 </table>
-		 
-		 <!-- 네번째 선택지 -->
-		 <table class="game">
-		   <tr>
-		     <td class="away">
-		       <img class="teamlogo" src="image/team/NC.png">
-		       <input type="radio" name="match4" value="NC">
-		     </td> 
-			 <td class="graph"> 
-			   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-			     <div class="bar-away">
-				   <div class="bar" data-percentage="69.6%"></div>
-				 </div>
-				 <div class="bar-home">
-				   <div class="bar" data-percentage="30.4%"></div>
-				 </div>
-			   </section>
-			 </td> 
-			 <td class="home">
-			   <input type="radio" name="match4" value="KT">
-			   <img class="teamlogo" src="image/team/KT.png">
-			 </td>
-		   </tr>
-	     </table>
-	     
-	     <!-- 다섯번째 선택지 -->
-	     <table class="game">
-		   <tr>
-		     <td class="away">
-		       <img class="teamlogo" src="image/team/HT.png">
-		       <input type="radio" name="match5" value="HT">
-		     </td> 
-			 <td class="graph"> 
-			   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-			     <div class="bar-away">
-				   <div class="bar" data-percentage="69.6%"></div>
-				 </div>
-				 <div class="bar-home">
-				   <div class="bar" data-percentage="30.4%"></div>
-				  </div>
-			    </section>
-			  </td> 
-			  <td class="home">
-			    <input type="radio" name="match5" value="LT">
-			    <img class="teamlogo" src="image/team/LT.png">
-			  </td>
-			</tr>
-	      </table>
-	      <p style="text-align:center; margin-top:20px;">
-	        <button type="submit" id="select">선택</button>
-	      </p>
-	    </form><!-- 모의 토토 끝 -->
+		 <p style=“text-align:center;margin-top:20px;“>
+	    	<button type="submit" id=“select”>선택</button>
+	   	</p>
+	    </form>
+	    <!-- 모의 토토 끝 -->
 		  
 	      <!-- 회원 랭킹 시작 -->
 	      <h3 style="text-align: center; margin-top:80px; margin-bottom:20px;">회원 랭킹</h3>

@@ -784,7 +784,6 @@ public class ModelDaoImpl implements ModelDAO{
 			for(int i =0; i<match.size();i++) {
 				home = match.get(i).getHome();
 				away = match.get(i).getAway();
-				System.out.println("Home: "+home+"Away: "+away);
 				
 				if(logo.containsKey(home) && logo.containsKey(away)) {
 					String[] homeTmp = logo.get(home).split(",");
@@ -793,10 +792,7 @@ public class ModelDaoImpl implements ModelDAO{
 					String awayColor = awayTmp[1];
 					String homeLogo = homeTmp[0];
 					String homeColor = homeTmp[1];
-					
-					System.out.println("awayLogo: "+awayLogo+" awayColor: "+awayColor+" homeLogo: "+homeLogo+" homeColor: "+homeColor);
-					
-					
+
 					match.get(i).setHomeImg(homeLogo);
 					match.get(i).setHomeColor(homeColor);
 					match.get(i).setAwayImg(awayLogo);
