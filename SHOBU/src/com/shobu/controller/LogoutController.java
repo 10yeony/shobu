@@ -10,8 +10,7 @@ public class LogoutController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
 		req.getSession().invalidate();
-		req.setAttribute("loginFlag", false);
-		return new ModelAndView("frame.jsp");
+		return new ModelAndView("index.jsp");
 	}
 
 }

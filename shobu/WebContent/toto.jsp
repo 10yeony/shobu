@@ -180,13 +180,37 @@
 	}
 	
 		
-		/* 모의토토 페이지 css */
-		.game{ margin-bottom: 0; }
-		.teamlogo{ width:50px; height:50px; }
-		.bar-graph-horizontal .bar-away .bar, .bar-graph-horizontal .bar-home .bar { height:30px; }
-		.bar-graph-one .bar::after{ top: 6px; }
-		.bar-graph-horizontal { max-width:100%; }
-		.content-table tbody tr:last-of-type { border-bottom: 2px solid #343D52; }
+	/* 모의토토 페이지 css */
+	.game { margin-bottom:0; }
+	
+	.teamlogo{ width:50px; height:50px; }
+	
+	.bar-graph-horizontal .bar-away .bar, .bar-graph-horizontal .bar-home .bar { height:30px; }
+	
+	.bar-graph-one .bar::after{ top:6px; }
+	
+	.bar-graph-horizontal { max-width:100%; }
+	
+	.content-table tbody tr:last-of-type { border-bottom:2px solid #343D52; }
+	
+	#select {
+		display:inline-block;
+		padding:.5em .75em;
+		color:#fff;
+  		font-size:inherit;
+  		line-height:normal;
+  		vertical-align:middle;
+  		background-color:#343D52;
+  		cursor:pointer;
+		border:1px solid #343D52;
+  		border-radius:.25em;
+  		-webkit-transition:background-color 0.2s;
+  		transition:background-color 0.2s;
+	}
+
+	#select:hover { background-color:#fff; color:#343D52; }
+
+	#select:active { background-color:#fff; color:#343D52; }
 	</style>
 </head>
 
@@ -199,7 +223,6 @@
        <div class="w3-col w3-panel w3-padding-16" style="width: 100%;">
        
        <!-- 모의 토토 시작 -->
-       
        <h3 style="text-align: center;">모의 토토</h3>
        <form action="toto.do" method="post">
          <!-- 첫번째 선택지 -->
@@ -322,11 +345,9 @@
 			</tr>
 	      </table>
 	      <p style="text-align:center; margin-top:20px;">
-	        <button type="submit" class="w3-button w3-black">선택</button>
+	        <button type="submit" id="select">선택</button>
 	      </p>
-	    </form>
-	      
-	      <!-- 모의 토토 끝 -->
+	    </form><!-- 모의 토토 끝 -->
 		  
 	      <!-- 회원 랭킹 시작 -->
 	      <h3 style="text-align: center; margin-top:80px; margin-bottom:20px;">회원 랭킹</h3>
@@ -347,8 +368,7 @@
 			    </tr>
 			    </c:forEach>
   			</tbody>
-		  </table>
-		  <!-- 회원 랭킹 끝 -->
+		  </table><!-- 회원 랭킹 끝 -->
         </div>
     </section>
   </div> <!-- 이거 지우면 nav영역 어긋남 -->
