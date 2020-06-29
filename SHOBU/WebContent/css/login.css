@@ -1,0 +1,366 @@
+body{
+  display:-webkit-box;
+  display:flex;
+  height:100vh;
+  min-height:35rem;
+  -webkit-box-align:center;
+        align-items:center;
+  -webkit-box-pack:center;
+   justify-content:center;
+  font-family:'Josefin Sans', sans-serif;
+}
+
+
+/* .card- 시작 */
+.card{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  -webkit-transform:translate(-50%,-50%);
+	      transform:translate(-50%,-50%);
+}
+
+.card-wrap{
+  position:relative;
+  margin:0 auto;
+}
+
+@media (min-width: 769px){
+  .card-wrap{
+    max-width:450px
+  }
+}
+
+.card-body{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+         flex-direction:column;
+  -webkit-box-align:center;
+        align-items:center;
+  -webkit-box-pack:center;
+   justify-content:center;
+  text-align:center;
+}
+
+.card-body p{
+  font-size:1.1rem;
+}
+
+.card-title{
+  font-weight:bold;
+  font-size:1.8rem;
+}/* .card- 끝 */
+
+
+/* .badge-wrap 시작 */
+.badge-wrap{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-pack:center;
+   justify-content:center;
+}
+
+.badge-wrap a.badge{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-align:center;
+        align-items:center;
+  -webkit-box-pack:center;
+   justify-content:center;
+  width:2.5rem;
+  height:2.5rem;
+  margin:0 .2rem;
+  padding:0;
+  opacity:.7;
+  border-radius:50%;
+  -webkit-transition:opacity .3s ease-in;
+  transition:opacity .3s ease-in;
+  font-size:1rem;
+  color:#fff;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.badge-wrap a.badge:hover{
+  opacity:1;
+  color:#fff;
+}/* .badge-wrap 끝 */
+
+
+/* .btn 시작 */
+.btn{
+  color:#fff !important;
+  width:10em;
+  -webkit-transition:all .4s;
+  transition:all .4s;
+  border-radius:20px;
+  border:2px solid transparent;
+}
+
+.btn.btn-back{
+  position:absolute;
+  top:0;
+  left:0;
+  border-radius:0;
+  width:3rem;
+  height:3rem;
+  font-size:1.5rem;
+  border:0;
+}
+
+.btn.btn-back:hover{
+  border:0 !important;
+}/* .btn 끝 */
+
+
+/* 파일업로드 및 중복 확인 버튼 설정 시작 */
+.filebox {
+  vertical-align:text-bottom; 
+  margin-left:5px;
+}
+
+.filebox label, .check  {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #343D52;
+  cursor: pointer;
+  border: 1px solid #343D52;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover, .check:hover {
+  background-color: #fff;
+  color: #343D52;
+}
+
+.filebox label:active, .check:active {
+  background-color: #fff;
+  color: #343D52;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}/* 파일 업로드 및 중복 확인 버튼 설정 끝 */
+
+
+/* .form-control 시작 */
+.form-control{
+  font-family:'Handle', cursive;
+}
+
+.form-control::-webkit-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+}
+
+.form-control::-moz-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+}
+
+.form-control:-ms-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+}
+
+.form-control::-ms-input-placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+}
+
+.form-control::placeholder{
+    font-family:'Josefin Sans', sans-serif;
+    letter-spacing:.1em;
+    font-size:.9rem;
+}/* .form-control 끝 */
+
+
+/* card--welcome 시작 */
+.card--welcome{
+  z-index:3;
+}
+
+.card--welcome .card-title{
+  color:#343D52;
+}
+
+.card--welcome .btn-wrap{
+  display:-webkit-box;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+         flex-direction:column;
+}
+
+.card--welcome .btn{
+  color:#fff;
+  -webkit-transition:all .3s;
+  transition:all .3s;
+}
+
+.card--welcome .btn:hover{
+  background-color:#343D52;
+  font-weight:bold;
+}
+
+.card--welcome .btn-register{
+  margin-bottom:.8em;
+  background-color:#343D52;
+}
+
+.card--welcome .btn-register:hover{
+  color:#343D52;
+}
+
+.card--welcome .btn-login{
+  background-color:#343D52;
+}/* card--welcome 끝 */
+
+
+/* card--register 시작 */
+.card--register .card-title{
+  color:#343D52;
+}
+
+.card--register .badge{
+  background-color:#343D52;
+}
+
+.card--register .btn{
+  background-color:#343D52;
+}
+
+.card--register .btn:hover{
+  background-color:#fff;
+  color:#343D52 !important;
+  font-weight:bold;
+  border:2px solid #343D52;
+}
+
+.card--register .btn:focus{
+  box-shadow:0 0 0 0.2rem #343D52;
+}
+
+.card--register .form-control{
+  color:#343D52;
+  border-color:#343D52;
+}
+
+.card--register .form-control:focus{
+  box-shadow:0 0 0 0.2rem #343D52;
+}
+
+.card--register input[name=id], input[name=nickname]{
+  display:inline; 
+  width:68%; 
+  vertical-align:text-bottom;
+}
+
+.card--register button.check, #profileImg{
+  vertical-align:text-bottom;
+}
+
+.card--register button#deleteFile{
+  vertical-align:baseline;
+}
+
+.card--register #comparePW{
+  color:red; 
+  text-align:left; 
+  margin-top:3px;
+}/* card--register 끝 */
+
+
+/* card--login 시작 */
+.card--login .card-title{
+  color:#343D52;
+}
+
+.card--login .badge{
+  background-color:#343D52;
+}
+
+.card--login .btn{
+  background-color:#343D52;
+}
+
+.card--login .btn:hover{
+  background-color:#fff;
+  color:#343D52 !important;
+  font-weight:bold;
+  border:2px solid #343D52;
+}
+
+.card--login .btn:focus{
+  box-shadow:0 0 0 0.2rem #343D52;
+}
+
+.card--login .form-control{
+  color:#343D52;
+  border-color:#343D52;
+}
+
+.card--login .form-control:focus{
+  box-shadow:0 0 0 0.2rem #343D52;
+}/* card--login 끝 */
+
+
+/* body 시작 */
+body{
+  background:-webkit-gradient(linear, left top, right top, from(#0b8793), color-stop(#360033), color-stop(#3A6073), to(#16222A));
+  background:linear-gradient(to right, #0b8793, #360033, #3A6073, #16222A);
+  background-size:500% 500%;
+  -webkit-transition:background 3s ease;
+  transition:background 3s ease;
+  background-position:50% 50%;
+}
+
+body.is-register{
+  	background-position:0% 50%;
+}
+
+body.is-login{
+    background-position:100% 50%;
+}/* body 끝 */
+
+
+/* .card 시작 */
+.card{
+  -webkit-transition:all .3s .1s ease-out;
+  transition:all .3s .1s ease-out;
+}
+
+.card:not(.is-show){
+  opacity:0;
+  -webkit-transform:translate(-50%,-50%) rotateX(95deg);
+		  transform:translate(-50%,-50%) rotateX(95deg);
+	}
+	
+.card.is-show{
+  opacity:1;
+  -webkit-transform:translate(-50%,-50%);
+		  transform:translate(-50%,-50%);
+  z-index:5;
+}/* .card 끝 */

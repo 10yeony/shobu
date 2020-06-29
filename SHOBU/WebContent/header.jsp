@@ -74,7 +74,7 @@
       	<img src="${member.image}" width="40px" height="40px">
       </span>
       <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
-      	${member.name} 님
+      	${member.nickname} 님
       </span>
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
@@ -83,7 +83,7 @@
           <img src="${member.image}" width="40px" height="40px">
         </span>
         <span style="position: relative; top: 25%;">
-          ${member.name} 님
+          ${member.nickname} 님
         </span>
       </div>
     </header>
