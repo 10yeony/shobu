@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,33 +218,42 @@
        <!-- 모의 토토 시작 -->
        <h3 style="text-align: center;">모의 토토</h3>
        <form action="toto.do" method="post">
-         <!-- 첫번째 선택지 -->
-         <c:forEach items="${matchs}" var="match">
-		     <table class="game">
-		       <tr>
-			     <td class="away">
-			       <img class="teamlogo" src="${match.awayImg}">
-			       <input type="radio" name="match1" value="${match.away}">
-			     </td> 
-				 <td class="graph"> 
-				   <section class="bar-graph bar-graph-horizontal bar-graph-one">
-					 <div class="bar-away">
-					   <div class="bar" data-percentage="${match.awayRatio}%" style="background-color:${match.awayColor}};"></div>
-					 </div>
-					 <div class="bar-home">
-					   <div class="bar" data-percentage="${match.homeRatio}%" style="background-color:${match.homeColor}};"></div>
-					 </div>
-				   </section>
-				 </td> 
-				 <td class="home">
-				   <input type="radio" name="match1" value="${match.home}">
-				   <img class="teamlogo" src="${match.homeImg}" width="50">
-				 </td>
-			   </tr>
-			 </table>
-		 </c:forEach>
+         <!-- 선택지 -->
+         <c:choose>
+         	<c:when test="${ f:length(matchs)==0}">
+         		<p style="text-align:center; padding: 8% 0; font-weight: bold;">오늘은 경기가 없습니다.</p>
+         	</c:when>
+         	<c:otherwise>
+		         <c:forEach items="${matchs}" var="match" varStatus="s">
+				     <table class="game">
+				       <tr>
+					     <td class="away">
+					       <img class="teamlogo" src="${match.awayImg}">
+					       <input type="radio" name="match${s.index}" value="${match.away}"><br>
+					       <span>${match.awayPitcher}</span>
+					     </td> 
+						 <td class="graph"> 
+						   <section class="bar-graph bar-graph-horizontal bar-graph-one">
+							 <div class="bar-away">
+							   <div class="bar" data-percentage="${match.awayRatio}%" style="background-color:${match.awayColor};"></div>
+							 </div>
+							 <div class="bar-home">
+							   <div class="bar" data-percentage="${match.homeRatio}%" style="background-color:${match.homeColor};"></div>
+							 </div>
+						   </section>
+						 </td> 
+						 <td class="home">
+						   <input type="radio" name="match${s.index}" value="${match.home}">
+						   <img class="teamlogo" src="${match.homeImg}" width="50"><br>
+						   <span>${match.homePitcher}</span>
+						 </td>
+					   </tr>
+					 </table>
+				 </c:forEach>
+				</c:otherwise>
+			</c:choose>
 		 
-		 <p style=“text-align:center;margin-top:20px;“>
+		 <p style="text-align:center; margin-top:20px;">
 	    	<button type="submit" id=“select”>선택</button>
 	   	</p>
 	    </form>

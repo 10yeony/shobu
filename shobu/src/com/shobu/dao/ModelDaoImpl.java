@@ -713,7 +713,7 @@ public class ModelDaoImpl implements ModelDAO{
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT * FROM members ORDER BY point DESC LIMIT 5, nickname DESC;";
+			String query = "SELECT * FROM members ORDER BY point DESC, nickName ASC LIMIT 5;";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while(rs.next()) {

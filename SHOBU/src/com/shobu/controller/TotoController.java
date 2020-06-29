@@ -20,12 +20,11 @@ public class TotoController implements Controller {
 		/* 회원 랭킹(포인트별 Top 5) */
 		try {
 			matchs = ModelDaoImpl.getInstance().selectMatch();
-			System.out.println("aaa");
 			ArrayList<MemberVO> memberList = ModelDaoImpl.getInstance().FindTop5MemberByPoint();
 			req.setAttribute("matchs", matchs);
 			req.setAttribute("memberList", memberList);
 		} catch (SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return new ModelAndView("toto.jsp");
 	}
