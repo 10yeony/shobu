@@ -47,10 +47,11 @@ public class RegisterController implements Controller {
 																"image/profile/"+fileName));
     		}
     		PrintWriter out = res.getWriter();
-			out.println("<html><head><script>alert('"+id+" 님, 로그인해주세요.');</script></head></html>");
+			out.println("<html><head><script>alert('"+nickname+"님, 로그인해주세요.');</script></head></html>");
+			req.getRequestDispatcher("index.jsp").include(req, res);
     	}catch(Exception e) {
     		//e.printStackTrace();
     	}
-    	return new ModelAndView("index.jsp");
+    	return null;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,7 +190,7 @@
 	</style>
 </head>
 
-<body onload="init();">
+<body>
  	<!-- header -->
  	<%@ include file="header.jsp"%>
     <section>
@@ -338,31 +339,13 @@
     		  </tr>
   			</thead>
   			<tbody>
-    		  <tr>
-      		    <td>1</td>
-      			<td>토토사랑</td>
-      			<td>88,110</td>
-			  </tr>
-    		  <tr>
-      		    <td>2</td>
-      			<td>토쟁이</td>
-      			<td>72,400</td>
-    		  </tr>
-    		  <tr>
-      		    <td>3</td>
-      			<td>부자</td>
-      			<td>52,300</td>
-    		  </tr>
-    		  <tr>
-      		    <td>4</td>
-      			<td>벼락부자</td>
-      			<td>52,300</td>
-    		  </tr>
-    		  <tr>
-      		    <td>5</td>
-      			<td>토신</td>
-      			<td>52,300</td>
-    		  </tr>
+  			    <c:forEach var="i" begin="1" end="5">
+    		    <tr>
+      		        <td>${i}</td>
+      			    <td>${memberList[i-1].nickname}</td>
+      			    <td>${memberList[i-1].point}</td>
+			    </tr>
+			    </c:forEach>
   			</tbody>
 		  </table>
 		  <!-- 회원 랭킹 끝 -->
