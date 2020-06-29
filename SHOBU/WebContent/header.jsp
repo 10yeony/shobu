@@ -15,7 +15,7 @@
   	width: 25px;
   	margin: 20px 10px;
   }
-  a:-webkit-any-link{
+  #menu a:-webkit-any-link,#login a:-webkit-any-link{
   	text-decoration:none;
   }
   #login{
@@ -51,14 +51,20 @@
     <!-- 입력 -->
     <div id='menu' style="padding: 10px 20px;">
 	    <a href="index.jsp"><img class="menu" src="image/menu/main.png">메인</a><br>
-	    <a href="team.jsp"><img class="menu" src="image/menu/team.png">팀정보</a><br>
-	    <a href="teampage.jsp"><img class="menu" src="image/menu/player.png">선수정보</a><br>
+	    <a href="teampage.jsp"><img class="menu" src="image/menu/team.png">팀정보</a><br>
+	    <a href="team.jsp"><img class="menu" src="image/menu/player.png">선수정보</a><br>
 	    <a href="toto.do"><img class="menu" src="image/menu/toto.png">모의토토</a><br>
 	    <a href="#"><img class="menu" src="image/menu/map.png">토토 판매점</a><br>
 	</div>
 	<div id="login">
-	    <a href="../login.html"><img class="menu" src="image/menu/login.png">로그인</a> 
-	      	<!-- <a href="logout.do"><img class="menu" src="image/menu/logout.png">로그아웃</a> -->
+		<c:choose>
+			<c:when test="${member != null}">
+				<a href="logout.do"><img class="menu" src="image/menu/logout.png">로그아웃</a> 
+			</c:when>
+			<c:otherwise>
+				<a href="../login.html"><img class="menu" src="image/menu/login.png">로그인</a> 
+			</c:otherwise>
+		</c:choose>
 	</div>
   </nav>
 ​
@@ -70,20 +76,48 @@
   <div class="w3-main" style="margin-left:250px;">
     <header class="w3-container w3-top" style="background-color: #343d52; color: white; height: 60px;">
       <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
-      	<img src="${member.image}" width="40px" height="40px">
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: absolute; bottom:15px">
+      <c:choose>
+			<c:when test="${member != null}">
+				<img src="${member.image}" width="40px" height="40px" alt="memberImg"> 
+			</c:when>
+			<c:otherwise>
+				<img src="image/profile/default.png" width="40px" height="40px" alt="memberImg"> 
+			</c:otherwise>
+		</c:choose>
       </span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">
-      	${member.name} 님
+      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 23%;">
+      	<c:choose>
+			<c:when test="${member != null}">
+				<span>${member.name} 님</span>
+			</c:when>
+			<c:otherwise>
+				<a href="../login.html"><span>로그인</span></a>
+			</c:otherwise>
+		</c:choose>
       </span>
 ​
       <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
         style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
         <span style="position: relative; top: 25%;">
-          <img src="${member.image}" width="40px" height="40px">
+          <c:choose>
+			<c:when test="${member != null}">
+				<img src="${member.image}" width="40px" height="40px" alt="memberImg"> 
+			</c:when>
+			<c:otherwise>
+				<img src="image/profile/default.png" width="40px" height="40px" alt="memberImg"> 
+			</c:otherwise>
+		</c:choose>
         </span>
-        <span style="position: relative; top: 25%;">
-          ${member.name} 님
+        <span style="position: relative; top: 23%;">
+          <c:choose>
+			<c:when test="${member != null}">
+				<span>${member.name} 님</span>
+			</c:when>
+			<c:otherwise>
+				<a href="../login.html"><span>로그인</span></a>
+			</c:otherwise>
+		</c:choose>
         </span>
       </div>
     </header>

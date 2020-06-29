@@ -20,7 +20,6 @@
 	.teamlogo{
 		width:100%;
 	}
-	
 	.bold{
 		font-weight: bold;
 		font-size:medium;
