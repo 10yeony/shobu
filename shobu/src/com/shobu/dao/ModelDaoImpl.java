@@ -789,10 +789,10 @@ public class ModelDaoImpl implements ModelDAO{
 				if(logo.containsKey(home) && logo.containsKey(away)) {
 					String[] homeTmp = logo.get(home).split(",");
 					String[] awayTmp = logo.get(away).split(",");;
-					String awayLogo = homeTmp[0];
-					String awayColor = homeTmp[1];
-					String homeLogo = awayTmp[0];
-					String homeColor = awayTmp[1];
+					String awayLogo = awayTmp[0];
+					String awayColor = awayTmp[1];
+					String homeLogo = homeTmp[0];
+					String homeColor = homeTmp[1];
 					
 					System.out.println("awayLogo: "+awayLogo+" awayColor: "+awayColor+" homeLogo: "+homeLogo+" homeColor: "+homeColor);
 					
