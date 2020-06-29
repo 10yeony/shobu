@@ -6,10 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>쇼부 Shobu</title>
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<link rel="stylesheet" href="css/index.css">
-<!--   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 	<style>
 /* 공통 css */
 @charset "UTF-8";
@@ -62,7 +59,6 @@
   width: 30.4%; /*변경*/
    display:contents;
 }
-
 
 .bar-graph-horizontal .bar-away .bar {
   border-radius: 3px;
@@ -181,9 +177,7 @@
 	.content-table tbody tr:nth-of-type(odd) {
 		background-color: #FFFFFF;
 	}
-	.content-table tbody tr:last-of-type {
-		border-bottom: 2px solid #009879;
-	}
+	
 		
 		/* 모의토토 페이지 css */
 		.game{ margin-bottom: 0; }
@@ -191,6 +185,7 @@
 		.bar-graph-horizontal .bar-away .bar, .bar-graph-horizontal .bar-home .bar { height:30px; }
 		.bar-graph-one .bar::after{ top: 6px; }
 		.bar-graph-horizontal { max-width:100%; }
+		.content-table tbody tr:last-of-type { border-bottom: 2px solid #343D52; }
 	</style>  
 </head>
 
