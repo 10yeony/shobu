@@ -29,7 +29,7 @@
   	bottom:0px;
   }
   
-  /* 정보수정 버튼 */
+  /* 정보수정 영역 */
   button  {
   	display: inline-block;
   	padding: .5em .75em;
@@ -52,12 +52,22 @@
   	background-color: #fff;
   	color: #343D52;
   }
+  .leave {
+	background-color: #f44336;
+	border: 1px solid #f44336;
+  }
+  .leave:hover{
+    color: #f44336;
+  }
+  .leave:active{
+    color: #f44336;
+  }
   #nickname{
     display:inline; 
     width:81%; 
   }
 
-  /* 모의 토토 결과 테이블 */
+  /* 결과보기 영역 */
   .resultTable{
     border: 1px solid #343d52;
     border-collapse: collapse;
@@ -228,6 +238,10 @@
     			return false;
     		}
     	});
+    	
+    	$('.leave').click(function(){
+    		confirm('탈퇴하면 모든 포인트가 소멸됩니다. 그래도 탈퇴하시겠습니까?');
+    	});
     });//JQuery Ready
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -355,7 +369,8 @@
               </label>
               <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" maxlength="10" required>
               <div id="comparePW" style="color:red"></div>
-              <button class="w3-block w3-section w3-padding" type="submit">변경</button>
+              <button class="w3-section w3-padding" type="submit">변경</button>
+              <button class="w3-section w3-padding leave" type="submit">회원탈퇴</button>
             </div><!-- .w3-section -->
           </form>
         </div><!-- .w3-modal-content -->
@@ -371,7 +386,7 @@
             <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
           </div><!-- w3-center -->
           <div class="w3-section" style="padding:40px;">
-            <h6 style="text-align:center; margin:-20px;"><b>내가 맞힌 승부</b></h6>
+            <h6 style="text-align:center;"><b>내가 맞힌 승부</b></h6>
               <table class="resultTable" style="margin: 0 auto;">
   		        <thead>
                   <p style="text-align:right;">6/12 경기</p>
