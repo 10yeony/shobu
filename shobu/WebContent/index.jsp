@@ -232,7 +232,6 @@
      						<th>팀타율</th>
       						<th>팀방어율</th>
       						<th>연승</th>
-      						<th>최근10경기</th>
    						</tr>
  					</thead>
   					<tbody id="teamrank">
