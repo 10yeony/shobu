@@ -5,22 +5,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>쇼부 Shobu</title>
   <style type="text/css">
   body{height: 100%;}
   #list {
   		width: 80%;
-  		
+  		font-size: 0.9em;
   		}
   #list-div{
-  		height: 500px;
+  		height: 440px;
   		overflow: auto;
-  		
+  }
+  #list-table{
+  		font-size: 0.9em;
+  }
+  #detail{
+  		font-size: 0.9em;
+  		font-weight: bold;
   }
   </style>
-</head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 var team = "ALL";
@@ -68,7 +72,7 @@ function search(mode, team) {
 					$('#'+list.playerId).append("<td>"+list.name+"</td>");
 					$('#'+list.playerId).append("<td>"+list.games+"</td>");
 					$('#'+list.playerId).append("<td>"+list.inning+"</td>");
-					$('#'+list.playerId).append("<td>"+list.era+"</td>");
+					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.era+"</td>");
 					$('#'+list.playerId).append("<td>"+list.win+"</td>");
 					$('#'+list.playerId).append("<td>"+list.lose+"</td>");
 					$('#'+list.playerId).append("<td>"+list.save+"</td>");
@@ -106,7 +110,7 @@ function search(mode, team) {
 					$('#'+list.playerId).append("<td>"+list.teamCode+"</td>");
 					$('#'+list.playerId).append("<td>"+list.name+"</td>");
 					$('#'+list.playerId).append("<td>"+list.games+"</td>");
-					$('#'+list.playerId).append("<td>"+list.rate+"</td>");
+					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.rate+"</td>");
 					$('#'+list.playerId).append("<td>"+list.ab+"</td>");
 					$('#'+list.playerId).append("<td>"+list.hits+"</td>");
 					$('#'+list.playerId).append("<td>"+list.hr+"</td>");
@@ -136,10 +140,10 @@ function search(mode, team) {
 						$.each(data.list, function(index, list){
 						$('#review').empty();
 						$('#review').append("<img alt='' src='image/player/"+list.playerId+".jpg' width='180px' height='226px' style='margin-top: 10px'><br/>");
-						$('#review').append("<hr><br/><div>"+list.name+"</div><br/>");
+						$('#review').append("<hr><div>"+list.name+"</div><br/>");
 						$('#review').append("<div>"+list.number+" 번</div><br/>");
 						$('#review').append("<div>"+list.birth+"</div><br/>");
-						$('#review').append("<div>"+list.type+"</div><br/><br/>");
+						$('#review').append("<div>"+list.type+"</div><br/>");
 						})
 					}//success
 				})//ajax  
@@ -158,36 +162,14 @@ $(function() {
 
 });//ready
 </script>
+</head>
 <body>
-  <!-- 슬라이드 메뉴바 -->
-  <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="nav">
-    <div style="background-color: #00907e; height: 60px;">토토</div>
-    <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="navClose()">Close</a>
-    <!-- 입력 -->
-    기록실
-  </nav>
-​
-  <!-- 메뉴바 클릭 시 화면 어둡게 처리 -->
-  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="navClose()" style="cursor:pointer" id="overlay">
-  </div>
-​
-  <!-- 상단 서치바, 유저정보(썸네일, 아이디) -->
-  <div class="w3-main" style="margin-left:250px;">
-    <header class="w3-container w3-top" style="background-color: #00c3aa; height: 60px;">
-      <i class="fa fa-bars w3-button w3-hide-large w3-display-left" onclick="navOpen()"></i>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">썸네일</span>
-      <span class="w3-hide-large w3-right w3-animate-opacity" style="position: relative; top: 25%;">아이디</span>
-​
-      <div class="w3-hide-small w3-hide-medium w3-animate-opacity"
-        style="width:100%; height: 100%; text-align: right; margin-left: -250px;">
-        <span style="position: relative; top: 25%;">썸네일</span>
-        <span style="position: relative; top: 25%;">아이디</span>
-      </div>
-    </header>
-​
+  	
+  	<%@ include file="header.jsp"%>
+  	
     <section>
       <!-- 상단 여백 처리-->
-      <div style="padding-top: 60px; font-size: 20px" align="center">
+      <div style="padding-top: 30px; font-size: 1.1em;" align="center">
       	<span id="search"><a href="javascript:selectTeam('ALL')" >전체</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('NC')">NC</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('OB')">두산</a></span>&nbsp;&nbsp;&nbsp;
@@ -199,9 +181,9 @@ $(function() {
       	<span id="search"><a href="javascript:selectTeam('SS')">삼성</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('SK')">SK</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('HH')">한화</a></span>&nbsp;&nbsp;&nbsp;
-      </div><br/>
+      </div>
       <hr>
-      <div align="center" style="font-size: 30px">
+      <div align="center" style="font-size: 1.2em;">
       	<span id="search"><a href="javascript:selectMode('pitcher')">투수기록</a></span>
       	<span> | </span>
       	<span id="search"><a href="javascript:selectMode('hitter')">타자기록</a></span>
@@ -210,11 +192,9 @@ $(function() {
       <!-- 카드 클래스안에 데이터만 입력 원하는 비율 선택-->
       <div class="w3-row">
       
-      	
         <div id="detail" class="w3-col w3-panel w3-padding-16" style="width: 20%;">
           <div class="w3-card" align="center" id="review">
           	<img alt="" src="https://link-u.co.kr/www/thumbs/intro/basic_user.png" width="180px" height="226px" style="margin-top: 10px">
-          	
 		  </div>
         </div>
         
@@ -223,14 +203,14 @@ $(function() {
           <div id="list-div" class="w3-card">
           	<table id="list-table" class="w3-table-all w3-hoverable">
           		<thead></thead>
-          		<tbody></tbody>
+          		<tbody></tbody>ㅁ
           	</table>
           </div>
         </div>
       </div>
 ​
     </section>
-  </div>
+  </div> <!-- </div>태그 지우면 nav깨짐 -->
 ​
   <script>
     // Open and close the sidebar on medium and small screens
