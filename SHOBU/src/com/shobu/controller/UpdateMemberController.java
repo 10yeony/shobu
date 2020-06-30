@@ -34,24 +34,20 @@ public class UpdateMemberController implements Controller {
     		id = multi.getParameter("id");
     		password = multi.getParameter("passwordCheck");
     		nickname = multi.getParameter("nickname");
-    		fileName = nullOrEmptyToReplaceString(multi.getFilesystemName("profile"), "");
-    		System.out.println(multi.getFilesystemName("profile"));
-    		String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")); //현재 시간
-    		int i = -1;
-          	i = fileName.lastIndexOf("."); // 파일 확장자 위치
-          	String saveFileName = now + "_"+ id + fileName.substring(i, fileName.length());  //현재시간과 확장자 합치기
-          	System.out.println(saveFileName);
-          	File oldFile = new File(uploadPath, fileName); //예전 파일
-    		File newFile = new File(uploadPath, saveFileName); //현재 파일
-   
-    		oldFile.renameTo(newFile); // 파일명 변경
-    		
-    		originFileName = multi.getOriginalFileName("profile");
-    		if(originFileName==null) {
-    			ModelDaoImpl.getInstance().updateMember(new MemberVO(id,
-    															password,
-    															nickname));
+    		fileName = multi.getFilesystemName("profile");
+    		if(fileName==null) {
+    			ModelDaoImpl.getInstance().updateMember(new MemberVO(id, password, nickname));
     		}else {
+    			String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")); //현재 시간
+        		int i = -1;
+              	i = fileName.lastIndexOf("."); // 파일 확장자 위치
+              	String saveFileName = now + "_"+ id + fileName.substring(i, fileName.length());  //현재시간과 확장자 합치기
+              	File oldFile = new File(uploadPath, fileName); //예전 파일
+        		File newFile = new File(uploadPath, saveFileName); //현재 파일
+       
+        		oldFile.renameTo(newFile); // 파일명 변경
+        		
+        		originFileName = multi.getOriginalFileName("profile");
     			ModelDaoImpl.getInstance().updateMember(new MemberVO(id,
 																password,
 																nickname,
@@ -65,12 +61,5 @@ public class UpdateMemberController implements Controller {
     		e.printStackTrace();
     	}
     	return null;
-	}
-	
-	public static String nullOrEmptyToReplaceString(String str, String replaceStr) {
-		if (str == null || "".equals(str)) {
-			return replaceStr;
-		}
-		return str;
 	}
 }

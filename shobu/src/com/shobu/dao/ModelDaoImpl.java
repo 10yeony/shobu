@@ -776,7 +776,11 @@ public class ModelDaoImpl implements ModelDAO{
 		String query = "";
 		try {
 			conn = getConnection();
-			if(vo.getImage().equals("")) {
+			if(vo.getImage().equals("image/profile/default.png")) {
+				//프로필 사진을 변경하지 않았을 경우 파일값이 null이 되고 에러가 남
+				//따라서 UpdateMemberServlet에서 파일 없이 생성자를 달리하여 vo를 생성해줌.
+				//이미지 없이 vo를 생성하면 MemberVO에서 기본적으로 image/profile/default.png 값이 입력됨.
+				//프로필 사진을 기본 프로필 사진으로 바꾸지 않기 위해 넣어주는 if문
 				query = "UPDATE members SET password=?, nickname=? WHERE id=?";
 				ps = conn.prepareStatement(query);
 				ps.setString(1, vo.getPassword());

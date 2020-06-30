@@ -32,11 +32,11 @@ public class LoginController implements Controller {
 				return null;
 			}
 		} catch (SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (ServletException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return mv;
 	}
