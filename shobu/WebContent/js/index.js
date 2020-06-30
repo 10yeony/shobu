@@ -60,10 +60,10 @@ $(function() {
 				$("#teamrank").append("<td>"+teams.win+"</td>");
 				$("#teamrank").append("<td>"+teams.draw+"</td>");
 				$("#teamrank").append("<td>"+teams.lose+"</td>");
-				$("#teamrank").append("<td>"+teams.rate+"</td>");
-				$("#teamrank").append("<td>"+teams.distance+"</td>");
-				$("#teamrank").append("<td>"+teams.teamAVG+"</td>");
-				$("#teamrank").append("<td>"+teams.teamEra+"</td>");
+				$("#teamrank").append("<td>"+(teams.rate).toFixed(3)+"</td>");
+				$("#teamrank").append("<td>"+(teams.distance).toFixed(1)+"</td>");
+				$("#teamrank").append("<td>"+(teams.teamAVG).toFixed(3)+"</td>");
+				$("#teamrank").append("<td>"+(teams.teamEra).toFixed(2)+"</td>");
 				$("#teamrank").append("<td>"+teams.stream+"</td>");
 				$("#teamrank").append("<td>"+teams.games10+"</td>");
 				$("#teamrank").append("</tr>");

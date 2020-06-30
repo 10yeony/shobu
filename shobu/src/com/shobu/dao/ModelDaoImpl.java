@@ -263,34 +263,34 @@ public class ModelDaoImpl implements ModelDAO{
 				
 				switch(rs.getString(1)) {
 				case "OB":
-					team.setTeamName("두산베어스");
+					team.setTeamName("두산 베어스");
 					break;
 				case "KT":
-					team.setTeamName("kt위즈");
+					team.setTeamName("kt 위즈");
 					break;
 				case "LG":
-					team.setTeamName("LG트윈스");
+					team.setTeamName("LG 트윈스");
 					break;
 				case "HT":
-					team.setTeamName("KIA타이거즈");
+					team.setTeamName("기아 타이거즈");
 					break;
 				case "LT":
-					team.setTeamName("롯데자이언츠");
+					team.setTeamName("롯데 자이언츠");
 					break;
 				case "WO":
-					team.setTeamName("키움히어로즈");
+					team.setTeamName("키움 히어로즈");
 					break;
 				case "SK":
-					team.setTeamName("SK와이번스");
+					team.setTeamName("SK 와이번스");
 					break;
 				case "SS":
-					team.setTeamName("삼성라이온즈");
+					team.setTeamName("삼성 라이온즈");
 					break;
 				case "NC":
-					team.setTeamName("NC다이노스");
+					team.setTeamName("NC 다이노스");
 					break;
 				case "HH":
-					team.setTeamName("한화이글스");
+					team.setTeamName("한화 이글스");
 					break;
 				}
 				
