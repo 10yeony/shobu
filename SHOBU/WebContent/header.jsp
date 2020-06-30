@@ -64,6 +64,9 @@
     display:inline; 
     width:79%; 
   }
+  #profileImg:hover{
+  	opacity: 0.60;
+  }
 
   /* 결과보기 영역 */
   .resultTable{
@@ -161,7 +164,7 @@
     	$('#logo').click(function(){
     		location.href = 'index.jsp';
     	});
-    	
+		
     	$("#profile").on("change", handleImgFileSelect); //이미지 파일 업로드시 함수 호출
     	
     	/* 닉네임 중복 확인 */
