@@ -49,6 +49,7 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
+	
 	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
@@ -82,6 +83,11 @@ public class ModelDaoImpl implements ModelDAO{
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
+
+		ArrayList<MatchVO> match = dao.selectMatch();
+		for(MatchVO m:match) {
+			System.out.println(m);
+		}
 	}*/
 	
 	
@@ -257,34 +263,34 @@ public class ModelDaoImpl implements ModelDAO{
 				
 				switch(rs.getString(1)) {
 				case "OB":
-					team.setTeamName("두산베어스");
+					team.setTeamName("두산 베어스");
 					break;
 				case "KT":
-					team.setTeamName("kt위즈");
+					team.setTeamName("kt 위즈");
 					break;
 				case "LG":
-					team.setTeamName("LG트윈스");
+					team.setTeamName("LG 트윈스");
 					break;
 				case "HT":
-					team.setTeamName("KIA타이거즈");
+					team.setTeamName("기아 타이거즈");
 					break;
 				case "LT":
-					team.setTeamName("롯데자이언츠");
+					team.setTeamName("롯데 자이언츠");
 					break;
 				case "WO":
-					team.setTeamName("키움히어로즈");
+					team.setTeamName("키움 히어로즈");
 					break;
 				case "SK":
-					team.setTeamName("SK와이번스");
+					team.setTeamName("SK 와이번스");
 					break;
 				case "SS":
-					team.setTeamName("삼성라이온즈");
+					team.setTeamName("삼성 라이온즈");
 					break;
 				case "NC":
-					team.setTeamName("NC다이노스");
+					team.setTeamName("NC 다이노스");
 					break;
 				case "HH":
-					team.setTeamName("한화이글스");
+					team.setTeamName("한화 이글스");
 					break;
 				}
 				
@@ -928,7 +934,6 @@ public class ModelDaoImpl implements ModelDAO{
 		ResultSet rs = null;
 		
 		ArrayList<MatchVO> matchs = new ArrayList<MatchVO>();
-		MatchVO match = new MatchVO();
 		String query = "SELECT * FROM matches";
 		
 		ArrayList<PlayerVO> tmp = new ArrayList<PlayerVO>();
@@ -944,6 +949,7 @@ public class ModelDaoImpl implements ModelDAO{
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
+				MatchVO match = new MatchVO();
 				
 				//set date, time, awayinfo, homeinfo, plce
 				match.setDate(rs.getString("date"));
@@ -979,8 +985,8 @@ public class ModelDaoImpl implements ModelDAO{
 				match.setHomeRatio(winningRate[1]);
 				match.setAwayImg(awayTeam.getImage());
 				match.setHomeImg(homeTeam.getImage());
-				match.setAwayColor(awayTeam.getTeamCode());
-				match.setHomeColor(homeTeam.getTeamCode());
+				match.setAwayColor(getColor(awayTeam.getTeamCode()));
+				match.setHomeColor(getColor(homeTeam.getTeamCode()));
 				
 				matchs.add(match);
 			}
