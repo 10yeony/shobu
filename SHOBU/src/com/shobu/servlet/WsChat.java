@@ -11,7 +11,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.ChatVO;
 
