@@ -73,5 +73,5 @@ public class RegisterController implements Controller {
 			return replaceStr;
 		}
 		return str;
-		}
+	}
 }

@@ -60,9 +60,9 @@
     color: #f44336;
     border: 1px solid #f44336;
   }
-  #nickname{
+  #nickname, input[name=pwd]{
     display:inline; 
-    width:81%; 
+    width:79%; 
   }
 
   /* 결과보기 영역 */
@@ -134,8 +134,9 @@
     border-bottom:2px solid #343D52; 
   }
   </style>
-    <script>
-    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
     // Open and close the sidebar on medium and small screens
     function navOpen() {
       document.getElementById("nav").style.display = "block";
@@ -159,6 +160,7 @@
     		location.href = 'index.jsp';
     	});
     	
+    	$("#profile").on("change", handleImgFileSelect); //이미지 파일 업로드시 함수 호출
     	
     	/* 닉네임 중복 확인 */
     	$('button:eq(0)').click(function(){
@@ -188,12 +190,11 @@
     		}//click
     	});
     	
-    	
     	/* 비밀번호 형식 체크 */
-    	$('input[type=password]').keyup(function(){
-    		pwLength = $('input[name=password]').val().length;
+    	$('#password').keyup(function(){
+    		pwLength = $('#password').val().length;
     		pwCheckLength = $('input[name=passwordCheck]').val().length;
-    		password = $('input[name=password]').val();
+    		password = $('#password').val();
     		passwordCheck = $('input[name=passwordCheck]').val();
     		
     		if(pwLength<1){
@@ -209,36 +210,119 @@
     		}
     	});
     	
-    	
-    	/* 제출 전 아이디 및 닉네임 중복 확인 여부 & 비밀번호 일치 여부 체크 */
-    	$('form:eq(0)').submit(function(){
-    		var idCheck = $('input[type=hidden]:eq(0)').val();
-    		var nicknameCheck = $('input[type=hidden]:eq(1)').val();
-    		password = $('input[name=password]').val();
-    		passwordCheck = $('input[name=passwordCheck]').val();
-    		if(nicknameCheck=="notNicknameCheck"){
-    			alert("닉네임 중복 확인을 해주세요");
-    			return false;
-    		}else if(password!=passwordCheck){
-    			alert("입력하신 비밀번호가 다릅니다");
-    			return false;
-    		}else if(pwLength<4 || pwLength>10){
-    			alert("비밀번호를 4자 이상 10자 이하로 입력하세요");
-    			return false;
-    		}else if(!regex.test(password)){
-    			alert("비밀번호에 대/소문자, 숫자, 특수문자를 포함하세요");
-    			return false;
+    	/* 회원탈퇴 영역으로 이동 */
+    	$('#delete').click(function(){
+    		var flag = confirm('탈퇴하면 모든 포인트가 소멸됩니다. 그래도 탈퇴하시겠습니까?');
+    		if(!flag) return false;
+    		else{
+    			document.getElementById('updateArea').style.display='none';
+    			document.getElementById('deleteArea').style.display='block';
+    			$('#profileImg').css('display', 'none');
     		}
     	});
     	
-    	$('form:eq(0)').submit(function(){
-    		var flag = confirm('탈퇴하면 모든 포인트가 소멸됩니다. 그래도 탈퇴하시겠습니까?');
-    		if(!flag) return flase;
-    	});
+    	/* 회원정보 수정 Ajax */
+    	$('#update').click(function(){
+    		var nicknameCheck = $('input[type=hidden]:eq(1)').val();
+    		var id = $('input[name=id]').val();
+    		var nickname = $('input[name=nickname]').val();
+  		  	password = $('#password').val();
+  		  	passwordCheck = $('input[name=passwordCheck]').val();
+  		  	if(nicknameCheck=="notNicknameCheck"){
+  				alert("닉네임 중복 확인을 해주세요");
+  				return false;
+  		  	}else if(password!=passwordCheck){
+  				alert("입력하신 비밀번호가 다릅니다");
+  				return false;
+  		  	}else if(pwLength<4 || pwLength>10){
+  				alert("비밀번호를 4자 이상 10자 이하로 입력하세요");
+  				return false;
+  		  	}else if(!regex.test(password)){
+  				alert("비밀번호에 대/소문자, 숫자, 특수문자를 포함하세요");
+  				return false;
+  		  	}else{
+  		  	 	var form = $('form:eq(0)')[0];
+  			 	var formData = new FormData(form);
+  		       	$.ajax({
+  		       		url: 'updateMember.do',
+  		       	    processData: false,
+  	     	    	    contentType: false,
+  		       	    data: formData,
+  		       	    type: 'POST',
+  		       	    success: function(data){
+  		       	    	alert("회원정보가 정상적으로 수정되었습니다");
+  		       	    }
+  		       	});//ajax
+  		  	}
+    	});//click
+    	
+    	/* 회원탈퇴 Ajax */
+    	$('#deleteArea Button').click(function(){
+    		
+    		$.ajax({
+  		       	url: 'deleteMember.do',
+  		       	processData: false,
+  	     	    contentType: false,
+  		       	data: formData,
+  		       	type: 'POST',
+  		       	
+  		       	success: function(data){
+  		       		if(!data){
+  		       			$('#deleteArea div').text("비밀번호가 틀렸습니다");
+  		       		}
+  		       		else{
+  		       			$.ajax({
+  		  		      	 	url: 'deleteMember.do',
+  		  		      	 	processData: false,
+  		  	     	  	    contentType: false,
+  		  		       		data: formData,
+  		  		       		type: 'POST',
+  		  		       		
+  		  		       		success: function(data){
+  		  		       	  		$('#deleteArea div').text("정상적으로 탈퇴되었습니다");
+  		  		       		}
+  		  		    	});//회원 탈퇴 ajax
+  		       		}
+  		       	}
+  		    });//비밀번호 일치 여부 확인 ajax
+    	});//click
     });//JQuery Ready
+    
+    /* 이미지 업로드 핸들러 함수 시작 */
+    function handleImgFileSelect(e) {
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+        
+      if($('input[type=file]').val() != ""){
+        filesArr.forEach(function(f) {
+        	
+          /* 확장자 제한 */
+          if(!f.type.match("image.*")) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            $('#profile').val("");
+            return false;
+          }
+        	
+          /* 용량 제한 */
+          var fileSize = document.getElementById('profile').files[0].size;
+          var maxSize = 5 * 1024 * 1000;
+          if(fileSize > maxSize){
+            alert("파일용량 5MB을 초과했습니다.");
+            $('#profile').val("");
+            return false;
+          }
+    		
+          /* 업로드 이미지 미리보기 */
+          profileImg = f;
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $("#profileImg").attr("src", e.target.result);
+          }
+          reader.readAsDataURL(f);
+        });//forEach
+      }//if
+    }/* 이미지 업로드 핸들러 함수 끝 */
   </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -328,19 +412,21 @@
     </header>
 ​	
 	<!-- contents영역 -->
+	
 	<!-- 정보수정 시작 -->
-    <div class="w3-container">
-      <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-          <div class="w3-center"><br>
-            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">
-              &times;
-            </span>
-            <img src="${member.image}" alt="Avatar" style="width:200px; height:200px;" class="w3-circle w3-margin-top">
-          </div><!-- .w3-center -->
-
-          <form class="w3-container" action="deleteMember.do">
-            <div class="w3-section">
+	<form class="w3-container" enctype="multipart/form-data">
+      <div class="w3-container">
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center"><br>
+              <span onclick="document.getElementById('id01').style.display='none'; location.reload()" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">
+                &times;
+              </span>
+              <input type=file name='profile' id="profile" style='display: none;'> 
+              <img src="${member.image}" style="width:200px; height:200px;" class="w3-circle w3-margin-top" id="profileImg" onclick='document.all.profile.click()'>
+            </div><!-- .w3-center -->
+            <!-- 업데이트 시작 -->
+            <div id="updateArea" class="w3-section" style="padding:40px;">
               <label>
                 <b>아이디</b>
               </label>
@@ -356,19 +442,31 @@
               <label>
                 <b>비밀번호</b>
               </label>
-              <input class="w3-input w3-border w3-margin-bottom" type="password" value="${member.password}" name="password" maxlength="10" required>
+              <input id="password" class="w3-input w3-border w3-margin-bottom" type="password" value="${member.password}" name="password" maxlength="10" required>
               <label>
                 <b>비밀번호 확인</b>
               </label>
               <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" maxlength="10" required>
               <div id="comparePW" style="color:red"></div>
-              <button class="w3-section w3-padding" type="button">변경</button>
-              <button class="w3-section w3-padding leave" type="submit">회원탈퇴</button>
-            </div><!-- .w3-section -->
-          </form>
-        </div><!-- .w3-modal-content -->
-      </div><!-- .w3-modal -->
-    </div><!-- .w3-container -->
+              <button class="w3-section w3-padding" id="update" type="button">변경</button>
+              <button class="w3-section w3-padding leave" id="delete" type="button">회원탈퇴</button>
+            </div><!-- 업데이트 끝 .w3-section -->
+            <!-- 회원탈퇴 시작 -->
+            <div id="deleteArea" class="w3-section" style="padding:40px; display:none;">
+              <label>
+                <b>비밀번호를 입력하세요</b>
+              </label>
+              <div>
+                <form method="post">
+                  <input class="w3-input w3-border w3-margin-bottom" type="password" name="pwd" required>
+                  <button class="w3-section w3-padding" type="button">확인</button>
+                  <div style="color:red;"></div>
+                </form>
+            </div><!-- 회원탈퇴 끝 .w3-section -->
+          </div><!-- .w3-modal-content -->
+        </div><!-- .w3-modal -->
+      </div><!-- .w3-container -->
+    </form>
     <!-- 정보수정 끝 -->
   
     <!-- 결과보기 시작 -->

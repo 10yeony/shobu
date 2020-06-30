@@ -769,19 +769,46 @@ public class ModelDaoImpl implements ModelDAO{
 	}
 	
 	/* 회원 정보 수정 */
-	public MemberVO updateMember(MemberVO vo) throws SQLException {
-		return null;
+	public void updateMember(MemberVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "";
+		try {
+			conn = getConnection();
+			if(vo.getImage().equals("")) {
+				query = "UPDATE members SET password=?, nickname=? WHERE id=?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, vo.getPassword());
+				ps.setString(2, vo.getNickname());
+				ps.setString(3, vo.getId());
+			}else {
+				query = "UPDATE members SET password=?, nickname=?, image=? WHERE id=?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, vo.getPassword());
+				ps.setString(2, vo.getNickname());
+				ps.setString(3, vo.getImage());
+				ps.setString(4, vo.getId());
+			}
+			System.out.println(ps.executeUpdate()+"줄 수정");
+		}finally {
+			closeAll(rs, ps, conn);
+		}
 	}
 	
 	/* 회원 탈퇴(로그인된 상태에서 탈퇴가 가능하므로 id만 받음) */
 	public void deleteMember(String id) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		conn = getConnection();
-		String query = "DELETE FROM members WHERE id=?";
-		ps = conn.prepareStatement(query);
-		ps.setString(1, id);
-		ps.executeUpdate();
+		try {
+			conn = getConnection();
+			String query = "DELETE FROM members WHERE id=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			ps.executeUpdate();
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
 	
 	/* ID로 회원 찾기 */
