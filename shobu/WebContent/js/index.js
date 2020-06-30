@@ -54,16 +54,21 @@ $(function() {
 			}
 			
 			$.each(r.teams,function(index,teams){
+				var rate = teams.rate;
+				var distance = teams.distance;
+				var teamAVG = teams.teamAVG;
+				var teamEra = teams.teamEra;
+				
 				$("#teamrank").append("<tr>");
 				$("#teamrank").append("<td>"+teams.ranking+"</td>");
 				$("#teamrank").append("<td>"+teams.teamName+"</td>");
 				$("#teamrank").append("<td>"+teams.win+"</td>");
 				$("#teamrank").append("<td>"+teams.draw+"</td>");
 				$("#teamrank").append("<td>"+teams.lose+"</td>");
-				$("#teamrank").append("<td>"+teams.rate+"</td>");
-				$("#teamrank").append("<td>"+teams.distance+"</td>");
-				$("#teamrank").append("<td>"+teams.teamAVG+"</td>");
-				$("#teamrank").append("<td>"+teams.teamEra+"</td>");
+				$("#teamrank").append("<td>"+rate.toFixed(3)+"</td>");
+				$("#teamrank").append("<td>"+distance.toFixed(1)+"</td>");
+				$("#teamrank").append("<td>"+teamAVG.toFixed(3)+"</td>");
+				$("#teamrank").append("<td>"+teamEra.toFixed(2)+"</td>");
 				$("#teamrank").append("<td>"+teams.stream+"</td>");
 				$("#teamrank").append("<td>"+teams.games10+"</td>");
 				$("#teamrank").append("</tr>");
