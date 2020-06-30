@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>쇼부 SHOBU</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -234,7 +235,7 @@ body{
   font-weight:bold;
 }
 
-.card--welcome .btn-register{
+.card--welcome .btn-register, .card--welcome .btn-login{
   margin-bottom:.8em;
   background-color:#343D52;
 }
@@ -242,10 +243,7 @@ body{
 .card--welcome .btn-register:hover{
   color:#343D52;
 }
-
-.card--welcome .btn-login{
-  background-color:#343D52;
-}/* card--welcome 끝 */
+/* card--welcome 끝 */
 
 
 /* card--register 시작 */
@@ -582,6 +580,7 @@ function handleImgFileSelect(e) {
         <div class="btn-wrap">
           <a class="btn btn-lg btn-register js-btn" data-target="register">회원 가입</a>
           <a class="btn btn-lg btn-login js-btn" data-target="login">로그인</a>
+          <a class="btn btn-lg btn-login js-btn" href="index.jsp">메인</a>
         </div>
       </div>
     </div>
