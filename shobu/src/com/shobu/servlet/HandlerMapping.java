@@ -1,6 +1,7 @@
 package com.shobu.servlet;
 
 import com.shobu.controller.Controller;
+import com.shobu.controller.DeleteMemberController;
 import com.shobu.controller.IdCheckController;
 import com.shobu.controller.LoginController;
 import com.shobu.controller.LogoutController;
@@ -10,6 +11,7 @@ import com.shobu.controller.Playerlist;
 import com.shobu.controller.RegisterController;
 import com.shobu.controller.TotoController;
 import com.shobu.controller.UpdateController;
+import com.shobu.controller.UpdateMemberController;
 
 public class HandlerMapping {
 	private static HandlerMapping handler = new HandlerMapping();
@@ -41,6 +43,16 @@ public class HandlerMapping {
 			controller = new IdCheckController();
 			System.out.println("IdCheckController 생성됨");	
 		}
+		else if(command.equals("updateMember.do")) {
+			controller = new UpdateMemberController();
+			System.out.println("UpdateMemberController 생성됨");	
+			
+		}
+		else if(command.equals("deleteMember.do")) {
+			controller = new DeleteMemberController();
+			System.out.println("DeleteMemberController 생성됨");	
+			
+		}
 		else if(command.equals("nicknameCheck.do")){
 			controller = new NicknameCheckController();
 			System.out.println("NicknameCheckController 생성됨");	
@@ -49,11 +61,6 @@ public class HandlerMapping {
 			controller = new TotoController();
 			System.out.println("TotoController 생성됨");	
 		}
-//		else if(command.equals("update.do")) {
-//			controller = new UpdateController();
-//			System.out.println("UpdateController 생성됨");	
-//			
-//		}
 		else if(command.equals("update.do")){
 			controller = new UpdateController();
 			System.out.println("UpdateController 생성됨");	

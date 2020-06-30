@@ -654,6 +654,27 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 	}
 	
+	/* 회원 정보 수정 */
+	public MemberVO updateMember(MemberVO vo) throws SQLException {
+		return null;
+	}
+	
+	/* 회원 탈퇴 */
+	public boolean deleteMember(String id, String password) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		if(!login(id, password)) {
+			return false;
+		}else {
+			conn = getConnection();
+			String query = "DELETE FROM members WHERE id=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			ps.executeUpdate();
+			return true;
+		}
+	}
+	
 	/* ID로 회원 찾기 */
 	@Override
 	public MemberVO FindMemberById(String id) throws SQLException{
