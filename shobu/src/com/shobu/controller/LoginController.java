@@ -17,12 +17,9 @@ public class LoginController implements Controller {
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
 		ModelAndView mv = null;
 		String id = req.getParameter("id");
-		System.out.println(id);
 		String password = req.getParameter("password");
-		System.out.println(password);
 		try {
 			boolean flag = ModelDaoImpl.getInstance().login(id, password);
-			System.out.println(flag);
 			if(flag==true) {
 				MemberVO member = ModelDaoImpl.getInstance().FindMemberById(id);
 				System.out.println(member.getId());
