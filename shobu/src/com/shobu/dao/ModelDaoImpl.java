@@ -809,29 +809,108 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	
 	/* ================= 지도 상에 나타낼 토토판매점 ===================== */
-	@Override
-	public ArrayList<MapVO> selectMap() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertMap(MapVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = getConnection();
+			String query = "insert into map(address,name,locaX,locaY) values(?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getAddr());
+			ps.setString(2, vo.getStoreName());
+			ps.setString(3, vo.getLocalX());
+			ps.setString(4, vo.getLocalY());
+			
+			System.out.println(ps.executeUpdate()+"줄 추가");
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+		
 	}
+	
 	/* ================================================ */
 	
-	
+	@Override
+	public ArrayList<MapVO> selectMap() throws SQLException {
+		ArrayList<MapVO> mapList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "select address, name, locaX, locaY from map";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				MapVO map = new MapVO();
+						map.setAddr(rs.getString(1));
+						map.setStoreName(rs.getString(2));
+						map.setLocalX(rs.getString(3));
+						map.setLocalY(rs.getString(4));
+						
+				mapList.add(map);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return mapList;
+	}
 	
 	/* ================= 채팅 관련 ================= */
 	
 	/* 채팅 불러오기 */
 	@Override
 	public ArrayList<ChatVO> selectChat() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ChatVO> chatList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "select * from chat";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				ChatVO chat = new ChatVO();
+						chat.setId(rs.getString(2));
+						chat.setWord(rs.getString(3));
+						chat.setSendTime(rs.getString(4));
+				chatList.add(chat);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return chatList;
 	}
 	
 	/* 채팅 추가하기 */
 	@Override
 	public void insertChat(ChatVO vo) throws SQLException {
-		// TODO Auto-generated method stub
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO chat (id, word) VALUES (?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getWord());
+
+			
+			System.out.println(ps.executeUpdate()+"줄 추가");
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+		
+		
 	}
+
 	/* ================================================ */
 	
 	
