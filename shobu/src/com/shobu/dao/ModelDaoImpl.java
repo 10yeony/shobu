@@ -313,19 +313,21 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setString(1, teamCode);
 			rs = ps.executeQuery();
 			
-			team.setTeamCode(rs.getString(1));
-			team.setImage(rs.getString(2));
-			team.setRanking(rs.getInt(3));
-			team.setGames(rs.getInt(4));
-			team.setWin(rs.getInt(5));
-			team.setDraw(rs.getInt(6));
-			team.setLose(rs.getInt(7));
-			team.setRate(rs.getDouble(8));
-			team.setDistance(rs.getInt(9));
-			team.setTeamAVG(rs.getDouble(10));
-			team.setTeamEra(rs.getDouble(11));
-			team.setStream(rs.getString(12));
-			team.setGames10(rs.getString(13));
+			if(rs.next()) {
+				team.setTeamCode(rs.getString(1));
+				team.setImage(rs.getString(2));
+				team.setRanking(rs.getInt(3));
+				team.setGames(rs.getInt(4));
+				team.setWin(rs.getInt(5));
+				team.setDraw(rs.getInt(6));
+				team.setLose(rs.getInt(7));
+				team.setRate(rs.getDouble(8));
+				team.setDistance(rs.getInt(9));
+				team.setTeamAVG(rs.getDouble(10));
+				team.setTeamEra(rs.getDouble(11));
+				team.setStream(rs.getString(12));
+				team.setGames10(rs.getString(13));
+			}
 			
 		} finally {
 			closeAll(rs, ps, conn);
@@ -433,19 +435,21 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setInt(1, playerId);
 			rs = ps.executeQuery();
 			
-			pitcher.setGames(rs.getInt(2));
-			pitcher.setInning(rs.getString(3));
-			pitcher.setEra(rs.getDouble(4));
-			pitcher.setRate(rs.getDouble(5));
-			pitcher.setWin(rs.getInt(6));
-			pitcher.setLose(rs.getInt(7));
-			pitcher.setSave(rs.getInt(8));
-			pitcher.setHold(rs.getInt(9));
-			pitcher.setRuns(rs.getInt(10));
-			pitcher.setHr(rs.getInt(11));
-			pitcher.setHits(rs.getInt(12));
-			pitcher.setSo(rs.getInt(13));
-			pitcher.setBb(rs.getInt(14));
+			if(rs.next()) {
+				pitcher.setGames(rs.getInt(2));
+				pitcher.setInning(rs.getString(3));
+				pitcher.setEra(rs.getDouble(4));
+				pitcher.setRate(rs.getDouble(5));
+				pitcher.setWin(rs.getInt(6));
+				pitcher.setLose(rs.getInt(7));
+				pitcher.setSave(rs.getInt(8));
+				pitcher.setHold(rs.getInt(9));
+				pitcher.setRuns(rs.getInt(10));
+				pitcher.setHr(rs.getInt(11));
+				pitcher.setHits(rs.getInt(12));
+				pitcher.setSo(rs.getInt(13));
+				pitcher.setBb(rs.getInt(14));
+			}
 			
 		}finally {
 			closeAll(rs, ps, conn);
@@ -945,6 +949,8 @@ public class ModelDaoImpl implements ModelDAO{
 				match.setHomeImg(homeTeam.getImage());
 				match.setAwayColor(awayTeam.getTeamCode());
 				match.setHomeColor(homeTeam.getTeamCode());
+				
+				matchs.add(match);
 			}
 		}finally {
 			closeAll(rs, ps, conn);
