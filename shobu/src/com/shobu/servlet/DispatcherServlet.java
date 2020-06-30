@@ -42,6 +42,7 @@ public class DispatcherServlet extends HttpServlet {
 			path = mv.getPath();
 		} catch (Exception e) {
 			System.out.println("**** DispatcherServlet ERROR****");
+			e.printStackTrace();
 		}
 		if (mv !=null ) {
 			if(!mv.isRedirect()) req.getRequestDispatcher(path).forward(req, res);

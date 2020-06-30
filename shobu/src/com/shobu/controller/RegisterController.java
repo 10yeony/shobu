@@ -59,13 +59,10 @@ public class RegisterController implements Controller {
 																nickname,
 																"image/profile/"+saveFileName));
     		}
-    		PrintWriter out = res.getWriter();
-			out.println("<html><head><script>alert('"+nickname+"님, 로그인해주세요.');</script></head></html>");
-			req.getRequestDispatcher("index.jsp").include(req, res);
     	}catch(Exception e) {
     		//e.printStackTrace();
     	}
-    	return null;
+    	return new ModelAndView("loginSuccess.jsp");
 	}
 	
 	public static String nullOrEmptyToReplaceString(String str, String replaceStr) {

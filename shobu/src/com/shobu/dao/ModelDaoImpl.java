@@ -764,6 +764,7 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setString(4, vo.getImage());
 			System.out.println(ps.executeUpdate()+"줄 추가");
 		}finally {
+			conn.commit();
 			closeAll(ps, conn);
 		}
 	}

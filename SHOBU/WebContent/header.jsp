@@ -29,7 +29,7 @@
   	bottom:0px;
   }
   
-  /* 정보수정 영역 */
+  /* 내 정보 영역 */
   button  {
   	display: inline-block;
   	padding: .5em .75em;
@@ -154,6 +154,8 @@
     	var password; //비밀번호 값
     	var passwordCheck; //비밀번호 확인 값
     	var pwLength; //비밀번호 길이
+    	var originNickname; //원래 닉네임
+		var nickname; //바꾼 닉네임
     	
     	/* 로고 영역 클릭하면 index.jsp로 이동 */
     	$('#logo').click(function(){
@@ -164,10 +166,14 @@
     	
     	/* 닉네임 중복 확인 */
     	$('button:eq(0)').click(function(){
-    		var nickname = $('input[name=nickname]').val();
-    		var nicknameCheck = $('input[type=hidden]');
+    		originNickname = '${member.nickname}';
+    		nickname = $('input[name=nickname]').val();
+    		var nicknameCheck = $('input[type=hidden]:eq(0)');
     		if(nickname==''){
     			alert("닉네임을 입력하세요");
+    		}else if(originNickname==nickname){
+    			alert("기존의 닉네임을 그대로 사용합니다");
+    			nicknameCheck.attr('value', 'nicknameCheck');
     		}else{
     			$.ajax({
     				//요청
@@ -223,12 +229,13 @@
     	
     	/* 회원정보 수정 Ajax */
     	$('#update').click(function(){
-    		var nicknameCheck = $('input[type=hidden]:eq(1)').val();
-    		var id = $('input[name=id]').val();
-    		var nickname = $('input[name=nickname]').val();
+    		var nicknameCheck = $('input[type=hidden]:eq(0)').val();
+    		var id = $('input[name=id]:eq(1)').val();
+    		originNickname = '${member.nickname}';
+    		nickname = $('input[name=nickname]').val();
   		  	password = $('#password').val();
   		  	passwordCheck = $('input[name=passwordCheck]').val();
-  		  	if(nicknameCheck=="notNicknameCheck"){
+  		  	if(originNickname!=nickname && nicknameCheck=="notNicknameCheck"){
   				alert("닉네임 중복 확인을 해주세요");
   				return false;
   		  	}else if(password!=passwordCheck){
@@ -257,34 +264,18 @@
     	});//click
     	
     	/* 회원탈퇴 Ajax */
-    	$('#deleteArea Button').click(function(){
-    		
+    	$('#deleteArea button').click(function(){
+    		var id = '${member.id}';
+    		var password = $('input[name=userPwd]').val();
     		$.ajax({
-  		       	url: 'deleteMember.do',
-  		       	processData: false,
-  	     	    contentType: false,
-  		       	data: formData,
-  		       	type: 'POST',
+    			type:'post',
+				url:'deleteMember.do',
+				data:"id="+id+"&password="+password,
   		       	
   		       	success: function(data){
-  		       		if(!data){
-  		       			$('#deleteArea div').text("비밀번호가 틀렸습니다");
-  		       		}
-  		       		else{
-  		       			$.ajax({
-  		  		      	 	url: 'deleteMember.do',
-  		  		      	 	processData: false,
-  		  	     	  	    contentType: false,
-  		  		       		data: formData,
-  		  		       		type: 'POST',
-  		  		       		
-  		  		       		success: function(data){
-  		  		       	  		$('#deleteArea div').text("정상적으로 탈퇴되었습니다");
-  		  		       		}
-  		  		    	});//회원 탈퇴 ajax
-  		       		}
+  		       		$('#deleteResult').css('display', 'block').text(data);
   		       	}
-  		    });//비밀번호 일치 여부 확인 ajax
+  		    });//회원탈퇴 ajax
     	});//click
     });//JQuery Ready
     
@@ -375,11 +366,11 @@
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님 &nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<a class="menu" href="#" onclick="document.getElementById('id01').style.display='block'">
-				  정보수정
+				  내 정보
 				</a>
 				<span> | </span>
 				<a class="menu" href="#" onclick="document.getElementById('id02').style.display='block'">
-				  결과보기
+				  결과 보기
 				</a>
 			</c:when>
 		</c:choose>
@@ -399,7 +390,7 @@
 			<c:when test="${member != null}">
 				<span>${member.nickname} 님 &nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<a class="menu" href="#" onclick="document.getElementById('id01').style.display='block'">
-				  정보수정
+				  내 정보
 				</a>
 				<span> | </span>
 				<a class="menu" href="#" onclick="document.getElementById('id02').style.display='block'">
@@ -413,8 +404,8 @@
 ​	
 	<!-- contents영역 -->
 	
-	<!-- 정보수정 시작 -->
-	<form class="w3-container" enctype="multipart/form-data">
+	<!-- 내 정보 시작 -->
+	<form method="post" class="w3-container" enctype="multipart/form-data">
       <div class="w3-container">
         <div id="id01" class="w3-modal">
           <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
@@ -457,17 +448,17 @@
                 <b>비밀번호를 입력하세요</b>
               </label>
               <div>
-                <form method="post">
-                  <input class="w3-input w3-border w3-margin-bottom" type="password" name="pwd" required>
+                <form method="post" class="w3-container">
+                  <input class="w3-input w3-border w3-margin-bottom" type="password" name="userPwd" required>
                   <button class="w3-section w3-padding" type="button">확인</button>
-                  <div style="color:red;"></div>
+                  <div id="deleteResult" style="color:red;"></div>
                 </form>
             </div><!-- 회원탈퇴 끝 .w3-section -->
           </div><!-- .w3-modal-content -->
         </div><!-- .w3-modal -->
       </div><!-- .w3-container -->
     </form>
-    <!-- 정보수정 끝 -->
+    <!-- 내 정보 끝 -->
   
     <!-- 결과보기 시작 -->
     <div class="w3-container">

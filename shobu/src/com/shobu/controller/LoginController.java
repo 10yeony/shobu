@@ -28,15 +28,12 @@ public class LoginController implements Controller {
 			}else {
 				PrintWriter out = res.getWriter();
 				out.print("<html><head><script>alert(\"아이디 또는 비밀번호를 잘못 입력하셨습니다.\");</script></head></html>");
-				req.getRequestDispatcher("login.html").include(req, res);
 				return null;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return mv;
 	}

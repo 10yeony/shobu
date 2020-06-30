@@ -9,7 +9,6 @@ import com.shobu.controller.LoginController;
 import com.shobu.controller.LogoutController;
 import com.shobu.controller.MainController;
 import com.shobu.controller.NicknameCheckController;
-import com.shobu.controller.PasswordCheckController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.PitcherController;
 import com.shobu.controller.RegisterController;
@@ -51,14 +50,9 @@ public class HandlerMapping {
 			controller = new NicknameCheckController();
 			System.out.println("NicknameCheckController 생성됨");	
 		}
-		else if(command.equals("passwordCheck.do")){
-			controller = new PasswordCheckController();
-			System.out.println("PasswordCheckController 생성됨");	
-		}
 		else if(command.equals("updateMember.do")) {
 			controller = new UpdateMemberController();
 			System.out.println("UpdateMemberController 생성됨");	
-			
 		}
 		else if(command.equals("deleteMember.do")) {
 			controller = new DeleteMemberController();
