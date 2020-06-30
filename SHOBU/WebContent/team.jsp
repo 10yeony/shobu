@@ -13,15 +13,25 @@
   		font-size: 0.9em;
   		}
   #list-div{
-  		height: 440px;
+  		height: 415px;
   		overflow: auto;
   }
   #list-table{
   		font-size: 0.9em;
   }
-  #detail{
-  		font-size: 0.9em;
+  #review{
+  		font-size: 0.8em;
   		font-weight: bold;
+  		color: #FFFFFF;
+  		background-color: #343d52;
+  }
+  #list-table thead tr{
+		background-color: #343d52;
+  		color: #FFFFFF;
+  		}
+  span:hover{
+  		font-weight: bold;
+  		color: red;
   }
   </style>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -67,12 +77,20 @@ function search(mode, team) {
 				$('#list-table').append("<tbody id='list-body'>");
 				
 				$.each(data.list, function(index, list){
+					
+					if(list.teamCode=="OB") list.teamCode = "두산";
+					else if(list.teamCode=="SS") list.teamCode = "삼성";
+					else if(list.teamCode=="HH") list.teamCode = "한화";
+					else if(list.teamCode=="HT") list.teamCode = "기아";
+					else if(list.teamCode=="LT") list.teamCode = "롯데";
+					else if(list.teamCode=="WO") list.teamCode = "키움";
+					
 					$('#list-body').append("<tr id="+list.playerId+">");
 					$('#'+list.playerId).append("<td>"+list.teamCode+"</td>");
 					$('#'+list.playerId).append("<td>"+list.name+"</td>");
 					$('#'+list.playerId).append("<td>"+list.games+"</td>");
 					$('#'+list.playerId).append("<td>"+list.inning+"</td>");
-					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.era+"</td>");
+					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.era.toFixed(2)+"</td>");
 					$('#'+list.playerId).append("<td>"+list.win+"</td>");
 					$('#'+list.playerId).append("<td>"+list.lose+"</td>");
 					$('#'+list.playerId).append("<td>"+list.save+"</td>");
@@ -106,11 +124,19 @@ function search(mode, team) {
 				$('#list-table').append("<tbody id='list-body'>");
 				
 				$.each(data.list, function(index, list){
+					
+					if(list.teamCode=="OB") list.teamCode = "두산";
+					else if(list.teamCode=="SS") list.teamCode = "삼성";
+					else if(list.teamCode=="HH") list.teamCode = "한화";
+					else if(list.teamCode=="HT") list.teamCode = "기아";
+					else if(list.teamCode=="LT") list.teamCode = "롯데";
+					else if(list.teamCode=="WO") list.teamCode = "키움";
+					
 					$('#list-body').append("<tr id="+list.playerId+">");
 					$('#'+list.playerId).append("<td>"+list.teamCode+"</td>");
 					$('#'+list.playerId).append("<td>"+list.name+"</td>");
 					$('#'+list.playerId).append("<td>"+list.games+"</td>");
-					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.rate+"</td>");
+					$('#'+list.playerId).append("<td style='font-weight:bold;'>"+list.rate.toFixed(3)+"</td>");
 					$('#'+list.playerId).append("<td>"+list.ab+"</td>");
 					$('#'+list.playerId).append("<td>"+list.hits+"</td>");
 					$('#'+list.playerId).append("<td>"+list.hr+"</td>");
@@ -118,9 +144,9 @@ function search(mode, team) {
 					$('#'+list.playerId).append("<td>"+list.runs+"</td>");
 					$('#'+list.playerId).append("<td>"+list.so+"</td>");
 					$('#'+list.playerId).append("<td>"+list.bb+"</td>");
-					$('#'+list.playerId).append("<td>"+list.obp+"</td>");
-					$('#'+list.playerId).append("<td>"+list.slg+"</td>");
-					$('#'+list.playerId).append("<td>"+list.ops+"</td>");
+					$('#'+list.playerId).append("<td>"+list.obp.toFixed(3)+"</td>");
+					$('#'+list.playerId).append("<td>"+list.slg.toFixed(3)+"</td>");
+					$('#'+list.playerId).append("<td>"+list.ops.toFixed(3)+"</td>");
 					$('#'+list.playerId).append("<td>"+list.steal+"</td>");
 					$('#'+list.playerId).append("<td>"+list.error+"</td></tr>");
 				});//each
@@ -140,8 +166,8 @@ function search(mode, team) {
 						$.each(data.list, function(index, list){
 						$('#review').empty();
 						$('#review').append("<img alt='' src='image/player/"+list.playerId+".jpg' width='180px' height='226px' style='margin-top: 10px'><br/>");
-						$('#review').append("<hr><div>"+list.name+"</div><br/>");
-						$('#review').append("<div>"+list.number+" 번</div><br/>");
+						$('#review').append("<hr><div>"+list.name+" ("+list.position+")</div><br/>");
+						$('#review').append("<div>NO. "+list.number+"</div><br/>");
 						$('#review').append("<div>"+list.birth+"</div><br/>");
 						$('#review').append("<div>"+list.type+"</div><br/>");
 						})
@@ -152,8 +178,6 @@ function search(mode, team) {
 			}//success
 	});//ajax
 };//function
-
-
 
 $(function() {
 	search(mode,team);
@@ -169,7 +193,7 @@ $(function() {
   	
     <section>
       <!-- 상단 여백 처리-->
-      <div style="padding-top: 30px; font-size: 1.1em;" align="center">
+      <div style="padding-top: 30px; font-size: 0.9em;" align="center">
       	<span id="search"><a href="javascript:selectTeam('ALL')" >전체</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('NC')">NC</a></span>&nbsp;&nbsp;&nbsp;
       	<span id="search"><a href="javascript:selectTeam('OB')">두산</a></span>&nbsp;&nbsp;&nbsp;
@@ -183,7 +207,7 @@ $(function() {
       	<span id="search"><a href="javascript:selectTeam('HH')">한화</a></span>&nbsp;&nbsp;&nbsp;
       </div>
       <hr>
-      <div align="center" style="font-size: 1.2em;">
+      <div align="center" style="font-size: 1.0em;">
       	<span id="search"><a href="javascript:selectMode('pitcher')">투수기록</a></span>
       	<span> | </span>
       	<span id="search"><a href="javascript:selectMode('hitter')">타자기록</a></span>
@@ -194,7 +218,8 @@ $(function() {
       
         <div id="detail" class="w3-col w3-panel w3-padding-16" style="width: 20%;">
           <div class="w3-card" align="center" id="review">
-          	<img alt="" src="https://link-u.co.kr/www/thumbs/intro/basic_user.png" width="180px" height="226px" style="margin-top: 10px">
+          	<img alt="" src="image/profile/default.png" width="180px" height="226px" style="margin-top: 5px;">
+          	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		  </div>
         </div>
         
