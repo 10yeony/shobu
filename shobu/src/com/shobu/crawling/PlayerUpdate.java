@@ -521,7 +521,7 @@ public class PlayerUpdate {
 			hitter.setSo(Integer.parseInt(links.select("td").eq(10).text()));
 			hitter.setObp(Double.parseDouble(links.select("td").eq(11).text()));
 			hitter.setSlg(Double.parseDouble(links.select("td").eq(12).text()));
-			hitter.setOps(hitter.getRate()+hitter.getSlg());
+			hitter.setOps(hitter.getObp()+hitter.getSlg());
 			hitter.setSteal(Integer.parseInt(links.select("td").eq(13).text()));
 		} catch (Exception e) {
 			// TODO: handle exception
