@@ -56,11 +56,9 @@
 	background-color: #f44336;
 	border: 1px solid #f44336;
   }
-  .leave:hover{
+  .leave:link, .leave:visited, .leave:hover, .leave:active{
     color: #f44336;
-  }
-  .leave:active{
-    color: #f44336;
+    border: 1px solid #f44336;
   }
   #nickname{
     display:inline; 
@@ -240,7 +238,27 @@
     	});
     	
     	$('.leave').click(function(){
-    		confirm('탈퇴하면 모든 포인트가 소멸됩니다. 그래도 탈퇴하시겠습니까?');
+    		var flag = confirm('탈퇴하면 모든 포인트가 소멸됩니다. 그래도 탈퇴하시겠습니까?');
+    		if(!flag) return;
+    		else{
+    			var id = $('input[name=id]').val();
+    			var pwd = prompt('비밀번호를 입력해주세요');
+    			$.ajax({
+    				//요청
+    				type: "post", 
+    				url: "memberDelete.do", 
+    				data: "id="+id+"&password="+pwd,
+    				
+    				//응답
+    				success:function(data){ 
+    					if(!data){
+    						alert("비밀번호를 잘못 입력하셨습니다");
+    					}else{
+    						alert("성공적으로 탈퇴되셨습니다");
+    					}
+    				}//callback
+    			});//ajax
+    		}
     	});
     });//JQuery Ready
   </script>
@@ -351,7 +369,7 @@
               <label>
                 <b>아이디</b>
               </label>
-              <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${member.id}" name="id" readonly>
+              <input class="w3-input w3-border w3-margin-bottom" type="text" value="${member.id}" name="id" readonly>
               <label>
                 <b>닉네임</b>
               </label>
@@ -370,7 +388,7 @@
               <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" maxlength="10" required>
               <div id="comparePW" style="color:red"></div>
               <button class="w3-section w3-padding" type="submit">변경</button>
-              <button class="w3-section w3-padding leave" type="submit">회원탈퇴</button>
+              <button class="w3-section w3-padding leave" type="button">회원탈퇴</button>
             </div><!-- .w3-section -->
           </form>
         </div><!-- .w3-modal-content -->
