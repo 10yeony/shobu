@@ -481,7 +481,10 @@ public class PlayerUpdate {
 			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
 			Elements links = doc.select("tbody").eq(1);
 			pitcher.setGames(Integer.parseInt(links.select("td").eq(0).text()));
-			pitcher.setInning(links.select("td").eq(1).text());
+			if(links.select("td").eq(1).text() == null)
+				pitcher.setInning("0");
+			else
+				pitcher.setInning(links.select("td").eq(1).text());
 			pitcher.setEra(Double.parseDouble(links.select("td").eq(2).text()));
 			pitcher.setRate(Double.parseDouble(links.select("td").eq(3).text()));
 			pitcher.setWin(Integer.parseInt(links.select("td").eq(4).text()));
@@ -627,7 +630,7 @@ public class PlayerUpdate {
 		return matchlist;
 		
 	}
-	
+
 	//14.투수 최근3경기
 	public Pitcher3VO updatePitcher3(int playerId) {
 		Pitcher3VO pitcher3 = new Pitcher3VO();

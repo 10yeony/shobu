@@ -3,11 +3,14 @@ package com.shobu.servlet;
 import com.shobu.controller.Controller;
 import com.shobu.controller.DeleteMemberController;
 import com.shobu.controller.IdCheckController;
+import com.shobu.controller.DisplayController;
+import com.shobu.controller.HitterController;
 import com.shobu.controller.LoginController;
 import com.shobu.controller.LogoutController;
 import com.shobu.controller.MainController;
 import com.shobu.controller.NicknameCheckController;
 import com.shobu.controller.Playerlist;
+import com.shobu.controller.PitcherController;
 import com.shobu.controller.RegisterController;
 import com.shobu.controller.TotoController;
 import com.shobu.controller.UpdateController;
@@ -65,10 +68,19 @@ public class HandlerMapping {
 			controller = new UpdateController();
 			System.out.println("UpdateController 생성됨");	
 		}
-		else if(command.equals("playerlist.do")) {
-			controller = new Playerlist();
-			System.out.println("Playerlist 생성됨");
+		else if(command.equals("pitcher.do")) {
+			controller = new PitcherController();
+			System.out.println("Pitcher 생성됨");
 		}
+		else if(command.equals("hitter.do")) {
+			controller = new HitterController();
+			System.out.println("Hitter 생성됨");
+		}
+		else if(command.equals("display.do")) {
+			controller = new DisplayController();
+			System.out.println("Display 생성됨");
+		}
+		
 		return controller;
 	}
 

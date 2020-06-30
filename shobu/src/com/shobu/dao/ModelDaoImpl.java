@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +20,13 @@ import com.shobu.config.ServerInfo;
 import com.shobu.crawling.PlayerUpdate;
 import com.shobu.datasource.DataSourceManager;
 import com.shobu.model.ChatVO;
+import com.shobu.model.HitterListVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
 import com.shobu.model.MatchVO;
 import com.shobu.model.MemberVO;
 import com.shobu.model.Pitcher3VO;
+import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
@@ -377,33 +380,41 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	/* 모든 타자 불러오기 */
 	@Override
-	public ArrayList<HitterVO> selectAllHitter() throws SQLException {
-		ArrayList<HitterVO> list = new ArrayList<>();
+	public ArrayList<HitterListVO> selectAllHitter() throws SQLException {
+		ArrayList<HitterListVO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = getConnection();
-			String query = "select * from hitter";
+			String query = "select * from player p, hitter h where p.playerId = h.playerId order by rate desc";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				HitterVO hitter = new HitterVO();
-				hitter.setGames(rs.getInt(2));
-				hitter.setRate(rs.getDouble(3));
-				hitter.setAb(rs.getInt(4));
-				hitter.setHits(rs.getInt(5));
-				hitter.setHr(rs.getInt(6));
-				hitter.setRbi(rs.getInt(7));
-				hitter.setRuns(rs.getInt(8));
-				hitter.setBb(rs.getInt(9));
-				hitter.setSo(rs.getInt(10));
-				hitter.setObp(rs.getDouble(11));
-				hitter.setSlg(rs.getDouble(12));
-				hitter.setOps(rs.getDouble(12));
-				hitter.setSteal(rs.getInt(13));
-				hitter.setError(rs.getInt(14));
+				HitterListVO hitter = new HitterListVO();
+				hitter.setPlayerId(rs.getInt(1));
+				hitter.setTeamCode(rs.getString(2));
+				hitter.setName(rs.getString(3));
+				hitter.setPosition(rs.getString(4));
+				hitter.setImage(rs.getString(5));
+				hitter.setNumber(rs.getInt(6));
+				hitter.setBirth(rs.getString(7));
+				hitter.setType(rs.getString(8));
+				hitter.setGames(rs.getInt(10));
+				hitter.setRate(rs.getDouble(11));
+				hitter.setAb(rs.getInt(12));
+				hitter.setHits(rs.getInt(13));
+				hitter.setHr(rs.getInt(14));
+				hitter.setRbi(rs.getInt(15));
+				hitter.setRuns(rs.getInt(16));
+				hitter.setBb(rs.getInt(17));
+				hitter.setSo(rs.getInt(18));
+				hitter.setObp(rs.getDouble(19));
+				hitter.setSlg(rs.getDouble(20));
+				hitter.setOps(rs.getDouble(21));
+				hitter.setSteal(rs.getInt(22));
+				hitter.setError(rs.getInt(23));
 				
 				list.add(hitter);
 			}
@@ -451,8 +462,8 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	/* 모든 투수 불러오기 */
 	@Override
-	public ArrayList<PitcherVO> selectAllPitcher() throws SQLException {
-		ArrayList<PitcherVO> list = new ArrayList<>();
+	public ArrayList<PitcherListVO> selectAllPitcher() throws SQLException {
+		ArrayList<PitcherListVO> list = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -460,25 +471,33 @@ public class ModelDaoImpl implements ModelDAO{
 		
 		try {
 			conn = getConnection();
-			String query = "select * from pitcher";
+			String query = "select * from player p, pitcher c where c.playerId = p.playerId and c.inning is not null order by era";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				PitcherVO pitcher = new PitcherVO();
-				pitcher.setGames(rs.getInt(2));
-				pitcher.setInning(rs.getString(3));
-				pitcher.setEra(rs.getDouble(4));
-				pitcher.setRate(rs.getDouble(5));
-				pitcher.setWin(rs.getInt(6));
-				pitcher.setLose(rs.getInt(7));
-				pitcher.setSave(rs.getInt(8));
-				pitcher.setHold(rs.getInt(9));
-				pitcher.setRuns(rs.getInt(10));
-				pitcher.setHr(rs.getInt(11));
-				pitcher.setHits(rs.getInt(12));
-				pitcher.setSo(rs.getInt(13));
-				pitcher.setBb(rs.getInt(14));
+				PitcherListVO pitcher = new PitcherListVO();
+				pitcher.setPlayerId(rs.getInt(1));
+				pitcher.setTeamCode(rs.getString(2));
+				pitcher.setName(rs.getString(3));
+				pitcher.setPosition(rs.getString(4));
+				pitcher.setImage(rs.getString(5));
+				pitcher.setNumber(rs.getInt(6));
+				pitcher.setBirth(rs.getString(7));
+				pitcher.setType(rs.getString(8));
+				pitcher.setGames(rs.getInt(10));
+				pitcher.setInning(rs.getString(11));
+				pitcher.setEra(rs.getDouble(12));
+				pitcher.setRate(rs.getDouble(13));
+				pitcher.setWin(rs.getInt(14));
+				pitcher.setLose(rs.getInt(15));
+				pitcher.setSave(rs.getInt(16));
+				pitcher.setHold(rs.getInt(17));
+				pitcher.setRuns(rs.getInt(18));
+				pitcher.setHr(rs.getInt(19));
+				pitcher.setHits(rs.getInt(20));
+				pitcher.setSo(rs.getInt(21));
+				pitcher.setBb(rs.getInt(22));
 				
 				list.add(pitcher);
 			}
@@ -535,12 +554,16 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setInt(1, playerId);
 			rs = ps.executeQuery();
 			
-			player.setPlayerId(rs.getInt(1));
-			player.setTeamCode(rs.getString(2));
-			player.setName(rs.getString(3));
-			player.setPosition(rs.getString(4));
-			player.setName(rs.getString(5));
-			
+			while(rs.next()) {
+				player.setPlayerId(rs.getInt(1));
+				player.setTeamCode(rs.getString(2));
+				player.setName(rs.getString(3));
+				player.setPosition(rs.getString(4));
+				player.setImage(rs.getString(5));
+				player.setNumber(rs.getInt(6));
+				player.setBirth(rs.getString(7));
+				player.setType(rs.getString(8));
+			}
 		} finally {
 			closeAll(rs, ps, conn);
 		}
@@ -606,8 +629,99 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return list;
 	}
-	/* ================================================ */
-	
+	@Override
+	public ArrayList<HitterListVO> selectAllHitter(String teamCode) throws SQLException {
+		ArrayList<HitterListVO> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "select * from player p, hitter h where p.teamCode = ? and p.playerId = h.playerId order by rate desc";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, teamCode);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				HitterListVO hitter = new HitterListVO();
+				hitter.setPlayerId(rs.getInt(1));
+				hitter.setTeamCode(rs.getString(2));
+				hitter.setName(rs.getString(3));
+				hitter.setPosition(rs.getString(4));
+				hitter.setImage(rs.getString(5));
+				hitter.setNumber(rs.getInt(6));
+				hitter.setBirth(rs.getString(7));
+				hitter.setType(rs.getString(8));
+				hitter.setGames(rs.getInt(10));
+				hitter.setRate(rs.getDouble(11));
+				hitter.setAb(rs.getInt(12));
+				hitter.setHits(rs.getInt(13));
+				hitter.setHr(rs.getInt(14));
+				hitter.setRbi(rs.getInt(15));
+				hitter.setRuns(rs.getInt(16));
+				hitter.setBb(rs.getInt(17));
+				hitter.setSo(rs.getInt(18));
+				hitter.setObp(rs.getDouble(19));
+				hitter.setSlg(rs.getDouble(20));
+				hitter.setOps(rs.getDouble(21));
+				hitter.setSteal(rs.getInt(22));
+				hitter.setError(rs.getInt(23));
+				
+				list.add(hitter);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	@Override
+	public ArrayList<PitcherListVO> selectAllPitcher(String teamCode) throws SQLException {
+		ArrayList<PitcherListVO> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "select * from player p, pitcher c where p.teamCode = ? and p.playerId = c.playerId and c.inning is not null order by era";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, teamCode);
+			rs = ps.executeQuery();
+			DecimalFormat df = new DecimalFormat("#.00");
+			while(rs.next()) {
+				PitcherListVO pitcher = new PitcherListVO();
+				pitcher.setPlayerId(rs.getInt(1));
+				pitcher.setTeamCode(rs.getString(2));
+				pitcher.setName(rs.getString(3));
+				pitcher.setPosition(rs.getString(4));
+				pitcher.setImage(rs.getString(5));
+				pitcher.setNumber(rs.getInt(6));
+				pitcher.setBirth(rs.getString(7));
+				pitcher.setType(rs.getString(8));
+				pitcher.setGames(rs.getInt(10));
+				pitcher.setInning(rs.getString(11));
+				pitcher.setEra(rs.getDouble(12));
+				pitcher.setRate(rs.getDouble(13));
+				pitcher.setWin(rs.getInt(14));
+				pitcher.setLose(rs.getInt(15));
+				pitcher.setSave(rs.getInt(16));
+				pitcher.setHold(rs.getInt(17));
+				pitcher.setRuns(rs.getInt(18));
+				pitcher.setHr(rs.getInt(19));
+				pitcher.setHits(rs.getInt(20));
+				pitcher.setSo(rs.getInt(21));
+				pitcher.setBb(rs.getInt(22));
+				
+				list.add(pitcher);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
 	
 	
 	/* ================= 회원 관리 ===================== */
@@ -1005,5 +1119,4 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return logo;
 	}
-	/* ================================================ */
 }
