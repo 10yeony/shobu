@@ -203,7 +203,7 @@ $(function() {
           <div id="list-div" class="w3-card">
           	<table id="list-table" class="w3-table-all w3-hoverable">
           		<thead></thead>
-          		<tbody></tbody>ㅁ
+          		<tbody></tbody>
           	</table>
           </div>
         </div>

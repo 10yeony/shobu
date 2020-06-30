@@ -1,23 +1,13 @@
 package com.shobu.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-import com.shobu.config.ServerInfo;
-import com.shobu.crawling.PlayerUpdate;
 import com.shobu.datasource.DataSourceManager;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterListVO;
@@ -690,7 +680,6 @@ public class ModelDaoImpl implements ModelDAO{
 			ps = conn.prepareStatement(query);
 			ps.setString(1, teamCode);
 			rs = ps.executeQuery();
-			DecimalFormat df = new DecimalFormat("#.00");
 			while(rs.next()) {
 				PitcherListVO pitcher = new PitcherListVO();
 				pitcher.setPlayerId(rs.getInt(1));
