@@ -49,7 +49,7 @@
 	<script>
 	var userId = "jy";	//회원 정보를 담는 용	// 세션에 저장된 id값 넣어야함. 
 	
-	var ws = new WebSocket("ws://localhost:8080/wschat");	// 서버 아이피 넣어야함.
+	var ws = new WebSocket("ws://localhost:8888/wschat");	// 서버 아이피 넣어야함.
 	ws.onopen = function(){
 		 
 	};
