@@ -773,20 +773,15 @@ public class ModelDaoImpl implements ModelDAO{
 		return null;
 	}
 	
-	/* 회원 탈퇴 */
-	public boolean deleteMember(String id, String password) throws SQLException {
+	/* 회원 탈퇴(로그인된 상태에서 탈퇴가 가능하므로 id만 받음) */
+	public void deleteMember(String id) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		if(!login(id, password)) {
-			return false;
-		}else {
-			conn = getConnection();
-			String query = "DELETE FROM members WHERE id=?";
-			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
-			ps.executeUpdate();
-			return true;
-		}
+		conn = getConnection();
+		String query = "DELETE FROM members WHERE id=?";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, id);
+		ps.executeUpdate();
 	}
 	
 	/* ID로 회원 찾기 */
