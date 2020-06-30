@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.shobu.model.ChatVO;
+import com.shobu.model.HitterListVO;
 import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
 import com.shobu.model.MatchVO;
 import com.shobu.model.MemberVO;
 import com.shobu.model.Pitcher3VO;
+import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
@@ -39,9 +41,12 @@ public interface ModelDAO {
 	PlayerVO selectPlayer(String name) throws SQLException;
 	
 	HitterVO selectHitter(int playerId) throws SQLException;
-	ArrayList<HitterVO> selectAllHitter() throws SQLException;
+	ArrayList<HitterListVO> selectAllHitter() throws SQLException;
+	ArrayList<HitterListVO> selectAllHitter(String teamCode) throws SQLException;
 	PitcherVO selectPitcher(int playerId) throws SQLException;
-	ArrayList<PitcherVO> selectAllPitcher() throws SQLException;
+	ArrayList<PitcherListVO> selectAllPitcher() throws SQLException;
+	ArrayList<PitcherListVO> selectAllPitcher(String teamCode) throws SQLException;
+	
 	
 	//03. Select Player By Team Name
 	ArrayList<PlayerVO> selectByTeamName(String teamCode) throws SQLException;

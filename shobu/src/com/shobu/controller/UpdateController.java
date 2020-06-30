@@ -1,5 +1,6 @@
 package com.shobu.controller;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +23,7 @@ public class UpdateController implements Controller {
 		PlayerUpdate pu = new PlayerUpdate();
 		
 		try {
-			ArrayList<TeamVO> teamlist = pu.updateTeam();
+/*			ArrayList<TeamVO> teamlist = pu.updateTeam();
 			for(int i = 0; i<teamlist.size(); i++) {
 				ModelDaoImpl.getInstance().updateTeam(teamlist.get(i));
 			}
@@ -66,7 +67,7 @@ public class UpdateController implements Controller {
 				}
 				else
 					ModelDaoImpl.getInstance().updateHitter(pu.updateHitter(playerlist.get(i).getPlayerId(), playerlist.get(i).getTeamCode()), playerlist.get(i).getPlayerId());
-			}
+			}*/
 			
 			Date D = new Date();
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -80,5 +81,6 @@ public class UpdateController implements Controller {
 	}
 		return new ModelAndView(path);
 	}
+	
 
 }
