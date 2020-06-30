@@ -49,6 +49,7 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
+	
 	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
@@ -82,6 +83,11 @@ public class ModelDaoImpl implements ModelDAO{
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
+
+		ArrayList<MatchVO> match = dao.selectMatch();
+		for(MatchVO m:match) {
+			System.out.println(m);
+		}
 	}*/
 	
 	
@@ -927,7 +933,6 @@ public class ModelDaoImpl implements ModelDAO{
 		ResultSet rs = null;
 		
 		ArrayList<MatchVO> matchs = new ArrayList<MatchVO>();
-		MatchVO match = new MatchVO();
 		String query = "SELECT * FROM matches";
 		
 		ArrayList<PlayerVO> tmp = new ArrayList<PlayerVO>();
@@ -943,6 +948,7 @@ public class ModelDaoImpl implements ModelDAO{
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
+				MatchVO match = new MatchVO();
 				
 				//set date, time, awayinfo, homeinfo, plce
 				match.setDate(rs.getString("date"));
@@ -978,8 +984,8 @@ public class ModelDaoImpl implements ModelDAO{
 				match.setHomeRatio(winningRate[1]);
 				match.setAwayImg(awayTeam.getImage());
 				match.setHomeImg(homeTeam.getImage());
-				match.setAwayColor(awayTeam.getTeamCode());
-				match.setHomeColor(homeTeam.getTeamCode());
+				match.setAwayColor(getColor(awayTeam.getTeamCode()));
+				match.setHomeColor(getColor(homeTeam.getTeamCode()));
 				
 				matchs.add(match);
 			}
