@@ -35,11 +35,13 @@ public class MainController implements Controller {
 			json.put("teams", teams);
 			json.put("matchs", matchs);
 			
+			System.out.println(teams);
+			System.out.println(matchs);
 			out.print(json);
 		
 		}catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("MainController Error*****");
+			//System.out.println("MainController Error*****");
 		}
 		
 		return null;

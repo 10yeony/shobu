@@ -1,6 +1,7 @@
 package com.shobu.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.shobu.config.ServerInfo;
 import com.shobu.datasource.DataSourceManager;
+import com.shobu.logic.Logic;
 import com.shobu.model.ChatVO;
 import com.shobu.model.HitterListVO;
 import com.shobu.model.HitterVO;
@@ -24,6 +27,7 @@ import com.shobu.model.totoVO;
 
 public class ModelDaoImpl implements ModelDAO{
 
+	
 	//실제로는 DataSource 사용
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -45,7 +49,6 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
-	
 	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
@@ -562,7 +565,8 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	/* 이름으로 특정 선수 불러오기(동명이인) */
 	@Override
-	public PlayerVO selectPlayer(String name) throws SQLException {
+	public ArrayList<PlayerVO> selectPlayer(String name) throws SQLException {
+		ArrayList<PlayerVO> players = new ArrayList<PlayerVO>();
 		PlayerVO player= new PlayerVO();
 		
 		Connection conn = null;
@@ -575,17 +579,20 @@ public class ModelDaoImpl implements ModelDAO{
 			ps = conn.prepareStatement(query);
 			ps.setString(1, name);
 			rs = ps.executeQuery();
-			
-			player.setPlayerId(rs.getInt(1));
-			player.setTeamCode(rs.getString(2));
-			player.setName(rs.getString(3));
-			player.setPosition(rs.getString(4));
-			player.setName(rs.getString(5));
+			while(rs.next()) {
+				player.setPlayerId(rs.getInt(1));
+				player.setTeamCode(rs.getString(2));
+				player.setName(rs.getString(3));
+				player.setPosition(rs.getString(4));
+				player.setName(rs.getString(5));
+				
+				players.add(player);
+			}
 			
 		} finally {
 			closeAll(rs, ps, conn);
 		}
-		return player;
+		return players;
 	}
 	
 	/* 팀 코드로 선수 목록 불러오기 */
@@ -883,45 +890,66 @@ public class ModelDaoImpl implements ModelDAO{
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<MatchVO> match = new ArrayList<MatchVO>();
+		
+		ArrayList<MatchVO> matchs = new ArrayList<MatchVO>();
+		MatchVO match = new MatchVO();
 		String query = "SELECT * FROM matches";
-		Map<String, String> logo = new HashMap<String, String>();
-		String home = "";
-		String away = "";
+		
+		ArrayList<PlayerVO> tmp = new ArrayList<PlayerVO>();
+		double[] winningRate = null;
+		PitcherVO awayPitcher = null;
+		PitcherVO homePitcher = null;
+		TeamVO awayTeam=null;
+		TeamVO homeTeam=null;
 		
 		try {
 			conn = getConnection();
-			logo = getLogo(conn);
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				match.add(new MatchVO(rs.getString("date"), rs.getString("time"), rs.getString("away"),
-						rs.getString("home"), rs.getString("awayPitcher"), rs.getString("homePitcher"), rs.getString("place")));
-			}
-			
-			for(int i =0; i<match.size();i++) {
-				home = match.get(i).getHome();
-				away = match.get(i).getAway();
 				
-				if(logo.containsKey(home) && logo.containsKey(away)) {
-					String[] homeTmp = logo.get(home).split(",");
-					String[] awayTmp = logo.get(away).split(",");;
-					String awayLogo = awayTmp[0];
-					String awayColor = awayTmp[1];
-					String homeLogo = homeTmp[0];
-					String homeColor = homeTmp[1];
-
-					match.get(i).setHomeImg(homeLogo);
-					match.get(i).setHomeColor(homeColor);
-					match.get(i).setAwayImg(awayLogo);
-					match.get(i).setAwayColor(awayColor);
+				//set date, time, awayinfo, homeinfo, plce
+				match.setDate(rs.getString("date"));
+				match.setTime(rs.getString("time"));
+				match.setAway(rs.getString("away"));
+				match.setHome(rs.getString("home"));
+				match.setAwayPitcher(rs.getString("awayPitcher"));
+				match.setHomePitcher(rs.getString("homePitcher"));
+				match.setPlace(rs.getString("place"));
+				
+				homeTeam = selectTeam(rs.getString("homeCode"));
+				awayTeam = selectTeam(rs.getString("awayCode"));
+				
+				//get pitcher info
+				tmp = selectPlayer(rs.getString("awayPitcher"));
+				for(PlayerVO p: tmp) {
+					if (awayTeam.getTeamCode().equals(p.getTeamCode())) awayPitcher = selectPitcher(p.getPlayerId());
 				}
+				
+				tmp = selectPlayer(rs.getString("homePitcher"));
+				for(PlayerVO p: tmp) {
+					if (homeTeam.getTeamCode().equals(p.getTeamCode())) homePitcher = selectPitcher(p.getPlayerId());
+				}
+				
+				//get winning ratio
+				Logic logic = new Logic();
+				logic.setTeam(awayTeam, homeTeam);
+				logic.setPitcher(awayPitcher, homePitcher);
+				winningRate = logic.execute();
+				
+				//set winningRatio, img, color
+				match.setAwayRatio(winningRate[0]);
+				match.setHomeRatio(winningRate[1]);
+				match.setAwayImg(awayTeam.getImage());
+				match.setHomeImg(homeTeam.getImage());
+				match.setAwayColor(awayTeam.getTeamCode());
+				match.setHomeColor(homeTeam.getTeamCode());
 			}
 		}finally {
 			closeAll(rs, ps, conn);
 		}
-		return match;
+		return matchs;
 	}
 	/* ================================================ */
 	
@@ -1052,55 +1080,43 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	
 	
-	/* ================= 팀별 로고 불러오기 alc  =================  */
-	public Map<String, String> getLogo(Connection conn) throws SQLException{
-		Map<String, String> logo = new HashMap<>();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String query = "SELECT teamCode,image FROM team";
+	/* ================= 팀별 색상 불러오기  =================  */
+	public String getColor(String teamCode){
 		
-		try {
-			conn = getConnection();
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				switch(rs.getString(1)) {
-				case "OB":
-					logo.put("두산",rs.getString(2)+",#131230");
-					break;
-				case "KT":
-					logo.put("KT",rs.getString(2)+",#000000");
-					break;
-				case "LG":
-					logo.put("LG",rs.getString(2)+",#C30452");
-					break;
-				case "HT":
-					logo.put("KIA",rs.getString(2)+",#C70125");
-					break;
-				case "LT":
-					logo.put("롯데",rs.getString(2)+",#002955");
-					break;
-				case "WO":
-					logo.put("키움",rs.getString(2)+",#820024");
-					break;
-				case "SK":
-					logo.put("SK",rs.getString(2)+",#FF0000");
-					break;
-				case "SS":
-					logo.put("삼성",rs.getString(2)+",#074CA1");
-					break;
-				case "NC":
-					logo.put("NC",rs.getString(2)+",#315288");
-					break;
-				case "HH":
-					logo.put("한화",rs.getString(2)+",#FF6600");
-					break;
-				}
+		String color = "";
+		
+		switch(teamCode) {
+		case "OB":
+			color = "#131230";
+			break;
+		case "KT":
+			color =  "#000000";
+			break;
+		case "LG":
+			color =  "#C30452";
+			break;
+		case "HT":
+			color =  "#C70125";
+			break;
+		case "LT":
+			color =  "#002955";
+			break;
+		case "WO":
+			color =  "#820024";
+			break;
+		case "SK":
+			color =  "#FF0000";
+			break;
+		case "SS":
+			color =  "#074CA1";
+			break;
+		case "NC":
+			color =  "#315288";
+			break;
+		case "HH":
+			color =  "#FF6600";
+			break;
 			}
-		}finally {
-			closeAll(rs, ps, conn);
-		}
-		return logo;
+		return color;
 	}
 }

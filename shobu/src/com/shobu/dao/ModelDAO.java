@@ -38,7 +38,7 @@ public interface ModelDAO {
 	//02. Select Player, Hitter, Pitcher
 	ArrayList<PlayerVO> selectAllPlayer() throws SQLException;
 	PlayerVO selectPlayer(int playerId) throws SQLException;
-	PlayerVO selectPlayer(String name) throws SQLException;
+	ArrayList<PlayerVO> selectPlayer(String name) throws SQLException;
 	
 	HitterVO selectHitter(int playerId) throws SQLException;
 	ArrayList<HitterListVO> selectAllHitter() throws SQLException;
