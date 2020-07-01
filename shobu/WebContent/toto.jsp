@@ -80,17 +80,31 @@
   width: 0;
 }
 
-.bar-graph-one .bar::after {
-  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
-  -moz-animation: fade-in-text 2.2s 0.1s forwards;
-  animation: fade-in-text 2.2s 0.1s forwards;
-  color: #fff;
-  content: attr(data-percentage);
-  font-weight: 700;
-  position: absolute;
-  right: 16px; 
-  top:6px; 
-}
+	.bar-graph-one .bar-away .bar::after {
+	  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+	  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+	  animation: fade-in-text 2.2s 0.1s forwards;
+	  color: #fff;
+	  content: attr(data-percentage);
+	  font-weight: 600;
+	  position: absolute;
+	  right: 16px;
+	  top: 5px;
+      font-size: 12px;
+	}
+	
+	.bar-graph-one .bar-home .bar::after {
+	  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+	  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+	  animation: fade-in-text 2.2s 0.1s forwards;
+	  color: #fff;
+	  content: attr(data-percentage);
+	  font-weight: 600;
+	  position: absolute;
+	  left: 16px;
+	  top: 5px;
+   	  font-size: 12px;
+	}
 
 .bar-graph-one .bar-away .bar {
   -webkit-animation: show-bar-one 1.2s 0.1s forwards;
