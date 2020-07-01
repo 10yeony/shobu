@@ -203,7 +203,26 @@
 
 	#select:active { background-color:#fff; color:#343D52; }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+	$(function(){
+		//체크박스 선택시 둘 중 하나만 선택되게 함
+		$('input[name=match0]').click(function(){
+	        $('input[name=match0]').not($(this)).prop('checked',false);
+		});
+		$('input[name=match1]').click(function(){
+	        $('input[name=match1]').not($(this)).prop('checked',false);
+		});
+		$('input[name=match2]').click(function(){
+	        $('input[name=match2]').not($(this)).prop('checked',false);
+		});
+		$('input[name=match3]').click(function(){
+	        $('input[name=match3]').not($(this)).prop('checked',false);
+		});
+		$('input[name=match4]').click(function(){
+	        $('input[name=match4]').not($(this)).prop('checked',false);
+		});
+	});
 </script>
 </head>
 
@@ -228,8 +247,9 @@
 				     <table class="game">
 				       <tr>
 					     <td class="away">
+					       <div>${match.away}/${match.home}/</div>
 					       <img class="teamlogo" src="${match.awayImg}">
-					       <input type="radio" name="match${s.index}" value="${match.away}"><br>
+					       <input type="checkbox" name="match${s.index}" value="${match.away}"><br>
 					       <span>${match.awayPitcher}</span>
 					     </td> 
 						 <td class="graph"> 
@@ -243,7 +263,7 @@
 						   </section>
 						 </td> 
 						 <td class="home">
-						   <input type="radio" name="match${s.index}" value="${match.home}">
+						   <input type="checkbox" name="match${s.index}" value="${match.home}">
 						   <img class="teamlogo" src="${match.homeImg}" width="50"><br>
 						   <span>${match.homePitcher}</span>
 						 </td>
@@ -254,7 +274,7 @@
 			</c:choose>
 		 
 		 <p style="text-align:center; margin-top:20px;">
-	    	<button type="submit" id=“select”>선택</button>
+	    	<button type="button" id=“select”>선택</button>
 	   	</p>
 	    </form>
 	    <!-- 모의 토토 끝 -->

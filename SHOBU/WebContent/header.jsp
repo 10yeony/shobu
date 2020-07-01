@@ -44,19 +44,26 @@
   	-webkit-transition: background-color 0.2s;
   	transition: background-color 0.2s;
   }
-  button:hover {
+  button:hover, button:active {
   	background-color: #fff;
   	color: #343D52;
   }
-  button:active {
-  	background-color: #fff;
-  	color: #343D52;
+  .leaveBtn {
+    display: inline-block;
+  	padding: .5em .75em;
+  	color: #fff;
+  	font-size: inherit;
+  	line-height: normal;
+  	vertical-align: middle;
+  	background-color: #f44336;
+  	cursor: pointer;
+  	border: 1px solid #f44336;
+  	border-radius: .25em;
+  	-webkit-transition: background-color 0.2s;
+  	transition: background-color 0.2s;
   }
-  .leave {
-	background-color: #f44336;
-	border: 1px solid #f44336;
-  }
-  .leave:link, .leave:visited, .leave:hover, .leave:active{
+  .leaveBtn:link, .leaveBtn:visited, .leaveBtn:hover, .leaveBtn:active{
+    background: #fff;
     color: #f44336;
     border: 1px solid #f44336;
   }
@@ -443,7 +450,7 @@
               <input class="w3-input w3-border" type="password" value="${member.password}" name="passwordCheck" maxlength="10" required>
               <div id="comparePW" style="color:red"></div>
               <button class="w3-section w3-padding" id="update" type="button">변경</button>
-              <button class="w3-section w3-padding leave" id="delete" type="button">회원탈퇴</button>
+              <button class="w3-section w3-padding leaveBtn" id="delete" type="button" style="float:right;">회원탈퇴</button>
             </div><!-- 업데이트 끝 .w3-section -->
             <!-- 회원탈퇴 시작 -->
             <div id="deleteArea" class="w3-section" style="padding:40px; display:none;">
