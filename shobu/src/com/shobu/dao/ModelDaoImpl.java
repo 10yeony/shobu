@@ -1132,6 +1132,56 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 	}
 	
+    /* 모의 토토 중복 확인하기(이미 투표했을 경우 화면에 띄울 수 있도록 TotoVo로 반환) */
+	public TotoVO checkToto(String id, String date) throws SQLException{
+		TotoVO toto = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM toto WHERE id=? AND date=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			ps.setString(2, date);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				toto = new TotoVO(rs.getString("id"),
+								rs.getString("date"),
+								rs.getString("game1"),
+								rs.getString("game2"),
+								rs.getString("game3"),
+								rs.getString("game4"),
+								rs.getString("game5"),
+								rs.getInt("totalCount"));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return toto;
+	}
+	
+	/* 모의 토토 선택 등록하기 */
+	public void voteToto(TotoVO vo) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO toto (id, date, game1, game2, game3, game4, game5) VALUES (?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getDate());
+			ps.setString(3, vo.getGame1());
+			ps.setString(4, vo.getGame2());
+			ps.setString(5, vo.getGame3());
+			ps.setString(6, vo.getGame4());
+			ps.setString(7, vo.getGame5());
+			ps.executeUpdate();
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+	
 	/* 포인트 순으로 모의 토토 랭킹 Top5 멤버 가져오기 */
 	public ArrayList<MemberVO> FindTop5MemberByPoint() throws SQLException{
 		ArrayList<MemberVO> memberList = new ArrayList<>();
@@ -1155,6 +1205,7 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return memberList;
 	}
+	
 	/* ================================================ */
 	
 	

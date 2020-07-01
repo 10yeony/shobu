@@ -16,6 +16,7 @@ import com.shobu.controller.TeamInfoController;
 import com.shobu.controller.TotoController;
 import com.shobu.controller.UpdateController;
 import com.shobu.controller.UpdateMemberController;
+import com.shobu.controller.VoteTotoController;
 
 public class HandlerMapping {
 	private static HandlerMapping handler = new HandlerMapping();
