@@ -17,7 +17,7 @@ import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
-import com.shobu.model.TotoVO;
+import com.shobu.model.totoVO;
 
 public interface ModelDAO {
 	Connection getConnection() throws SQLException ;
@@ -73,7 +73,7 @@ public interface ModelDAO {
 	void insertChat(ChatVO vo) throws SQLException;
 	
 	//09. Result Toto after Match
-	int resultToto(TotoVO vo) throws SQLException;
+	int resultToto(totoVO vo) throws SQLException;
 	
 	//10. Update Point
 	void updatePoint(String id, int point) throws SQLException;

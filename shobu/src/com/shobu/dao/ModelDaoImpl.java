@@ -23,7 +23,7 @@ import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
-import com.shobu.model.TotoVO;
+import com.shobu.model.totoVO;
 
 public class ModelDaoImpl implements ModelDAO{
 
@@ -1110,7 +1110,7 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	/* 경기 후 모의 토토와 비교대조 후 추가할 포인트 리턴 */
 	@Override
-	public int resultToto(TotoVO vo) throws SQLException {
+	public int resultToto(totoVO vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

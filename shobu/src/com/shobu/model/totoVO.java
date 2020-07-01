@@ -1,6 +1,6 @@
 package com.shobu.model;
 
-public class TotoVO {
+public class totoVO {
 	private String id;
 	private String date;
 	private String game1;
@@ -9,8 +9,8 @@ public class TotoVO {
 	private String game4;
 	private String game5;
 	
-	public TotoVO() {}
-	public TotoVO(String id, String date, String game1, String game2, String game3, String game4, String game5) {
+	public totoVO() {}
+	public totoVO(String id, String date, String game1, String game2, String game3, String game4, String game5) {
 		super();
 		this.id = id;
 		this.date = date;
