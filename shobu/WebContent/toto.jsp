@@ -54,13 +54,11 @@
 .bar-graph-horizontal .bar-away{
   float: left;
   margin-bottom: 8px;
-  width: 69.6%; /*변경*/
   display:contents;
 }
 .bar-graph-horizontal .bar-home{
   float: right;
   margin-bottom: 8px;
-  width: 30.4%; /*변경*/
    display:contents;
 }
 
@@ -111,17 +109,11 @@
   0% {
     width: 0;
   }
-  100% {
-    width: 69.6%; /*변경*/
-  }
 }
 
 @-webkit-keyframes show-bar-two {
   0% {
     width: 0;
-  }
-  100% {
-    width: 30.4%; /*변경*/
   }
 }
 @-webkit-keyframes fade-in-text {
@@ -255,10 +247,10 @@
 						 <td class="graph"> 
 						   <section class="bar-graph bar-graph-horizontal bar-graph-one">
 							 <div class="bar-away">
-							   <div class="bar" data-percentage="${match.awayRatio}%" style="background-color:${match.awayColor};"></div>
+							   <div class="bar" data-percentage="${match.awayRatio}%" style="width:${match.awayRatio}%; background-color:${match.awayColor};"></div>
 							 </div>
 							 <div class="bar-home">
-							   <div class="bar" data-percentage="${match.homeRatio}%" style="background-color:${match.homeColor};"></div>
+							   <div class="bar" data-percentage="${match.homeRatio}%" style="width:${match.homeRatio}%; background-color:${match.homeColor};"></div>
 							 </div>
 						   </section>
 						 </td> 
