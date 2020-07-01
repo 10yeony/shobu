@@ -206,6 +206,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(function(){
+		/* 같은 날 중복 투표 방지 */
+		var toto = '${toto.id}';
+		if(toto==''){
+			$('#voteToto').css('display', 'block');
+			$('#checkToto').css('display', 'none');
+		}else{
+			$('#voteToto').css('display', 'none');
+			$('#checkToto').css('display', 'block');
+		}
+		
 		/* 체크박스 선택시 둘 중 하나만 선택되게 함 */
 		$('input[name=match0]').click(function(){
 	        $('input[name=match0]').not($(this)).prop('checked',false);
@@ -225,53 +235,70 @@
 		
 		/* 모의토토 제출 */
 		$('button').click(function(){
+			
 			/* 아이디 할당 */
 			var id = '${member.id}';
 			
-			/* 오늘 날짜 할당 */
+			/* 로그인 해야 투표 가능 */
+			if(id==''){
+				alert("로그인하세요");
+				return false;
+			}
+			
+			/* 오늘 날짜 할당 */ /* 월요일 경기 없는 날 고려.... */
 			const temp = new Date();   
 			const year = temp.getFullYear(); // 년도
 			const month = temp.getMonth() + 1;  // 월
 			const date = temp.getDate();  // 날짜
 			const today = year+"/"+month+"/"+date;
 			
-			/* 같은 날 중복 투표 방지 */
+			/* 총 선택 개수 할당 */
+			var totalCount = 0;
 			
-			
-			/* game 변수에 각각 원정팀/홈팀/선택한팀 할당 */
+			/* game 변수에 각각 원정팀/홈팀/선택한팀 선언 */
 			var game1;
 			var game2;
 			var game3;
 			var game4;
 			var game5;
 			$('input[name=match0]:checked').each(function(){
+				totalCount++;
 				game1 = $(this).siblings('div').text() + $(this).val();
 			});
 			$('input[name=match1]:checked').each(function(){
+				totalCount++;
 				game2 = $(this).siblings('div').text() + $(this).val();
 			});
 			$('input[name=match2]:checked').each(function(){
+				totalCount++;
 				game3 = $(this).siblings('div').text() + $(this).val();
 			});
 			$('input[name=match3]:checked').each(function(){
+				totalCount++;
 				game4 = $(this).siblings('div').text() + $(this).val();
 			});
 			$('input[name=match4]:checked').each(function(){
+				totalCount++;
 				game5 = $(this).siblings('div').text() + $(this).val();
 			});
+			
+			/* 한 경기도 선택하지 않았을 때 */
+			if(totalCount==0){
+				alert("적어도 한 경기는 선택하세요");
+				return false;
+			}
 			
 			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
 			$.ajax({
     			type:'post',
 				url:'voteToto.do',
-				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5,
+				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5+"&totalCount="+totalCount,
   		       	
   		       	success: function(data){
-  		       		
+  		       		$('#voteToto').css('display', 'none');
+  					$('#checkToto').css('display', 'block');
   		       	}
-  		    });//ajax */
-			$('#voteToto').css('display', 'none');
-			$('#checkToto').css('display', 'block');
+  		    });//ajax
 		});
 	});
 </script>
@@ -332,7 +359,12 @@
 	    </form>
 	    </div>
 	    <div id="checkToto" style="display:none">
-	    확인
+	       <p>나의 선택</p>
+	       <p>${toto.game1}</p>
+	       <p>${toto.game2}</p>
+	       <p>${toto.game3}</p>
+	       <p>${toto.game4}</p>
+	       <p>${toto.game5}</p>
 	    </div>
 	    <!-- 모의 토토 끝 -->
 		  

@@ -8,9 +8,13 @@ public class TotoVO {
 	private String game3;
 	private String game4;
 	private String game5;
+	private int totalCount;
+	private int currectCount;
+	private int getPoint;
+	private int stackPoint;
 	
 	public TotoVO() {}
-	public TotoVO(String id, String date, String game1, String game2, String game3, String game4, String game5) {
+	public TotoVO(String id, String date, String game1, String game2, String game3, String game4, String game5, int totalCount) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -19,6 +23,7 @@ public class TotoVO {
 		this.game3 = game3;
 		this.game4 = game4;
 		this.game5 = game5;
+		this.totalCount = totalCount;
 	}
 	
 	public String getId() {
@@ -63,10 +68,35 @@ public class TotoVO {
 	public void setGame5(String game5) {
 		this.game5 = game5;
 	}
-
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public int getCurrectCount() {
+		return currectCount;
+	}
+	public void setCurrectCount(int currectCount) {
+		this.currectCount = currectCount;
+	}
+	public int getGetPoint() {
+		return getPoint;
+	}
+	public void setGetPoint(int getPoint) {
+		this.getPoint = getPoint;
+	}
+	public int getStackPoint() {
+		return stackPoint;
+	}
+	public void setStackPoint(int stackPoint) {
+		this.stackPoint = stackPoint;
+	}
+	
 	@Override
 	public String toString() {
-		return "totoVO [id=" + id + ", date=" + date + ", game1=" + game1 + ", game2=" + game2 + ", game3=" + game3
-				+ ", game4=" + game4 + ", game5=" + game5 + "]";
+		return "TotoVO [id=" + id + ", date=" + date + ", game1=" + game1 + ", game2=" + game2 + ", game3=" + game3
+				+ ", game4=" + game4 + ", game5=" + game5 + ", totalCount=" + totalCount + ", currectCount="
+				+ currectCount + ", getPoint=" + getPoint + ", stackPoint=" + stackPoint + "]";
 	}
 }
