@@ -62,7 +62,7 @@ public class RegisterController implements Controller {
     	}catch(Exception e) {
     		//e.printStackTrace();
     	}
-    	return new ModelAndView("loginSuccess.jsp");
+    	return new ModelAndView("registerSuccess.jsp");
 	}
 	
 	public static String nullOrEmptyToReplaceString(String str, String replaceStr) {

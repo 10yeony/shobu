@@ -26,15 +26,11 @@ public class LoginController implements Controller {
 				req.getSession().setAttribute("member", member);
 				mv = new ModelAndView("index.jsp");
 			}else {
-				PrintWriter out = res.getWriter();
-				out.print("<html><head><script>alert(\"아이디 또는 비밀번호를 잘못 입력하셨습니다.\");</script></head></html>");
-				return null;
+				mv = new ModelAndView("loginFail.jsp");
 			}
 		} catch (SQLException e) {
 			//e.printStackTrace();
-		} catch (IOException e) {
-			//e.printStackTrace();
-		}
+		} 
 		return mv;
 	}
 }

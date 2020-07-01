@@ -63,6 +63,13 @@ public class HandlerMapping {
 			controller = new TotoController();
 			System.out.println("TotoController 생성됨");	
 		}
+		else if(command.equals("voteToto.do")) {
+			controller = new VoteTotoController();
+			System.out.println("VoteTotoController 생성됨");
+		}else if(command.equals("checkToto.do")) {
+			controller = new CheckTotoController();
+			System.out.println("CheckTotoController 생성됨");
+		}
 		else if(command.equals("update.do")){
 			controller = new UpdateController();
 			System.out.println("UpdateController 생성됨");	
