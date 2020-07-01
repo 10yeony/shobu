@@ -17,9 +17,9 @@ $(function() {
 					
 					//build indicator
 					if(idx==0){
-						$(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+idx+'" class="active"></li>');
+						$(".carousel-indicators").prepend('<li data-target="#myCarousel" data-slide-to="'+idx+'" class="active"></li>');
 					}else{
-						$(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+idx+'"></li>');
+						$(".carousel-indicators").prepend('<li data-target="#myCarousel" data-slide-to="'+idx+'"></li>');
 					}
 					
 					//input carousel-inner
@@ -46,8 +46,8 @@ $(function() {
 								 '</table>'+
 								'</div>';
 				
-					if(idx==0) $(".carousel-inner").append('<div class="item active">'+string+'</div>');
-					else $(".carousel-inner").append('<div class="item">'+string+'</div>');
+					if(idx==0) $(".carousel-inner").prepend('<div class="item active">'+string+'</div>');
+					else $(".carousel-inner").prepend('<div class="item">'+string+'</div>');
 					
 					
 				});//~Match each
