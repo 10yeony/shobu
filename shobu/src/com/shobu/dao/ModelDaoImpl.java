@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.jws.WebParam.Mode;
+
 import com.shobu.config.ServerInfo;
+import com.shobu.controller.Playerlist;
 import com.shobu.datasource.DataSourceManager;
 import com.shobu.logic.Logic;
 import com.shobu.model.ChatVO;
@@ -21,6 +24,7 @@ import com.shobu.model.MemberVO;
 import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
+import com.shobu.model.PlayerListVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.TotoVO;
@@ -340,6 +344,261 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return team;
 	}
+	
+	@Override
+	public int selectTeamRankERA(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			conn = getConnection();
+			String query = "select teamCode, rank() over(order by teamERA) as 'rank' from team";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				if(rs.getString("teamCode").equals(teamCode)) result = rs.getInt("rank");
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return result;
+	}
+	@Override
+	public int selectTeamRankAVG(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			conn = getConnection();
+			String query = "select teamCode, rank() over(order by teamAVG desc) as 'rank' from team";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				if(rs.getString("teamCode").equals(teamCode)) result = rs.getInt("rank");
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return result;
+	}
+	//방어율 1위
+	@Override
+	public PitcherListVO selectPlayerRankERA(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		PitcherListVO player = new PitcherListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, c.era, p.image from player p, pitcher c where p.playerid = c.playerid AND cast(inning as signed) > (select games from team where teamCode = 'LT') order by era limit 1";
+			else
+				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' AND cast(inning as signed) > (select games from team where teamCode = '"+teamCode+"') order by win desc, era limit 1";
+			ps = conn.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        
+	        if(rs.next()) {
+	        	player.setName(rs.getString(1));
+	        	player.setEra(rs.getDouble(2));
+	        }
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//다승 1위
+	@Override
+	public PitcherListVO selectPlayerRankWIN(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		PitcherListVO player = new PitcherListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid order by win desc, era limit 1";
+			else
+				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by win desc, era limit 1";
+			ps = conn.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        
+	        if(rs.next()) {
+	        	player.setName(rs.getString(1));
+	        	player.setWin(rs.getInt(2));
+	        }
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//세이브 1위
+	@Override
+	public PitcherListVO selectPlayerRankSAVE(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		PitcherListVO player = new PitcherListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, c.save, p.image from player p, pitcher c where p.playerid = c.playerid order by save desc, era limit 1";
+			else
+				query = "select p.name, c.save, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by save desc, era limit 1";
+			ps = conn.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        
+	        if(rs.next()) {
+	        	player.setName(rs.getString(1));
+	        	player.setSave(rs.getInt(2));
+	        }
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//삼진 1위
+	@Override
+	public PitcherListVO selectPlayerRankSO(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		PitcherListVO player = new PitcherListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, c.so, p.image from player p, pitcher c where p.playerid = c.playerid order by so desc, era limit 1";
+			else
+				query = "select p.name, c.so, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by so desc, era limit 1";
+			ps = conn.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        
+	        if(rs.next()) {
+	        	player.setName(rs.getString(1));
+	        	player.setSave(rs.getInt(2));
+	        }
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//타율 1위
+	@Override
+	public HitterListVO selectPlayerRankAVG(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		HitterListVO player = new HitterListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, h.rate, p.image from player p, hitter h where p.playerId = h.playerId AND h.ab*3 > (select games from team where teamCode='LT') order by rate desc limit 1";
+			else
+				query = "select p.name, h.rate, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' AND h.ab*3 > (select games from team where teamCode='"+teamCode+"') order by rate desc limit 1";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				player.setName(rs.getString(1));
+				player.setRate(rs.getDouble(2));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//타점 1위
+	@Override
+	public HitterListVO selectPlayerRankRBI(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		HitterListVO player = new HitterListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, h.rbi, p.image from player p, hitter h where p.playerId = h.playerId order by rbi desc limit 1";
+			else
+				query = "select p.name, h.rbi, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by rbi desc limit 1";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				player.setName(rs.getString(1));
+				player.setRbi(rs.getInt(2));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	
+	//홈런 1위
+	@Override
+	public HitterListVO selectPlayerRankHR(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		HitterListVO player = new HitterListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, h.hr, p.image from player p, hitter h where p.playerId = h.playerId order by hr desc limit 1";
+			else
+				query = "select p.name, h.hr, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hr desc limit 1";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				player.setName(rs.getString(1));
+				player.setHr(rs.getInt(2));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+	//안타 1위
+	@Override
+	public HitterListVO selectPlayerRankHITS(String teamCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		HitterListVO player = new HitterListVO();
+		String query;
+		
+		try {
+			conn = getConnection();
+			if(teamCode.equals("ALL"))
+				query = "select p.name, h.hits, p.image from player p, hitter h where p.playerId = h.playerId order by hits desc limit 1";
+			else
+				query = "select p.name, h.hits, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hits desc limit 1";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				player.setName(rs.getString(1));
+				player.setHits(rs.getInt(2));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return player;
+	}
+
 	
 	/* 선수ID로 특정 타자 불러오기 */
 	@Override
@@ -1174,4 +1433,5 @@ public class ModelDaoImpl implements ModelDAO{
 			}
 		return color;
 	}
+
 }

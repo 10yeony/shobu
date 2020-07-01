@@ -29,7 +29,7 @@
 		background-color: #343d52;
   		color: #FFFFFF;
   		}
-  span:hover{
+  #search:hover{
   		font-weight: bold;
   		color: red;
   }
