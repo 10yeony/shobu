@@ -16,6 +16,7 @@ import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
+import com.shobu.model.TeamInfoVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.totoVO;
 
@@ -34,6 +35,18 @@ public interface ModelDAO {
 	//01. Select Team
 	ArrayList<TeamVO> selectAllTeam() throws SQLException;
 	TeamVO selectTeam(String teamCode) throws SQLException;
+	int selectTeamRankERA(String teamCode) throws SQLException;
+	int selectTeamRankAVG(String teamCode) throws SQLException;
+	
+	PitcherListVO selectPlayerRankERA(String teamCode) throws SQLException;
+	PitcherListVO selectPlayerRankWIN(String teamCode) throws SQLException;
+	PitcherListVO selectPlayerRankSAVE(String teamCode) throws SQLException;
+	PitcherListVO selectPlayerRankSO(String teamCode) throws SQLException;
+	
+	HitterListVO selectPlayerRankAVG(String teamCode) throws SQLException;
+	HitterListVO selectPlayerRankRBI(String teamCode) throws SQLException;
+	HitterListVO selectPlayerRankHR(String teamCode) throws SQLException;
+	HitterListVO selectPlayerRankHITS(String teamCode) throws SQLException;
 	
 	//02. Select Player, Hitter, Pitcher
 	ArrayList<PlayerVO> selectAllPlayer() throws SQLException;
