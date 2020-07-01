@@ -1,4 +1,5 @@
 $(function() {
+	var string;
 	$.ajax({
 		type:'post',
 		url:'/main.do',
@@ -24,7 +25,7 @@ $(function() {
 					
 					//input carousel-inner
 					//변경시 String만 수정
-					var string = '<table class="game">'+
+					string = '<table class="game">'+
 								 	'<tr>'+
 								 		'<td class="away"><img class="teamlogo" src="'+match.awayImg+'"></td>'+
 								 		'<td class="graph">'+
@@ -43,6 +44,19 @@ $(function() {
 								 	'<tr class ="bold">'+
 								 		'<td>'+match.awayPitcher+'</td> <td>'+match.place+'<br>'+match.time+'</td> <td>'+match.homePitcher+'</td>'+
 								 	'</tr>'+
+								 	'<tr><td colspan="3"><br></td></tr>'+
+								 	'<tr>'+
+								 		'<td class="infoLab">'+match.awayPitcherGames+'</td> <td class="lab">경기</td> <td class="infoLab">'+match.homePitcherGames+'</td>'+
+								 	'</tr>'+
+								 	'<tr>'+
+							 			'<td class="infoLab">'+match.awayWinLose+'</td> <td class="lab">승패</td> <td class="infoLab">'+match.homeWinLose+'</td>'+
+							 		'</tr>'+
+							 		'<tr>'+
+							 			'<td class="infoLab">'+match.awayInning+'</td> <td class="lab">이닝</td> <td class="infoLab">'+match.homeInning+'</td>'+
+							 		'</tr>'+
+							 		'<tr>'+
+							 			'<td class="infoLab">'+match.awayERA+'</td> <td class="lab">ERA</td> <td class="infoLab">'+match.homeERA+'</td>'+
+							 		'</tr>'+
 								 '</table>'+
 								'</div>';
 				
@@ -69,7 +83,7 @@ $(function() {
 				$("#teamrank").append("</tr>");
 			});//~Team each
 			
-		}//~callback
+		},//~callback
 		
 	});//~ajax
 })//~reday

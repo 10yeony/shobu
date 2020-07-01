@@ -988,6 +988,17 @@ public class ModelDaoImpl implements ModelDAO{
 				match.setAwayColor(getColor(awayTeam.getTeamCode()));
 				match.setHomeColor(getColor(homeTeam.getTeamCode()));
 				
+				//pitcher info
+				match.setHomePitcherGames(homePitcher.getGames());
+				match.setHomeWinLose(homePitcher.getWin()+"승 "+homePitcher.getLose()+"패");
+				match.setHomeInning(homePitcher.getInning());
+				match.setHomeERA(homePitcher.getEra());
+				
+				match.setAwayPitcherGames(awayPitcher.getGames());
+				match.setAwayWinLose(awayPitcher.getWin()+"승 "+awayPitcher.getLose()+"패");
+				match.setAwayInning(awayPitcher.getInning());
+				match.setAwayERA(awayPitcher.getEra());
+				
 				matchs.add(match);
 			}
 		}finally {

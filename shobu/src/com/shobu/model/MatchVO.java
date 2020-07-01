@@ -12,8 +12,16 @@ public class MatchVO {
 	private String awayColor;
 	private double awayRatio;
 	private String homePitcher;
+	private int homePitcherGames;
+	private String homeWinLose;
+	private String homeInning;
+	private double homeERA;
 	private String awayPitcher;
 	private String place;
+	private int awayPitcherGames;
+	private String awayWinLose;
+	private String awayInning;
+	private double awayERA;
 	
 	public MatchVO() {}
 	
@@ -28,10 +36,11 @@ public class MatchVO {
 		this.awayPitcher = awayPitcher;
 		this.place = place;
 	}
-	
-	public MatchVO(String date, String time, String home, String homeImg, String homeColor,
-			double homeRatio, String away, String awayImg, String awayColor, double awayRatio,
-			String homePitcher, String awayPitcher, String place) {
+
+	public MatchVO(String date, String time, String home, String homeImg, String homeColor, double homeRatio,
+			String away, String awayImg, String awayColor, double awayRatio, String homePitcher, int homePitcherGames,
+			String homeWinLose, String homeInning, double homeERA, String awayPitcher, String place,
+			int awayPitcherGames, String awayWinLose, String awayInning, double awayERA) {
 		super();
 		this.date = date;
 		this.time = time;
@@ -44,8 +53,16 @@ public class MatchVO {
 		this.awayColor = awayColor;
 		this.awayRatio = awayRatio;
 		this.homePitcher = homePitcher;
+		this.homePitcherGames = homePitcherGames;
+		this.homeWinLose = homeWinLose;
+		this.homeInning = homeInning;
+		this.homeERA = homeERA;
 		this.awayPitcher = awayPitcher;
 		this.place = place;
+		this.awayPitcherGames = awayPitcherGames;
+		this.awayWinLose = awayWinLose;
+		this.awayInning = awayInning;
+		this.awayERA = awayERA;
 	}
 
 	public String getDate() {
@@ -151,14 +168,82 @@ public class MatchVO {
 	public void setAwayColor(String awayColor) {
 		this.awayColor = awayColor;
 	}
+	
+	
+
+	public int getHomePitcherGames() {
+		return homePitcherGames;
+	}
+
+	public void setHomePitcherGames(int homePitcherGames) {
+		this.homePitcherGames = homePitcherGames;
+	}
+
+	public String getHomeWinLose() {
+		return homeWinLose;
+	}
+
+	public void setHomeWinLose(String homeWinLose) {
+		this.homeWinLose = homeWinLose;
+	}
+
+	public String getHomeInning() {
+		return homeInning;
+	}
+
+	public void setHomeInning(String homeInning) {
+		this.homeInning = homeInning;
+	}
+
+	public double getHomeERA() {
+		return homeERA;
+	}
+
+	public void setHomeERA(double homeERA) {
+		this.homeERA = homeERA;
+	}
+
+	public int getAwayPitcherGames() {
+		return awayPitcherGames;
+	}
+
+	public void setAwayPitcherGames(int awayPitcherGames) {
+		this.awayPitcherGames = awayPitcherGames;
+	}
+
+	public String getAwayWinLose() {
+		return awayWinLose;
+	}
+
+	public void setAwayWinLose(String awayWinLose) {
+		this.awayWinLose = awayWinLose;
+	}
+
+	public String getAwayInning() {
+		return awayInning;
+	}
+
+	public void setAwayInning(String awayInning) {
+		this.awayInning = awayInning;
+	}
+
+	public double getAwayERA() {
+		return awayERA;
+	}
+
+	public void setAwayERA(double awayERA) {
+		this.awayERA = awayERA;
+	}
 
 	@Override
 	public String toString() {
-		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg="
-				+ homeImg + ", homeColor=" + homeColor + ", homeRatio=" + homeRatio + ", away=" + away + ", awayImg=" + awayImg + 
-				", awayColor=" + awayColor + ", awayRatio=" + awayRatio
-				+ ", homePitcher=" + homePitcher + ", awayPitcher=" + awayPitcher + ", place=" + place + "]";
+		return "MatchVO [date=" + date + ", time=" + time + ", home=" + home + ", homeImg=" + homeImg + ", homeColor="
+				+ homeColor + ", homeRatio=" + homeRatio + ", away=" + away + ", awayImg=" + awayImg + ", awayColor="
+				+ awayColor + ", awayRatio=" + awayRatio + ", homePitcher=" + homePitcher + ", homePitcherGames="
+				+ homePitcherGames + ", homeWinLose=" + homeWinLose + ", homeInning=" + homeInning + ", homeERA="
+				+ homeERA + ", awayPitcher=" + awayPitcher + ", place=" + place + ", awayPitcherGames="
+				+ awayPitcherGames + ", awayWinLose=" + awayWinLose + ", awayInning=" + awayInning + ", awayERA="
+				+ awayERA + "]";
 	}
-
 
 }

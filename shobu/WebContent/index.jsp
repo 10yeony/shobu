@@ -28,6 +28,10 @@
 	.lab{
 		color: #9FA2A6;
 		font-weight: bold;
+		font-size:small;
+	}
+	.infoLab{
+		font-size:small;
 	}
 	
 	.graph{
@@ -208,7 +212,6 @@
 			
 			    <!-- Wrapper for slides -->
 			    <div class="carousel-inner">
-			      
 			    	<!-- Left and right controls -->
 				    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				      <span class="glyphicon glyphicon-chevron-left"></span>
