@@ -51,13 +51,11 @@
 	.bar-graph-horizontal .bar-away{
 	  float: left;
 	  margin-bottom: 8px;
-	  width: 69.6%; /*변경*/
 	  display:contents;
 	}
 	.bar-graph-horizontal .bar-home{
 	  float: right;
 	  margin-bottom: 8px;
-	  width: 30.4%; /*변경*/
 	   display:contents;
 	}
 	
@@ -80,7 +78,7 @@
 	  width: 0;
 	}
 	
-	.bar-graph-one .bar::after {
+	.bar-graph-one .bar-away .bar::after {
 	  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
 	  -moz-animation: fade-in-text 2.2s 0.1s forwards;
 	  animation: fade-in-text 2.2s 0.1s forwards;
@@ -89,6 +87,18 @@
 	  font-weight: 700;
 	  position: absolute;
 	  right: 16px;
+	  top: 17px;
+	}
+	
+	.bar-graph-one .bar-home .bar::after {
+	  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+	  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+	  animation: fade-in-text 2.2s 0.1s forwards;
+	  color: #fff;
+	  content: attr(data-percentage);
+	  font-weight: 700;
+	  position: absolute;
+	  left: 16px;
 	  top: 17px;
 	}
 	
@@ -109,17 +119,11 @@
 	  0% {
 	    width: 0;
 	  }
-	  100% {
-	    width: 69.6%; /*변경*/
-	  }
 	}
 	
 	@-webkit-keyframes show-bar-two {
 	  0% {
 	    width: 0;
-	  }
-	  100% {
-	    width: 30.4%; /*변경*/
 	  }
 	}
 	@-webkit-keyframes fade-in-text {
