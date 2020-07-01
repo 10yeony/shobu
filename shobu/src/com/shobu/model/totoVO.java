@@ -1,6 +1,7 @@
 package com.shobu.model;
 
 public class TotoVO {
+	private int no;
 	private String id;
 	private String date;
 	private String game1;
@@ -25,7 +26,29 @@ public class TotoVO {
 		this.game5 = game5;
 		this.totalCount = totalCount;
 	}
+	public TotoVO(int no, String id, String date, String game1, String game2, String game3, String game4, String game5,
+			int totalCount, int currectCount, int getPoint, int stackPoint) {
+		super();
+		this.no = no;
+		this.id = id;
+		this.date = date;
+		this.game1 = game1;
+		this.game2 = game2;
+		this.game3 = game3;
+		this.game4 = game4;
+		this.game5 = game5;
+		this.totalCount = totalCount;
+		this.currectCount = currectCount;
+		this.getPoint = getPoint;
+		this.stackPoint = stackPoint;
+	}
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getId() {
 		return id;
 	}
@@ -95,8 +118,8 @@ public class TotoVO {
 	
 	@Override
 	public String toString() {
-		return "TotoVO [id=" + id + ", date=" + date + ", game1=" + game1 + ", game2=" + game2 + ", game3=" + game3
-				+ ", game4=" + game4 + ", game5=" + game5 + ", totalCount=" + totalCount + ", currectCount="
-				+ currectCount + ", getPoint=" + getPoint + ", stackPoint=" + stackPoint + "]";
+		return "TotoVO [no=" + no + ", id=" + id + ", date=" + date + ", game1=" + game1 + ", game2=" + game2
+				+ ", game3=" + game3 + ", game4=" + game4 + ", game5=" + game5 + ", totalCount=" + totalCount
+				+ ", currectCount=" + currectCount + ", getPoint=" + getPoint + ", stackPoint=" + stackPoint + "]";
 	}
 }
