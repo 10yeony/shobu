@@ -206,7 +206,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(function(){
-		//체크박스 선택시 둘 중 하나만 선택되게 함
+		/* 체크박스 선택시 둘 중 하나만 선택되게 함 */
 		$('input[name=match0]').click(function(){
 	        $('input[name=match0]').not($(this)).prop('checked',false);
 		});
@@ -222,6 +222,57 @@
 		$('input[name=match4]').click(function(){
 	        $('input[name=match4]').not($(this)).prop('checked',false);
 		});
+		
+		/* 모의토토 제출 */
+		$('button').click(function(){
+			/* 아이디 할당 */
+			var id = '${member.id}';
+			
+			/* 오늘 날짜 할당 */
+			const temp = new Date();   
+			const year = temp.getFullYear(); // 년도
+			const month = temp.getMonth() + 1;  // 월
+			const date = temp.getDate();  // 날짜
+			const today = year+"/"+month+"/"+date;
+			
+			/* 같은 날 중복 투표 방지 */
+			
+			
+			/* game 변수에 각각 원정팀/홈팀/선택한팀 할당 */
+			var game1;
+			var game2;
+			var game3;
+			var game4;
+			var game5;
+			$('input[name=match0]:checked').each(function(){
+				game1 = $(this).siblings('div').text() + $(this).val();
+			});
+			$('input[name=match1]:checked').each(function(){
+				game2 = $(this).siblings('div').text() + $(this).val();
+			});
+			$('input[name=match2]:checked').each(function(){
+				game3 = $(this).siblings('div').text() + $(this).val();
+			});
+			$('input[name=match3]:checked').each(function(){
+				game4 = $(this).siblings('div').text() + $(this).val();
+			});
+			$('input[name=match4]:checked').each(function(){
+				game5 = $(this).siblings('div').text() + $(this).val();
+			});
+			
+			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
+			$.ajax({
+    			type:'post',
+				url:'voteToto.do',
+				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5,
+  		       	
+  		       	success: function(data){
+  		       		
+  		       	}
+  		    });//ajax */
+			$('#voteToto').css('display', 'none');
+			$('#checkToto').css('display', 'block');
+		});
 	});
 </script>
 </head>
@@ -236,6 +287,7 @@
        
        <!-- 모의 토토 시작 -->
        <h3 style="text-align: center;">모의 토토</h3>
+       <div id=voteToto>
        <form action="toto.do" method="post">
          <!-- 선택지 -->
          <c:choose>
@@ -247,7 +299,7 @@
 				     <table class="game">
 				       <tr>
 					     <td class="away">
-					       <div>${match.away}/${match.home}/</div>
+					       <div style="display:none;">${match.away}/${match.home}/</div>
 					       <img class="teamlogo" src="${match.awayImg}">
 					       <input type="checkbox" name="match${s.index}" value="${match.away}"><br>
 					       <span>${match.awayPitcher}</span>
@@ -263,6 +315,7 @@
 						   </section>
 						 </td> 
 						 <td class="home">
+						   <div style="display:none;">${match.away}/${match.home}/</div>
 						   <input type="checkbox" name="match${s.index}" value="${match.home}">
 						   <img class="teamlogo" src="${match.homeImg}" width="50"><br>
 						   <span>${match.homePitcher}</span>
@@ -277,6 +330,10 @@
 	    	<button type="button" id=“select”>선택</button>
 	   	</p>
 	    </form>
+	    </div>
+	    <div id="checkToto" style="display:none">
+	    확인
+	    </div>
 	    <!-- 모의 토토 끝 -->
 		  
 	      <!-- 회원 랭킹 시작 -->

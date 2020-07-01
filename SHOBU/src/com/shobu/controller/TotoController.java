@@ -15,9 +15,8 @@ public class TotoController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
-		/* 모의 토토 */
+		/* 모의토토 경기 화면 및 회원 랭킹(포인트별 Top 5) */
 		ArrayList<MatchVO> matchs = null;
-		/* 회원 랭킹(포인트별 Top 5) */
 		try {
 			matchs = ModelDaoImpl.getInstance().selectMatch();
 			ArrayList<MemberVO> memberList = ModelDaoImpl.getInstance().FindTop5MemberByPoint();
