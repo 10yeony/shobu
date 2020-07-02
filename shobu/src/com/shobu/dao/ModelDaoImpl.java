@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import javax.jws.WebParam.Mode;
 
@@ -1140,113 +1141,6 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 	}
 	
-	//이때까지의 토토 모두 가져오기
-	public ArrayList<TotoVO> getAllToto(String id) throws SQLException{
-		ArrayList<TotoVO> totoList = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			String query = "SELECT * FROM toto WHERE id=? ORDER BY date DESC";
-			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				totoList.add(new TotoVO(rs.getInt("no"),
-										id,
-										rs.getString("date"),
-										rs.getString("game1"),
-										rs.getString("game2"),
-										rs.getString("game3"),
-										rs.getString("game4"),
-										rs.getString("game5"),
-										rs.getInt("totalCount"),
-										rs.getInt("currentCount"),
-										rs.getInt("getPoint"),
-										rs.getInt("stackPoint")));
-			}
-		}finally {
-			closeAll(rs, ps, conn);
-		}
-		return totoList;
-	}
-	
-    /* 모의 토토 중복 확인하기(이미 투표했을 경우 화면에 띄울 수 있도록 TotoVo로 반환) */
-	public TotoVO checkToto(String id, String date) throws SQLException{
-		TotoVO toto = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			String query = "SELECT * FROM toto WHERE id=? AND date=?";
-			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
-			ps.setString(2, date);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				toto = new TotoVO(rs.getString("id"),
-								rs.getString("date"),
-								rs.getString("game1"),
-								rs.getString("game2"),
-								rs.getString("game3"),
-								rs.getString("game4"),
-								rs.getString("game5"),
-								rs.getInt("totalCount"));
-			}
-		}finally {
-			closeAll(rs, ps, conn);
-		}
-		return toto;
-	}
-	
-	/* 모의 토토 선택 저장하기 */
-	public void saveToto(TotoVO vo) throws SQLException{
-		Connection conn = null;
-		PreparedStatement ps = null;
-		try {
-			conn = getConnection();
-			String query = "INSERT INTO toto (id, date, game1, game2, game3, game4, game5, totalCount) VALUES (?,?,?,?,?,?,?,?)";
-			ps = conn.prepareStatement(query);
-			ps.setString(1, vo.getId());
-			ps.setString(2, vo.getDate());
-			ps.setString(3, vo.getGame1());
-			ps.setString(4, vo.getGame2());
-			ps.setString(5, vo.getGame3());
-			ps.setString(6, vo.getGame4());
-			ps.setString(7, vo.getGame5());
-			ps.setInt(8, vo.getTotalCount());
-			ps.executeUpdate();
-		}finally {
-			closeAll(ps, conn);
-		}
-	}
-	
-	/* 포인트 순으로 모의 토토 랭킹 Top5 멤버 가져오기 */
-	public ArrayList<MemberVO> FindTop5MemberByPoint() throws SQLException{
-		ArrayList<MemberVO> memberList = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			String query = "SELECT * FROM members ORDER BY point DESC, nickName ASC LIMIT 5;";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				memberList.add(new MemberVO(rs.getString("id"),
-											rs.getString("password"),
-											rs.getString("nickname"),
-											rs.getString("image"),
-											rs.getInt("point")));
-			}
-		}finally {
-			closeAll(rs, ps, conn);
-		}
-		return memberList;
-	}
-	
 	/* ================================================ */
 	
 	
@@ -1481,6 +1375,202 @@ public class ModelDaoImpl implements ModelDAO{
 	@Override
 	public void updatePoint(String id, int point) throws SQLException {
 		// TODO Auto-generated method stub
+	}
+	
+	//해당 날짜 경기 결과에 따른 포인트 업데이트
+	public void updatePoint(String date) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String game1 = "";
+		String game2 = "";
+		String game3 = "";
+		String game4 = "";
+		String game5 = "";
+		int totalCount = 0;
+		int currectCount = 0;
+		int getPoint = 0;
+		int stackPoint = 0;
+		int point = 0;
+		try {
+			conn = getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT * ");
+			sb.append("FROM (SELECT t.*, ");
+			sb.append("r.game1 result1, r.game2 result2, r.game3 result3, r.game4 result4, r.game5 result5, ");
+			sb.append("m.point FROM members m, toto t, result r ");
+			sb.append("WHERE m.id=t.id AND t.date=r.date) a");
+			sb.append("WHERE date=?");
+			String query = sb.toString();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				//회원이 뽑은 토토 (원정팀/홈팀/선택팀/정답여부)
+				game1 = rs.getString("game1");
+				game2 = rs.getString("game2");
+				game3 = rs.getString("game3");
+				game4 = rs.getString("game4");
+				game5 = rs.getString("game5");
+				String[] game1Str = game1.split("/");
+				String[] game2Str = game2.split("/");
+				String[] game3Str = game3.split("/");
+				String[] game4Str = game4.split("/");
+				String[] game5Str = game5.split("/");
+						
+				//경기결과를 Stack에 하나씩 담음
+				Stack<String> stack = new Stack<>();
+				stack.push(rs.getString("result1"));
+				stack.push(rs.getString("result2"));
+				stack.push(rs.getString("result3"));
+				stack.push(rs.getString("result4"));
+				stack.push(rs.getString("result5"));
+				
+				//경기결과를 하나씩 뽑아가면서 모의토토 선택과 비교
+				while(stack.empty()) {
+					String pop = stack.pop();
+					if(pop.equals(game1Str[2])) {
+						currectCount++;
+						game1 = game1Str[0]+"/"+game1Str[1]+"/"+game1Str[2]+"/true";
+					}
+					if(pop.equals(game2Str[2])) {
+						currectCount++;
+						game2 = game2Str[0]+"/"+game2Str[1]+"/"+game2Str[2]+"/true";
+					}
+					if(pop.equals(game3Str[2])) {
+						currectCount++;
+						game3 = game3Str[0]+"/"+game3Str[1]+"/"+game3Str[2]+"/true";
+					}
+					if(pop.equals(game4Str[2])) {
+						currectCount++;
+						game4 = game4Str[0]+"/"+game4Str[1]+"/"+game4Str[2]+"/true";
+					}
+					if(pop.equals(game5Str[2])) {
+						currectCount++;
+						game5 = game5Str[0]+"/"+game5Str[1]+"/"+game5Str[2]+"/true";
+					}
+				}
+				
+				//투표한 갯수와 맞힌 갯수 비교
+				totalCount = rs.getInt("totalCount");
+				if(totalCount == currectCount) {
+					getPoint = (int) Math.pow(2, currectCount-1);
+				}
+				point = rs.getInt("point");
+				stackPoint = point + getPoint;
+				point = stackPoint;
+				
+			}
+			
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+	}
+
+	//이때까지의 토토 모두 가져오기 (조인한 걸로 수정....)
+	public ArrayList<TotoVO> getAllToto(String id) throws SQLException{
+		ArrayList<TotoVO> totoList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM toto WHERE id=? ORDER BY date DESC";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				totoList.add(new TotoVO(rs.getInt("no"),
+						id,
+						rs.getString("date"),
+						rs.getString("game1"),
+						rs.getString("game2"),
+						rs.getString("game3"),
+						rs.getString("game4"),
+						rs.getString("game5"),
+						rs.getInt("totalCount"),
+						rs.getInt("currentCount"),
+						rs.getInt("getPoint"),
+						rs.getInt("stackPoint")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return totoList;
+	}
+
+	/* 모의 토토 중복 확인하기(이미 투표했을 경우 화면에 띄울 수 있도록 TotoVo로 반환) */
+	public TotoVO checkToto(String id, String date) throws SQLException{
+		TotoVO toto = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM toto WHERE id=? AND date=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			ps.setString(2, date);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				toto = new TotoVO(rs.getString("id"),
+						rs.getString("date"),
+						rs.getString("game1"),
+						rs.getString("game2"),
+						rs.getString("game3"),
+						rs.getString("game4"),
+						rs.getString("game5"),
+						rs.getInt("totalCount"));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return toto;
+	}
+
+	/* 모의 토토 선택 저장하기 */
+	public void saveToto(TotoVO vo) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO toto (id, date, game1, game2, game3, game4, game5, totalCount) VALUES (?,?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getDate());
+			ps.setString(3, vo.getGame1());
+			ps.setString(4, vo.getGame2());
+			ps.setString(5, vo.getGame3());
+			ps.setString(6, vo.getGame4());
+			ps.setString(7, vo.getGame5());
+			ps.setInt(8, vo.getTotalCount());
+			ps.executeUpdate();
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	/* 포인트 순으로 모의 토토 랭킹 Top5 멤버 가져오기 */
+	public ArrayList<MemberVO> FindTop5MemberByPoint() throws SQLException{
+		ArrayList<MemberVO> memberList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT * FROM members ORDER BY point DESC, nickName ASC LIMIT 5;";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				memberList.add(new MemberVO(rs.getString("id"),
+						rs.getString("password"),
+						rs.getString("nickname"),
+						rs.getString("image"),
+						rs.getInt("point")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return memberList;
 	}
 	/* ================================================ */
 	
