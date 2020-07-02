@@ -1447,6 +1447,9 @@ public class ModelDaoImpl implements ModelDAO{
 				if(totalCount == currectCount) {
 					getPoint = (int) Math.pow(2, currectCount-1);
 				}
+				point = rs.getInt("point");
+				stackPoint = point + getPoint;
+				point = stackPoint;
 				
 			}
 			
