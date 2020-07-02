@@ -7,6 +7,7 @@ public class ResultVO {
 	private String game3;
 	private String game4;
 	private String game5;
+	private int check;
 	
 	public ResultVO() {}
 	public ResultVO(String date, String game1, String game2, String game3, String game4, String game5) {
@@ -17,8 +18,15 @@ public class ResultVO {
 		this.game3 = game3;
 		this.game4 = game4;
 		this.game5 = game5;
+		this.check = 0;
 	}
 	
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
 	public String getDate() {
 		return date;
 	}

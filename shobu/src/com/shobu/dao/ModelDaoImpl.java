@@ -1403,6 +1403,7 @@ public class ModelDaoImpl implements ModelDAO{
 			sb.append("WHERE date=?");
 			String query = sb.toString();
 			ps = conn.prepareStatement(query);
+			ps.setString(1, date);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				//회원이 뽑은 토토 (원정팀/홈팀/선택팀/정답여부)
@@ -1450,14 +1451,21 @@ public class ModelDaoImpl implements ModelDAO{
 					}
 				}
 				
-				//투표한 갯수와 맞힌 갯수 비교
+				//총 투표 갯수와 맞힌 갯수 비교
 				totalCount = rs.getInt("totalCount");
 				if(totalCount == currectCount) {
-					getPoint = (int) Math.pow(2, currectCount-1);
+					getPoint = (int) Math.pow(2, currectCount-1);//획득 포인트
 				}
-				point = rs.getInt("point");
-				stackPoint = point + getPoint;
-				point = stackPoint;
+				point = rs.getInt("point") + getPoint;//총 포인트
+				stackPoint = point;//누적포인트
+				
+				//game1~5, 맞힌개수, 획득포인트, 누적포인트 업데이트
+				StringBuilder sb2 = new StringBuilder();
+				sb2.append("UPDATE toto SET game1=?, game2=?, game3=?, game4=?, game5=?, ");
+				sb2.append("currectCount=?, getPoint=?, stackPoint=?");
+				sb2.append("Where id=? AND date=?");
+				String query2 = sb2.toString();
+				ps = conn.prepareStatement(query2);
 				
 			}
 			
