@@ -397,15 +397,16 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, c.era, p.image from player p, pitcher c where p.playerid = c.playerid AND cast(inning as signed) > (select games from team where teamCode = 'LT') order by era limit 1";
+				query = "select p.name, c.era, p.playerId from player p, pitcher c where p.playerid = c.playerid AND cast(inning as signed) > (select games from team where teamCode = 'LT') order by era limit 1";
 			else
-				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' AND cast(inning as signed) > (select games from team where teamCode = '"+teamCode+"') order by win desc, era limit 1";
+				query = "select p.name, c.era, p.playerId from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' AND cast(inning as signed) > (select games from team where teamCode = '"+teamCode+"') order by win desc, era limit 1";
 			ps = conn.prepareStatement(query);
 	        rs = ps.executeQuery();
 	        
 	        if(rs.next()) {
 	        	player.setName(rs.getString(1));
 	        	player.setEra(rs.getDouble(2));
+	        	player.setPlayerId(rs.getInt(3));
 	        }
 		} finally {
 			closeAll(rs, ps, conn);
@@ -424,15 +425,16 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid order by win desc, era limit 1";
+				query = "select p.name, c.win, p.playerId from player p, pitcher c where p.playerid = c.playerid order by win desc, era limit 1";
 			else
-				query = "select p.name, c.win, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by win desc, era limit 1";
+				query = "select p.name, c.win, p.playerId from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by win desc, era limit 1";
 			ps = conn.prepareStatement(query);
 	        rs = ps.executeQuery();
 	        
 	        if(rs.next()) {
 	        	player.setName(rs.getString(1));
 	        	player.setWin(rs.getInt(2));
+	        	player.setPlayerId(rs.getInt(3));
 	        }
 		} finally {
 			closeAll(rs, ps, conn);
@@ -451,15 +453,16 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, c.save, p.image from player p, pitcher c where p.playerid = c.playerid order by save desc, era limit 1";
+				query = "select p.name, c.save, p.playerId from player p, pitcher c where p.playerid = c.playerid order by save desc, era limit 1";
 			else
-				query = "select p.name, c.save, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by save desc, era limit 1";
+				query = "select p.name, c.save, p.playerId from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by save desc, era limit 1";
 			ps = conn.prepareStatement(query);
 	        rs = ps.executeQuery();
 	        
 	        if(rs.next()) {
 	        	player.setName(rs.getString(1));
 	        	player.setSave(rs.getInt(2));
+	        	player.setPlayerId(rs.getInt(3));
 	        }
 		} finally {
 			closeAll(rs, ps, conn);
@@ -478,15 +481,16 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, c.so, p.image from player p, pitcher c where p.playerid = c.playerid order by so desc, era limit 1";
+				query = "select p.name, c.so, p.playerId from player p, pitcher c where p.playerid = c.playerid order by so desc, era limit 1";
 			else
-				query = "select p.name, c.so, p.image from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by so desc, era limit 1";
+				query = "select p.name, c.so, p.playerId from player p, pitcher c where p.playerid = c.playerid AND p.teamCode = '"+teamCode+"' order by so desc, era limit 1";
 			ps = conn.prepareStatement(query);
 	        rs = ps.executeQuery();
 	        
 	        if(rs.next()) {
 	        	player.setName(rs.getString(1));
-	        	player.setSave(rs.getInt(2));
+	        	player.setSo(rs.getInt(2));
+	        	player.setPlayerId(rs.getInt(3));
 	        }
 		} finally {
 			closeAll(rs, ps, conn);
@@ -505,14 +509,15 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, h.rate, p.image from player p, hitter h where p.playerId = h.playerId AND h.ab*3 > (select games from team where teamCode='LT') order by rate desc limit 1";
+				query = "select p.name, h.rate, p.playerId from player p, hitter h where p.playerId = h.playerId AND h.ab*3 > (select games from team where teamCode='LT') order by rate desc limit 1";
 			else
-				query = "select p.name, h.rate, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' AND h.ab*3 > (select games from team where teamCode='"+teamCode+"') order by rate desc limit 1";
+				query = "select p.name, h.rate, p.playerId from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' AND h.ab*3 > (select games from team where teamCode='"+teamCode+"') order by rate desc limit 1";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				player.setName(rs.getString(1));
 				player.setRate(rs.getDouble(2));
+				player.setPlayerId(rs.getInt(3));
 			}
 		} finally {
 			closeAll(rs, ps, conn);
@@ -531,14 +536,15 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, h.rbi, p.image from player p, hitter h where p.playerId = h.playerId order by rbi desc limit 1";
+				query = "select p.name, h.rbi, p.playerId from player p, hitter h where p.playerId = h.playerId order by rbi desc limit 1";
 			else
-				query = "select p.name, h.rbi, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by rbi desc limit 1";
+				query = "select p.name, h.rbi, p.playerId from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by rbi desc limit 1";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				player.setName(rs.getString(1));
 				player.setRbi(rs.getInt(2));
+				player.setPlayerId(rs.getInt(3));
 			}
 		} finally {
 			closeAll(rs, ps, conn);
@@ -558,14 +564,15 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, h.hr, p.image from player p, hitter h where p.playerId = h.playerId order by hr desc limit 1";
+				query = "select p.name, h.hr, p.playerId from player p, hitter h where p.playerId = h.playerId order by hr desc limit 1";
 			else
-				query = "select p.name, h.hr, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hr desc limit 1";
+				query = "select p.name, h.hr, p.playerId from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hr desc limit 1";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				player.setName(rs.getString(1));
 				player.setHr(rs.getInt(2));
+				player.setPlayerId(rs.getInt(3));
 			}
 		} finally {
 			closeAll(rs, ps, conn);
@@ -584,14 +591,15 @@ public class ModelDaoImpl implements ModelDAO{
 		try {
 			conn = getConnection();
 			if(teamCode.equals("ALL"))
-				query = "select p.name, h.hits, p.image from player p, hitter h where p.playerId = h.playerId order by hits desc limit 1";
+				query = "select p.name, h.hits, p.playerId from player p, hitter h where p.playerId = h.playerId order by hits desc limit 1";
 			else
-				query = "select p.name, h.hits, p.image from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hits desc limit 1";
+				query = "select p.name, h.hits, p.playerId from player p, hitter h where p.playerId = h.playerId AND p.teamCode = '"+teamCode+"' order by hits desc limit 1";
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				player.setName(rs.getString(1));
 				player.setHits(rs.getInt(2));
+				player.setPlayerId(rs.getInt(3));
 			}
 		} finally {
 			closeAll(rs, ps, conn);
