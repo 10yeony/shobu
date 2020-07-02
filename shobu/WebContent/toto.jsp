@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>쇼부 Shobu</title>
-<link rel="stylesheet" href="css/index.css">
 <style>
 /* 공통 css */
 @charset "UTF-8";
@@ -240,8 +240,7 @@
 		});
 		
 		/* 모의토토 제출 */
-		$('button').click(function(){
-			
+		$('.select').click(function(){
 			/* 아이디 할당 */
 			var id = '${member.id}';
 			
@@ -261,7 +260,6 @@
 			
 			/* 총 선택 개수 할당 */
 			var totalCount = 0;
-			
 			/* game 변수에 각각 원정팀/홈팀/선택한팀 선언 */
 			var game1;
 			var game2;
@@ -270,23 +268,23 @@
 			var game5;
 			$('input[name=match0]:checked').each(function(){
 				totalCount++;
-				game1 = $(this).siblings('div').text() + $(this).val();
+				game1 = $(this).siblings('div').text() + $(this).val() + "/false";
 			});
 			$('input[name=match1]:checked').each(function(){
 				totalCount++;
-				game2 = $(this).siblings('div').text() + $(this).val();
+				game2 = $(this).siblings('div').text() + $(this).val() + "/false";
 			});
 			$('input[name=match2]:checked').each(function(){
 				totalCount++;
-				game3 = $(this).siblings('div').text() + $(this).val();
+				game3 = $(this).siblings('div').text() + $(this).val() + "/false";
 			});
 			$('input[name=match3]:checked').each(function(){
 				totalCount++;
-				game4 = $(this).siblings('div').text() + $(this).val();
+				game4 = $(this).siblings('div').text() + $(this).val() + "/false";
 			});
 			$('input[name=match4]:checked').each(function(){
 				totalCount++;
-				game5 = $(this).siblings('div').text() + $(this).val();
+				game5 = $(this).siblings('div').text() + $(this).val() + "/false";
 			});
 			
 			
@@ -302,7 +300,6 @@
 				return false;
 			}
 			
-			
 			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
 			$.ajax({
     			type:'post',
@@ -310,10 +307,15 @@
 				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5+"&totalCount="+totalCount,
   		       	
   		       	success: function(data){
-  		       		$('#voteToto').css('display', 'none');
-  					$('#checkToto').css('display', 'block');
+  		       		console.log(data);
+  		       		$('.select').prop("disabled",true);
+  		       		$('.select').css("background-color","gray");
+  		       		$('.select').css("border","1px solid gray");
+  		       		$('.select').css("cursor","default");
+  		       		
   		       	}
   		    });//ajax
+  		    
 		});
 	});
 </script>
@@ -343,22 +345,22 @@
 					     <td class="away">
 					       <div style="display:none;">${match.away}/${match.home}/</div>
 					       <img class="teamlogo" src="${match.awayImg}">
-					       <input type="checkbox" name="match${s.index}" value="${match.away}"><br>
+					       <input type="checkbox" class="cehckbox" name="match${s.index}" value="${match.away}"><br>
 					       <span>${match.awayPitcher}</span>
 					     </td> 
 						 <td class="graph"> 
 						   <section class="bar-graph bar-graph-horizontal bar-graph-one">
 							 <div class="bar-away">
-							   <div class="bar" data-percentage="${match.awayRatio}%" style="width:${match.awayRatio}%; background-color:${match.awayColor};"></div>
+							   <div class="bar" data-percentage="<fmt:formatNumber value="${match.awayRatio}" pattern="#.00"/>%" style="width:${match.awayRatio}%; background-color:${match.awayColor};"></div>
 							 </div>
 							 <div class="bar-home">
-							   <div class="bar" data-percentage="${match.homeRatio}%" style="width:${match.homeRatio}%; background-color:${match.homeColor};"></div>
+							   <div class="bar" data-percentage="<fmt:formatNumber value="${match.homeRatio}" pattern="#.00"/>%" style="width:${match.homeRatio}%; background-color:${match.homeColor};"></div>
 							 </div>
 						   </section>
 						 </td> 
 						 <td class="home">
 						   <div style="display:none;">${match.away}/${match.home}/</div>
-						   <input type="checkbox" name="match${s.index}" value="${match.home}">
+						   <input type="checkbox" class="cehckbox" name="match${s.index}" value="${match.home}">
 						   <img class="teamlogo" src="${match.homeImg}" width="50"><br>
 						   <span>${match.homePitcher}</span>
 						 </td>
@@ -369,18 +371,9 @@
 			</c:choose>
 		 
 		 <p style="text-align:center; margin-top:20px;">
-	    	<button type="button" id=“select”>선택</button>
+	    	<button type="button" class="select">선택</button>
 	   	</p>
 	    </form>
-	    </div>
-	    <div id="checkToto" style="display:none">
-	       <p>나의 선택</p>
-	       <p>${toto.game1}</p>
-	       <p>${toto.game2}</p>
-	       <p>${toto.game3}</p>
-	       <p>${toto.game4}</p>
-	       <p>${toto.game5}</p>
-	    </div>
 	    <!-- 모의 토토 끝 -->
 		  
 	      <!-- 회원 랭킹 시작 -->
