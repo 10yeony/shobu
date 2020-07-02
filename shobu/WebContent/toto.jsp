@@ -312,8 +312,9 @@
   		       		$('.select').css("background-color","gray");
   		       		$('.select').css("border","1px solid gray");
   		       		$('.select').css("cursor","default");
+  		       		$('.checkbox').prop("disabled",true);
   		       		
-  		       	}
+  		       	}//~sucess
   		    });//ajax
   		    
 		});
@@ -345,7 +346,7 @@
 					     <td class="away">
 					       <div style="display:none;">${match.away}/${match.home}/</div>
 					       <img class="teamlogo" src="${match.awayImg}">
-					       <input type="checkbox" class="cehckbox" name="match${s.index}" value="${match.away}"><br>
+					       <input type="checkbox" class="checkbox" name="match${s.index}" value="${match.away}"><br>
 					       <span>${match.awayPitcher}</span>
 					     </td> 
 						 <td class="graph"> 
@@ -360,7 +361,7 @@
 						 </td> 
 						 <td class="home">
 						   <div style="display:none;">${match.away}/${match.home}/</div>
-						   <input type="checkbox" class="cehckbox" name="match${s.index}" value="${match.home}">
+						   <input type="checkbox" class="checkbox" name="match${s.index}" value="${match.home}">
 						   <img class="teamlogo" src="${match.homeImg}" width="50"><br>
 						   <span>${match.homePitcher}</span>
 						 </td>
