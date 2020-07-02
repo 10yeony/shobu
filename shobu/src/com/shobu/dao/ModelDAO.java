@@ -85,9 +85,6 @@ public interface ModelDAO {
 	ArrayList<ChatVO> selectChat() throws SQLException;
 	void insertChat(ChatVO vo) throws SQLException;
 	
-	//09. Result Toto after Match
-	int resultToto(TotoVO vo) throws SQLException;
-	
 	//10. Update Point
 	boolean updatePoint(String id) throws SQLException;
 	

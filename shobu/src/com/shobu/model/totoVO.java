@@ -42,7 +42,6 @@ public class TotoVO {
 		this.getPoint = getPoint;
 		this.stackPoint = stackPoint;
 	}
-	
 	public int getNo() {
 		return no;
 	}

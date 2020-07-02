@@ -1362,13 +1362,7 @@ public class ModelDaoImpl implements ModelDAO{
 	
 	
 	/* ================= 모의 토토 및 결과 ================= */
-	
-	/* 경기 후 모의 토토와 비교대조 후 추가할 포인트 리턴 */
-	@Override
-	public int resultToto(TotoVO vo) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	//
 	
 	//해당 날짜 경기 결과에 따른 포인트 업데이트
 	public boolean updatePoint(String date) throws SQLException{
