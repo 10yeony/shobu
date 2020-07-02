@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -349,10 +350,10 @@
 						 <td class="graph"> 
 						   <section class="bar-graph bar-graph-horizontal bar-graph-one">
 							 <div class="bar-away">
-							   <div class="bar" data-percentage="${match.awayRatio}%" style="width:${match.awayRatio}%; background-color:${match.awayColor};"></div>
+							   <div class="bar" data-percentage="<fmt:formatNumber value="${match.awayRatio}" pattern="#.00"/>%" style="width:${match.awayRatio}%; background-color:${match.awayColor};"></div>
 							 </div>
 							 <div class="bar-home">
-							   <div class="bar" data-percentage="${match.homeRatio}%" style="width:${match.homeRatio}%; background-color:${match.homeColor};"></div>
+							   <div class="bar" data-percentage="<fmt:formatNumber value="${match.homeRatio}" pattern="#.00"/>%" style="width:${match.homeRatio}%; background-color:${match.homeColor};"></div>
 							 </div>
 						   </section>
 						 </td> 
