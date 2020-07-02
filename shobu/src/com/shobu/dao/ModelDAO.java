@@ -16,6 +16,7 @@ import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
+import com.shobu.model.ResultVO;
 import com.shobu.model.TeamInfoVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.TotoVO;
@@ -26,6 +27,7 @@ public interface ModelDAO {
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn)throws SQLException ;
 		
 	//00. DB Update at 12:00
+	void updateResult(ResultVO vo) throws SQLException;
 	void updatePlayer(PlayerVO vo) throws SQLException;
 	void updateHitter(HitterVO vo, int playerId) throws SQLException;
 	void updatePitcher(PitcherVO vo, int playerId) throws SQLException;

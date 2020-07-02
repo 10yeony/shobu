@@ -27,6 +27,7 @@ import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerListVO;
 import com.shobu.model.PlayerVO;
+import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.TotoVO;
 
@@ -1611,6 +1612,8 @@ public class ModelDaoImpl implements ModelDAO{
 		}
 		return memberList;
 	}
+	
+	
 	/* ================================================ */
 	
 	
@@ -1654,5 +1657,26 @@ public class ModelDaoImpl implements ModelDAO{
 			}
 		return color;
 	}
+	@Override
+	public void updateResult(ResultVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "insert into result values(?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, vo.getDate());
+			ps.setString(2, vo.getGame1());
+			ps.setString(3, vo.getGame2());
+			ps.setString(4, vo.getGame3());
+			ps.setString(5, vo.getGame4());
+			ps.setString(6, vo.getGame5());
+			ps.setInt(7, vo.getCheck());
+			ps.executeUpdate();
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+	
 
 }

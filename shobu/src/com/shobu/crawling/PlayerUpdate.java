@@ -687,20 +687,34 @@ public class PlayerUpdate {
 	//15.지난경기 결과
 	public ResultVO updateResult(String date) {
 		ResultVO result = new ResultVO();
-		String[] arr = new String[5];
+		ArrayList<String> arr = new ArrayList<>();
 		try {
-			for(int i = 0; i<5; i++) {
-				Document doc = Jsoup.connect("http://www.statiz.co.kr/boxscore.php?opt=1&sopt=0&date="+date).timeout(T).get();
-				Elements linksHome = doc.select(".box").eq(i).select("div").eq(2).select("tr").eq(1).select("td");
-				Elements linksAway = doc.select(".box").eq(i).select("div").eq(2).select("tr").eq(2).select("td");
+			Document doc = Jsoup.connect("http://www.statiz.co.kr/boxscore.php?opt=1&sopt=0&date="+date).timeout(T).get();
+			Elements link = doc.select("tbody");
+			
+			for(int i = 1; i<6; i++) {
+				Elements links = link.eq(i);
+				String home = links.select("tr").eq(1).select("td").eq(0).text();
+				String away = links.select("tr").eq(2).select("td").eq(0).text();
 				
-				if(Integer.parseInt(linksHome.eq(10).text())>Integer.parseInt(linksAway.eq(10).text())) {
-					arr[i] = linksHome.eq(0).text();
-				}else if(Integer.parseInt(linksHome.eq(10).text())<Integer.parseInt(linksAway.eq(10).text())) {
-					arr[i] = linksAway.eq(0).text();
-				}else arr[i] = "-";
+				int homescore = Integer.parseInt(links.select("tr").eq(1).select("td").eq(10).text());
+				int awayscore = Integer.parseInt(links.select("tr").eq(2).select("td").eq(10).text());
+				
+				if(homescore > awayscore) 
+					arr.add(home);
+				else if(homescore < awayscore) 
+					arr.add(away);
 			}
+			result.setDate(date);
+			result.setGame1(arr.get(0));
+			result.setGame2(arr.get(1));
+			result.setGame3(arr.get(2));
+			result.setGame4(arr.get(3));
+			result.setGame5(arr.get(4));
+			result.setCheck(0);
+			
 		} catch (Exception e) {
+			
 		}
 		
 		return result;

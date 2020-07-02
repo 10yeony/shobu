@@ -3,6 +3,7 @@ package com.shobu.controller;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.MatchVO;
 import com.shobu.model.ModelAndView;
 import com.shobu.model.PlayerVO;
+import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
 
 public class UpdateController implements Controller {
@@ -71,18 +73,30 @@ public class UpdateController implements Controller {
 			}
 			
 			Date D = new Date();
+			Date YD = new Date();
+			YD.setTime(D.getTime() - ((long)1000*60*60*24));
 			
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(date.format(YD));
+			
+			ResultVO result = pu.updateResult(date.format(YD));
+			System.out.println(result);
+			ModelDaoImpl.getInstance().updateResult(result);
+			ModelDaoImpl.getInstance().updatePoint(date.format(YD));
+			
 			ArrayList<MatchVO> matches = pu.updateMatch(date.format(D));
 			for(int i = 0; i<matches.size(); i++) {
 				ModelDaoImpl.getInstance().updateMatch(matches.get(i));
 			}
 			mv = new ModelAndView(path);
+			
+			
+			
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 	}
 		return mv;
 	}
-	
 
 }
