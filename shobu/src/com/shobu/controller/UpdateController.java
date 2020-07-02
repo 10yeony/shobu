@@ -19,11 +19,12 @@ public class UpdateController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse res) {
-		String path ="toto.jsp";
+		ModelAndView mv = null;
+		String path ="index.jsp";
 		PlayerUpdate pu = new PlayerUpdate();
 		
 		try {
-/*			ArrayList<TeamVO> teamlist = pu.updateTeam();
+			ArrayList<TeamVO> teamlist = pu.updateTeam();
 			for(int i = 0; i<teamlist.size(); i++) {
 				ModelDaoImpl.getInstance().updateTeam(teamlist.get(i));
 			}
@@ -67,19 +68,20 @@ public class UpdateController implements Controller {
 				}
 				else
 					ModelDaoImpl.getInstance().updateHitter(pu.updateHitter(playerlist.get(i).getPlayerId(), playerlist.get(i).getTeamCode()), playerlist.get(i).getPlayerId());
-			}*/
+			}
 			
 			Date D = new Date();
+			
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			ArrayList<MatchVO> matches = pu.updateMatch(date.format(D));
 			for(int i = 0; i<matches.size(); i++) {
 				ModelDaoImpl.getInstance().updateMatch(matches.get(i));
 			}
-			
+			mv = new ModelAndView(path);
 		}catch (Exception e) {
 			// TODO: handle exception
 	}
-		return null;
+		return mv;
 	}
 	
 

@@ -1152,7 +1152,7 @@ public class ModelDaoImpl implements ModelDAO{
 		
 		try {
 			conn = getConnection();
-			String query = "insert into matches values(?,?,?,?,?,?,?)";
+			String query = "insert into matches values(?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, vo.getDate());
 			ps.setString(2, vo.getTime());
@@ -1161,6 +1161,8 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setString(5, vo.getHomePitcher());
 			ps.setString(6, vo.getAwayPitcher());
 			ps.setString(7, vo.getPlace());
+			ps.setString(8, vo.getHomeCode());
+			ps.setString(9, vo.getAwayCode());
 			ps.executeUpdate();
 		} finally {
 			closeAll(ps, conn);

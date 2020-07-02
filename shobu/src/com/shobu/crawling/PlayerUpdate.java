@@ -11,16 +11,17 @@ import com.shobu.model.MatchVO;
 import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
+import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
 
 public class PlayerUpdate {
-	
+	private final int T= 1000*60*60;
 	//00.NC선수단 업데이트
 	public ArrayList<PlayerVO> updateNC() {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&id=1&seq=&season=2020&isToto=&teamId=NC").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&id=1&seq=&season=2020&isToto=&teamId=NC").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -36,9 +37,13 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+					
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					player.setPlayerId(playerId);
@@ -65,7 +70,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=HT").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=HT").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -81,9 +86,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+					
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -111,7 +119,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=KT").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=KT").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -127,9 +135,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -157,7 +168,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=LG").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=LG").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -173,9 +184,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -203,7 +217,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=SK").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=SK").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -219,9 +233,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -250,7 +267,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=OB").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=OB").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -266,9 +283,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -296,7 +316,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=LT").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=LT").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -312,9 +332,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -342,7 +365,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=SS").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=SS").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -358,9 +381,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -388,7 +414,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=WO").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=WO").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -404,9 +430,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+					
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					
@@ -434,7 +463,7 @@ public class PlayerUpdate {
 		ArrayList<PlayerVO> playerlist = new ArrayList<>();
 		for(int i = 0; i<4; i++) {
 			try {
-				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=HH").get();
+				Document doc = Jsoup.connect("https://betman.co.kr/sportsTeamIntro.so?method=inquireTeamIntro&item=BS&league=BS001&seq=&id=1&isToto=&teamId=HH").timeout(T).get();
 				Elements links = doc.select(".data_dproList tbody tr").eq(i);
 				Document doc2;
 				Elements links2;
@@ -450,9 +479,12 @@ public class PlayerUpdate {
 					playerId = Integer.parseInt(links.select("a").eq(j).toString().split("'")[3]);
 					teamCode = links.select("a").eq(j).toString().split("'")[1];
 					name = links.select("a").eq(j).text();
-					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+					doc2 = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 					links2 = doc2.select(".player_basic ul");
-					number = Integer.parseInt(links2.select("span").eq(1).text());
+					
+					if(links2.select("span").eq(1).text().equals("")) number = 0;
+					else number = Integer.parseInt(links2.select("span").eq(1).text());
+					
 					birth = links2.select("span").eq(2).text();
 					type = links2.select("span").eq(3).text().split("[(]")[1].substring(0,4);
 					player.setPlayerId(playerId);
@@ -478,7 +510,7 @@ public class PlayerUpdate {
 	public PitcherVO updatePitcher(int playerId, String teamCode) {
 		PitcherVO pitcher = new PitcherVO();
 		try {
-			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
+			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).timeout(T).get();
 			Elements links = doc.select("tbody").eq(1);
 			pitcher.setGames(Integer.parseInt(links.select("td").eq(0).text()));
 			if(links.select("td").eq(1).text() == null)
@@ -508,7 +540,7 @@ public class PlayerUpdate {
 	public HitterVO updateHitter(int playerId, String teamCode) {
 		HitterVO hitter = new HitterVO();
 		try {
-			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).get();
+			Document doc = Jsoup.connect("https://betman.co.kr/sportsPlayerIntro.so?method=inquirePlayerIntro&item=BS&league=BS001&seq=&id=1&teamId="+teamCode+"&isToto=&playerId="+playerId).timeout(T).get();
 			Elements links = doc.select("tbody").eq(1);
 			hitter.setGames(Integer.parseInt(links.select("td").eq(0).text()));
 			hitter.setRate(Double.parseDouble(links.select("td").eq(1).text()));
@@ -536,7 +568,7 @@ public class PlayerUpdate {
 		try {
 			for(int i = 0; i<10; i++) {
 				TeamVO team = new TeamVO();
-				Document doc = Jsoup.connect("http://betman.co.kr/teamRanking.so?method=inquireRanking&item=BS&league=BS001&id=1&fromCode=left").get();
+				Document doc = Jsoup.connect("http://betman.co.kr/teamRanking.so?method=inquireRanking&item=BS&league=BS001&id=1&fromCode=left").timeout(T).get();
 				Elements links = doc.select(".dataH01 tbody tr").eq(i);
 				
 				team.setRanking(Integer.parseInt(links.select("td").eq(0).text()));
@@ -600,9 +632,9 @@ public class PlayerUpdate {
 	public ArrayList<MatchVO> updateMatch(String date){
 		ArrayList<MatchVO> matchlist = new ArrayList<>();
 		try {
-			Document doc = Jsoup.connect("http://www.statiz.co.kr/boxscore.php?opt=1&date="+date).get();
+			Document doc = Jsoup.connect("http://www.statiz.co.kr/boxscore.php?opt=1&date="+date).timeout(T).get();
 			Elements links = doc.select(".row").eq(3);
-			Document doc2 = Jsoup.connect("https://sports.news.naver.com/kbaseball/index.nhn").get();
+			Document doc2 = Jsoup.connect("https://sports.news.naver.com/kbaseball/index.nhn").timeout(T).get();
 			Elements links2 = doc2.select(".hmb_list");
 			for(int i = 0 ; i<5; i++) {
 				MatchVO match = new MatchVO();
@@ -611,6 +643,9 @@ public class PlayerUpdate {
 				match.setHome(links.select(".box").eq(i).select(".pull-left a").text().split(" ")[5]);
 				match.setAway(links.select(".box").eq(i).select(".pull-left a").text().split(" ")[0]);
 				match.setPlace(links.select(".box").eq(i).select(".pull-left a").text().split(" ")[3]);
+				
+				match.setHomeCode(transferTeamCode(match.getHome()));
+				match.setAwayCode(transferTeamCode(match.getAway()));
 				
 				for(int j = 0; j<5; j++) {
 					if(match.getHome().equals(links2.select("li").eq(j).select("span").eq(2).text())){
@@ -635,7 +670,7 @@ public class PlayerUpdate {
 	public Pitcher3VO updatePitcher3(int playerId) {
 		Pitcher3VO pitcher3 = new Pitcher3VO();
 		try {
-			Document doc = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).get();
+			Document doc = Jsoup.connect("https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId="+playerId).timeout(T).get();
 			Elements links = doc.select("tbody").eq(2);
 			pitcher3.setPlayerId(playerId);
 			pitcher3.setDay1(links.select("tr").eq(0).select("td").eq(0).text());
@@ -646,6 +681,64 @@ public class PlayerUpdate {
 		}
 		
 		return pitcher3;
+		
+	}
+	
+	//15.지난경기 결과
+	public ResultVO updateResult(String date) {
+		ResultVO result = new ResultVO();
+		String[] arr = new String[5];
+		try {
+			for(int i = 0; i<5; i++) {
+				Document doc = Jsoup.connect("http://www.statiz.co.kr/boxscore.php?opt=1&sopt=0&date="+date).timeout(T).get();
+				Elements linksHome = doc.select(".box").eq(i).select("div").eq(2).select("tr").eq(1).select("td");
+				Elements linksAway = doc.select(".box").eq(i).select("div").eq(2).select("tr").eq(2).select("td");
+				
+				if(Integer.parseInt(linksHome.eq(10).text())>Integer.parseInt(linksAway.eq(10).text())) {
+					arr[i] = linksHome.eq(0).text();
+				}else if(Integer.parseInt(linksHome.eq(10).text())<Integer.parseInt(linksAway.eq(10).text())) {
+					arr[i] = linksAway.eq(0).text();
+				}else arr[i] = "-";
+			}
+		} catch (Exception e) {
+		}
+		
+		return result;
+	}
+	//팀명 -> 팀코드 변환
+	public String transferTeamCode(String teamName) {
+		String teamCode = null;
+		
+		if(teamName.equals("두산")) teamCode = "OB";
+		else if(teamName.equals("NC")) teamCode = "NC";
+		else if(teamName.equals("KT")) teamCode = "KT";
+		else if(teamName.equals("LG")) teamCode = "LG";
+		else if(teamName.equals("SK")) teamCode = "SK";
+		else if(teamName.equals("KIA")) teamCode = "HT";
+		else if(teamName.equals("롯데")) teamCode = "LT";
+		else if(teamName.equals("삼성")) teamCode = "SS";
+		else if(teamName.equals("한화")) teamCode = "HH";
+		else if(teamName.equals("키움")) teamCode = "WO";
+		
+		return teamCode;
+		
+	}
+	//팀코드 -> 팀명 변환
+	public String transferTeamName(String teamCode) {
+		String teamName = null;
+		
+		if(teamCode.equals("OB")) teamName = "두산";
+		else if(teamCode.equals("NC")) teamName = "NC";
+		else if(teamCode.equals("KT")) teamName = "KT";
+		else if(teamCode.equals("LG")) teamName = "LG";
+		else if(teamCode.equals("SK")) teamName = "SK";
+		else if(teamCode.equals("HT")) teamName = "KIA";
+		else if(teamCode.equals("LT")) teamName = "롯데";
+		else if(teamCode.equals("SS")) teamName = "삼성";
+		else if(teamCode.equals("HH")) teamName = "한화";
+		else if(teamCode.equals("WO")) teamName = "키움";
+		
+		return teamName;
 		
 	}
 }
