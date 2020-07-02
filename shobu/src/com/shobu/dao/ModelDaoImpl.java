@@ -32,7 +32,7 @@ import com.shobu.model.TotoVO;
 
 public class ModelDaoImpl implements ModelDAO{
 
-	
+	/*
 	//실제로는 DataSource 사용
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -54,8 +54,8 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
+	*/
 	
-	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
@@ -88,12 +88,9 @@ public class ModelDaoImpl implements ModelDAO{
 	//단위 테스트
 	public static void main(String[] args) throws Exception {
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
-
-		ArrayList<MatchVO> match = dao.selectMatch();
-		for(MatchVO m:match) {
-			System.out.println(m);
-		}
-	}*/
+		String date = "2020-06-27";
+		dao.updatePoint(date);
+	}
 	
 	
 	
@@ -1371,17 +1368,14 @@ public class ModelDaoImpl implements ModelDAO{
 		return 0;
 	}
 	
-	/* 회원 id와 추가할 포인트를 받고 해당 회원 포인트 업데이트 */
-	@Override
-	public void updatePoint(String id, int point) throws SQLException {
-		// TODO Auto-generated method stub
-	}
-	
 	//해당 날짜 경기 결과에 따른 포인트 업데이트
-	public void updatePoint(String date) throws SQLException{
+	public boolean updatePoint(String date) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		
+		/* 필요한 주요 변수 미리 선언 */
+		String id = "";
 		String game1 = "";
 		String game2 = "";
 		String game3 = "";
@@ -1392,26 +1386,39 @@ public class ModelDaoImpl implements ModelDAO{
 		int getPoint = 0;
 		int stackPoint = 0;
 		int point = 0;
+		
 		try {
 			conn = getConnection();
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT * ");
-			sb.append("FROM (SELECT t.*, ");
-			sb.append("r.game1 result1, r.game2 result2, r.game3 result3, r.game4 result4, r.game5 result5, ");
-			sb.append("m.point FROM members m, toto t, result r ");
-			sb.append("WHERE m.id=t.id AND t.date=r.date) a");
-			sb.append("WHERE date=?");
-			String query = sb.toString();
+			
+			//이미 처리한 날짜면 false 리턴
+			String query = "SELECT * FROM result WHERE date=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, date);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getInt("winCheck")==1) {
+					System.out.println("이미 처리한 날짜입니다.");
+					return false;
+				}
+			}
+			rs.close();
+			ps.close();
+			
+			query = "SELECT * FROM (SELECT t.*, r.game1 result1, r.game2 result2, r.game3 result3, r.game4 result4, r.game5 result5, m.point FROM members m, toto t, result r WHERE m.id=t.id AND t.date=r.date) a WHERE date=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, date);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				id = rs.getString("id");
+				System.out.println("id : "+id);
+				
 				//회원이 뽑은 토토 (원정팀/홈팀/선택팀/정답여부)
 				game1 = rs.getString("game1");
 				game2 = rs.getString("game2");
 				game3 = rs.getString("game3");
 				game4 = rs.getString("game4");
 				game5 = rs.getString("game5");
+				System.out.println("game1~5 : "+game1+" "+game2+" "+game3+" "+game4+" "+game5);
 				String[] game1Str = game1.split("/");
 				String[] game2Str = game2.split("/");
 				String[] game3Str = game3.split("/");
@@ -1427,51 +1434,79 @@ public class ModelDaoImpl implements ModelDAO{
 				stack.push(rs.getString("result5"));
 				
 				//경기결과를 하나씩 뽑아가면서 모의토토 선택과 비교
-				while(stack.empty()) {
+				while(!stack.empty()) {
 					String pop = stack.pop();
-					if(pop.equals(game1Str[2])) {
+					System.out.println("스택 : "+pop);
+					if(game1Str.length>1 && pop.equals(game1Str[2])) {
 						currectCount++;
 						game1 = game1Str[0]+"/"+game1Str[1]+"/"+game1Str[2]+"/true";
+						System.out.println("현재 맞힌 개수 : "+currectCount);
+						System.out.println("game1 : "+game1);
 					}
-					if(pop.equals(game2Str[2])) {
+					if(game2Str.length>1 && pop.equals(game2Str[2])) {
 						currectCount++;
 						game2 = game2Str[0]+"/"+game2Str[1]+"/"+game2Str[2]+"/true";
+						System.out.println("현재 맞힌 개수 : "+currectCount);
+						System.out.println("game2 : "+game2);
 					}
-					if(pop.equals(game3Str[2])) {
+					if(game3Str.length>1 && pop.equals(game3Str[2])) {
 						currectCount++;
 						game3 = game3Str[0]+"/"+game3Str[1]+"/"+game3Str[2]+"/true";
+						System.out.println("현재 맞힌 개수 : "+currectCount);
+						System.out.println("game3 : "+game3);
 					}
-					if(pop.equals(game4Str[2])) {
+					if(game4Str.length>1 && pop.equals(game4Str[2])) {
 						currectCount++;
 						game4 = game4Str[0]+"/"+game4Str[1]+"/"+game4Str[2]+"/true";
+						System.out.println("현재 맞힌 개수 : "+currectCount);
+						System.out.println("game4 : "+game4);
 					}
-					if(pop.equals(game5Str[2])) {
+					if(game5Str.length>1 && pop.equals(game5Str[2])) {
 						currectCount++;
 						game5 = game5Str[0]+"/"+game5Str[1]+"/"+game5Str[2]+"/true";
+						System.out.println("현재 맞힌 개수 : "+currectCount);
+						System.out.println("game5 : "+game5);
 					}
-				}
+				}//!stack.empty()
 				
 				//총 투표 갯수와 맞힌 갯수 비교
 				totalCount = rs.getInt("totalCount");
+				System.out.println("총 개수 : "+totalCount);
 				if(totalCount == currectCount) {
 					getPoint = (int) Math.pow(2, currectCount-1);//획득 포인트
+					System.out.println("얻은 포인트 : "+getPoint);
 				}
 				point = rs.getInt("point") + getPoint;//총 포인트
+				System.out.println("총 포인트 : "+point);
 				stackPoint = point;//누적포인트
+				System.out.println("누적 포인트 : "+stackPoint);
 				
 				//game1~5, 맞힌개수, 획득포인트, 누적포인트 업데이트
-				StringBuilder sb2 = new StringBuilder();
-				sb2.append("UPDATE toto SET game1=?, game2=?, game3=?, game4=?, game5=?, ");
-				sb2.append("currectCount=?, getPoint=?, stackPoint=?");
-				sb2.append("Where id=? AND date=?");
-				String query2 = sb2.toString();
-				ps = conn.prepareStatement(query2);
-				
-			}
+				query = "UPDATE toto SET game1=?, game2=?, game3=?, game4=?, game5=?, currectCount=?, getPoint=?, stackPoint=? Where id=? AND date=?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, game1);
+				ps.setString(2, game2);
+				ps.setString(3, game3);
+				ps.setString(4, game4);
+				ps.setString(5, game5);
+				ps.setInt(6, currectCount);
+				ps.setInt(7, getPoint);
+				ps.setInt(8, stackPoint);
+				ps.setString(9, id);
+				ps.setString(10, date);
+				ps.executeUpdate();
+			}//rs.next()
 			
+			//해당 날짜 check를 1로 변경
+			query = "UPDATE result SET winCheck=? Where date=?";
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, 1);
+			ps.setString(2, date);
+			ps.executeUpdate();
 		}finally {
 			closeAll(rs, ps, conn);
 		}
+		return true;
 	}
 
 	//이때까지의 토토 모두 가져오기 (조인한 걸로 수정....)

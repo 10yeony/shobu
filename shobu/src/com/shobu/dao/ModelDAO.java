@@ -89,7 +89,7 @@ public interface ModelDAO {
 	int resultToto(TotoVO vo) throws SQLException;
 	
 	//10. Update Point
-	void updatePoint(String id, int point) throws SQLException;
+	boolean updatePoint(String id) throws SQLException;
 	
 	
 	///////////////////////////////2020-06-24///////////////////////////////////

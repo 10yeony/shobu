@@ -5,9 +5,9 @@ import java.util.Stack;
 public class test {
 
 	public static void main(String[] args) {
-		String game1 = "삼성/SK/삼성";
+		String game1 = "undefined";
 		String[] temp = game1.split("/");
-		System.out.println(temp[0]+" "+temp[1]+ " "+temp[2]);
+		System.out.println(temp.length);
 		
 		String a1 = "삼성";
 		String a2 = "LG";
