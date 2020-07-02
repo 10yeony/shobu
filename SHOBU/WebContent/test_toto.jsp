@@ -248,9 +248,9 @@
 			/* 오늘 날짜 할당 */ 
 			var temp = new Date();   
 			var year = temp.getFullYear(); // 년도
-			var month = temp.getMonth() + 1;  // 월
-			var date = temp.getDate();  // 날짜
-			var day = temp.getDay(); //요일
+			var month = temp.getMonth() + 1;  // 월(1월이 0)
+			var date = temp.getDate() + 1;  // 날짜(다음날 경기)
+			var day = temp.getDay(); //요일(일요일이 0)
 			if(month<10){
 				month = "0"+month;
 			}
@@ -311,10 +311,13 @@
 				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5+"&totalCount="+totalCount,
   		       	
   		       	success: function(data){
-  		       		alert("성공");
+  		       		alert("데이터 수신 성공");
   		       		$('#voteToto').css('display', 'none');
   					$('#checkToto').css('display', 'block');
-  		       	}
+  		       	},
+  		       	error:function(request,status,error){
+  		        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+  		       }
   		    });//ajax
 		});
 	});

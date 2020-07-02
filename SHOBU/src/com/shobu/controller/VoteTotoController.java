@@ -41,8 +41,6 @@ public class VoteTotoController implements Controller {
 			json.put("toto", toto);
 			System.out.println(toto);
 			out.print(toto);
-			out.flush();
-			out.close();
 		} catch (SQLException e) {
 			//e.printStackTrace();
 		} catch (IOException e) {
