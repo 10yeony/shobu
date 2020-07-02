@@ -1,9 +1,13 @@
 package com.shobu.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 
 import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.ModelAndView;
@@ -21,19 +25,28 @@ public class VoteTotoController implements Controller {
 		String game4 = req.getParameter("game4");
 		String game5 = req.getParameter("game5");
 		int totalCount = Integer.parseInt(req.getParameter("totalCount"));
+		TotoVO toto = null;
 		
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
+		
+		JSONObject json = new JSONObject();
+		
 		try {
-			TotoVO toto = dao.checkToto(id, date);
-			if(toto==null) {
+			toto = dao.checkToto(id, date);
+			if(toto==null) {//아직 토토에 참여하지 않았을 때
 				toto = new TotoVO(id, date, game1, game2, game3, game4, game5, totalCount);
-				dao.voteToto(toto);
+				dao.saveToto(toto);
 			}
-			req.getSession().setAttribute("toto", toto);
+			PrintWriter out = res.getWriter();
+			json.put("toto", toto);
+			System.out.println(toto);
+			out.print(toto);
 		} catch (SQLException e) {
 			//e.printStackTrace();
-		}
-		return new ModelAndView("toto.jsp");
+		} catch (IOException e) {
+			//e.printStackTrace();
+		} 
+		return null;
 	}
 
 }

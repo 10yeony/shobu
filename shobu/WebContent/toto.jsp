@@ -245,18 +245,19 @@
 			/* 아이디 할당 */
 			var id = '${member.id}';
 			
-			/* 로그인 해야 투표 가능 */
-			if(id==''){
-				alert("로그인하세요");
-				return false;
+			/* 오늘 날짜 할당 */ 
+			var temp = new Date();   
+			var year = temp.getFullYear(); // 년도
+			var month = temp.getMonth() + 1;  // 월
+			var date = temp.getDate();  // 날짜
+			var day = temp.getDay(); //요일
+			if(month<10){
+				month = "0"+month;
 			}
-			
-			/* 오늘 날짜 할당 */ /* 월요일 경기 없는 날 고려.... */
-			const temp = new Date();   
-			const year = temp.getFullYear(); // 년도
-			const month = temp.getMonth() + 1;  // 월
-			const date = temp.getDate();  // 날짜
-			const today = year+"/"+month+"/"+date;
+			if(date<10){
+				date = "0"+date;
+			}
+			const today = year+"-"+month+"-"+date;
 			
 			/* 총 선택 개수 할당 */
 			var totalCount = 0;
@@ -288,11 +289,19 @@
 				game5 = $(this).siblings('div').text() + $(this).val();
 			});
 			
-			/* 한 경기도 선택하지 않았을 때 */
-			if(totalCount==0){
+			
+			/* 선택 버튼 클릭시 예외 처리 */
+			if(day==0){//오늘이 일요일이면 다음날인 월요일에 경기를 하지 않음
+				alert("내일은 경기가 없습니다");
+				return false;
+			}else if(id==''){//로그인해야 투표 가능
+				alert("로그인하세요");
+				return false;
+			}else if(totalCount==0){//한 경기도 선택하지 않았을 때
 				alert("적어도 한 경기는 선택하세요");
 				return false;
 			}
+			
 			
 			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
 			$.ajax({
