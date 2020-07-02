@@ -23,6 +23,9 @@ public class MatchVO {
 	private String awayInning;
 	private double awayERA;
 	
+	private String homeCode;
+	private String awayCode;
+	
 	public MatchVO() {}
 	
 	public MatchVO(String date, String time, String home, String away,
@@ -233,6 +236,22 @@ public class MatchVO {
 
 	public void setAwayERA(double awayERA) {
 		this.awayERA = awayERA;
+	}
+
+	public String getHomeCode() {
+		return homeCode;
+	}
+
+	public void setHomeCode(String homeCode) {
+		this.homeCode = homeCode;
+	}
+
+	public String getAwayCode() {
+		return awayCode;
+	}
+
+	public void setAwayCode(String awayCode) {
+		this.awayCode = awayCode;
 	}
 
 	@Override
