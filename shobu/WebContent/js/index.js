@@ -31,11 +31,11 @@ $(function() {
 								 		'<td class="graph">'+
 								 			'<section class="bar-graph bar-graph-horizontal bar-graph-one">'+
 								 				'<div class="bar-away">'+
-								 					'<div class="bar" data-percentage='+match.awayRatio+'% style="width:'+match.awayRatio+'%;background-color:'
+								 					'<div class="bar" data-percentage='+(match.awayRatio).toFixed(2)+'% style="width:'+match.awayRatio+'%;background-color:'
 								 					+match.awayColor+'"></div>'+
 								 				'</div>'+
 								 				'<div class="bar-home">'+
-								 					'<div class="bar" data-percentage='+match.homeRatio+'% style="width:'+match.homeRatio+'%;background-color:'
+								 					'<div class="bar" data-percentage='+(match.homeRatio).toFixed(2)+'% style="width:'+match.homeRatio+'%;background-color:'
 								 					+match.homeColor+'"></div>'+
 								 				'</div>'+
 								 			'</section> </td>'+
