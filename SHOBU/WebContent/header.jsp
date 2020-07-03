@@ -381,7 +381,7 @@
 	    <a href="teampage.jsp"><img class="menu" src="image/menu/team.png">팀정보</a><br>
 	    <a href="team.jsp"><img class="menu" src="image/menu/player.png">선수정보</a><br>
 	    <a href="toto.do"><img class="menu" src="image/menu/toto.png">모의토토</a><br>
-	    <a href="map.jsp"><img class="menu" src="image/menu/map.png">토토 판매점</a><br>
+	    <a href="mapList.do"><img class="menu" src="image/menu/map.png">토토 판매점</a><br>
 	</div>
 	<div id="login">
 		<c:choose>
