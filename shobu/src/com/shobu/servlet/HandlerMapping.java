@@ -14,6 +14,7 @@ import com.shobu.controller.PitcherController;
 import com.shobu.controller.RegisterController;
 import com.shobu.controller.TeamInfoController;
 import com.shobu.controller.TotoController;
+import com.shobu.controller.TotoResultController;
 import com.shobu.controller.UpdateController;
 import com.shobu.controller.UpdateMemberController;
 import com.shobu.controller.VoteTotoController;
@@ -68,6 +69,10 @@ public class HandlerMapping {
 		else if(command.equals("voteToto.do")) {
 			controller = new VoteTotoController();
 			System.out.println("VoteTotoController 생성됨");
+		}
+		else if(command.equals("totoResult.do")) {
+			controller = new TotoResultController();
+			System.out.println("TotoResultController 생성됨");
 		}
 		else if(command.equals("update.do")){
 			controller = new UpdateController();

@@ -28,11 +28,12 @@ import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerListVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.TeamVO;
+import com.shobu.model.TotoResultVO;
 import com.shobu.model.TotoVO;
 
 public class ModelDaoImpl implements ModelDAO{
 
-	/*
+	
 	//실제로는 DataSource 사용
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -54,8 +55,8 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
-	*/
 	
+	/*
 	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
 	private static ModelDaoImpl ds = new ModelDaoImpl();
 	private ModelDaoImpl() {
@@ -91,7 +92,7 @@ public class ModelDaoImpl implements ModelDAO{
 		String date = "2020-06-27";
 		dao.updatePoint(date);
 	}
-	
+	*/
 	
 	
 	/* ================= 업데이트 ===================== */
@@ -1505,21 +1506,21 @@ public class ModelDaoImpl implements ModelDAO{
 		return true;
 	}
 
-	//이때까지의 토토 모두 가져오기 (조인한 걸로 수정....)
-	public ArrayList<TotoVO> getAllToto(String id) throws SQLException{
-		ArrayList<TotoVO> totoList = new ArrayList<>();
+	//이때까지의 토토 모두 가져오기
+	public ArrayList<TotoResultVO> getAllToto(String id) throws SQLException{
+		ArrayList<TotoResultVO> totoList = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT * FROM toto WHERE id=? ORDER BY date DESC";
+			String query = "SELECT * FROM (SELECT t.*, r.game1 result1, r.game2 result2, r.game3 result3, r.game4 result4, r.game5 result5, m.point FROM members m, toto t, result r WHERE m.id=t.id AND t.date=r.date) a WHERE id=? ORDER BY date DESC";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				totoList.add(new TotoVO(rs.getInt("no"),
-						id,
+				totoList.add(new TotoResultVO(rs.getInt("no"),
+						rs.getString("id"),
 						rs.getString("date"),
 						rs.getString("game1"),
 						rs.getString("game2"),
@@ -1527,9 +1528,15 @@ public class ModelDaoImpl implements ModelDAO{
 						rs.getString("game4"),
 						rs.getString("game5"),
 						rs.getInt("totalCount"),
-						rs.getInt("currentCount"),
+						rs.getInt("currectCount"),
 						rs.getInt("getPoint"),
-						rs.getInt("stackPoint")));
+						rs.getInt("stackPoint"),
+						rs.getString("result1"),
+						rs.getString("result2"),
+						rs.getString("result3"),
+						rs.getString("result4"),
+						rs.getString("result5"),
+						rs.getInt("point")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);

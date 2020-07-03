@@ -303,7 +303,7 @@
 			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
 			$.ajax({
     			type:'post',
-				url:'voteToto.do',
+				url:'toto.do?cmd=vote',
 				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5+"&totalCount="+totalCount,
   		       	
   		       	success: function(data){
@@ -333,6 +333,7 @@
        <h3 style="text-align: center;">모의 토토</h3>
        <div id=voteToto>
        <form action="toto.do" method="post">
+         <input type="hidden" name="cmd" value="get">
          <!-- 선택지 -->
          <c:choose>
          	<c:when test="${ f:length(matchs)==0}">
