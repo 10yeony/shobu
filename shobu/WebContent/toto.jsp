@@ -303,11 +303,15 @@
 			/* ajax로 폼값 보내고 결과적으로 toto 테이블에 저장 */
 			$.ajax({
     			type:'post',
-				url:'toto.do?cmd=vote',
+				url:'voteToto.do',
 				data:"id="+id+"&date="+today+"&game1="+game1+"&game2="+game2+"&game3="+game3+"&game4="+game4+"&game5="+game5+"&totalCount="+totalCount,
   		       	
   		       	success: function(data){
-  		       		console.log(data);
+  		       		if(data=="true"){
+  		       			alert("선택이 완료되었습니다.");
+  		       		}else{
+  		       			alert("이미 선택하셨습니다. 다른 날을 노려보세요.");
+  		       		}
   		       		$('.select').prop("disabled",true);
   		       		$('.select').css("background-color","gray");
   		       		$('.select').css("border","1px solid gray");

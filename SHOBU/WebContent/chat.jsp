@@ -144,7 +144,7 @@
 	}
 	
 	var userId = "${sessionScope.member.id}";
-	var ws = new WebSocket("ws://localhost:8888/wschat"); // 서버 아이피 넣어야함.
+	var ws = new WebSocket("ws://192.168.0.48:8888/wschat"); // 서버 아이피 넣어야함.
 	ws.onopen = function() {
 <%-- 		<% /* 시험용 */
 		MemberVO member = new MemberVO();

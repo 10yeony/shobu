@@ -175,10 +175,10 @@
     	$("#profile").on("change", handleImgFileSelect); //이미지 파일 업로드시 함수 호출
     	
     	/* 닉네임 중복 확인 */
-    	$('#nicknameCheck').click(function(){
+    	$('.nicknameCheck').click(function(){
     		originNickname = '${member.nickname}';
     		nickname = $('input[name=nickname]').val();
-    		var nicknameCheck = $('input[type=hidden]:eq(1)');
+    		var nicknameCheck = $('#nicknameFlag');
     		if(nickname==''){
     			alert("닉네임을 입력하세요");
     		}else if(originNickname==nickname){
@@ -476,8 +476,8 @@
               </label>
               <div>
                 <input id="nickname" class="w3-input w3-border w3-margin-bottom" type="text" value="${member.nickname}" name="nickname" required>
-                <input type="hidden" value="notNicknameCheck">
-                <button class="w3-section w3-padding" type="button">중복 확인</button>
+                <input type="hidden" id="nicknameFlag" value="notNicknameCheck">
+                <button class="w3-section w3-padding nicknameCheck" type="button">중복 확인</button>
               </div>
               <label>
                 <b>비밀번호</b>

@@ -25,12 +25,11 @@ import com.shobu.model.MemberVO;
 import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
-import com.shobu.model.PlayerListVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.TotoResultVO;
-import com.shobu.model.TotoVO;
+import com.shobu.model.TotoVO2;
 
 public class ModelDaoImpl implements ModelDAO{
 
@@ -1546,8 +1545,8 @@ public class ModelDaoImpl implements ModelDAO{
 	}
 
 	/* 모의 토토 중복 확인하기(이미 투표했을 경우 화면에 띄울 수 있도록 TotoVo로 반환) */
-	public TotoVO checkToto(String id, String date) throws SQLException{
-		TotoVO toto = null;
+	public TotoVO2 checkToto(String id, String date) throws SQLException{
+		TotoVO2 toto = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -1559,7 +1558,7 @@ public class ModelDaoImpl implements ModelDAO{
 			ps.setString(2, date);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				toto = new TotoVO(rs.getString("id"),
+				toto = new TotoVO2(rs.getString("id"),
 						rs.getString("date"),
 						rs.getString("game1"),
 						rs.getString("game2"),
@@ -1575,7 +1574,7 @@ public class ModelDaoImpl implements ModelDAO{
 	}
 
 	/* 모의 토토 선택 저장하기 */
-	public void saveToto(TotoVO vo) throws SQLException{
+	public void saveToto(TotoVO2 vo) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
