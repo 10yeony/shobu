@@ -8,6 +8,7 @@ import com.shobu.controller.HitterController;
 import com.shobu.controller.LoginController;
 import com.shobu.controller.LogoutController;
 import com.shobu.controller.MainController;
+import com.shobu.controller.MapController;
 import com.shobu.controller.NicknameCheckController;
 import com.shobu.controller.Playerlist;
 import com.shobu.controller.PitcherController;
@@ -92,6 +93,10 @@ public class HandlerMapping {
 		}
 		else if(command.equals("teaminfo.do")) {
 			controller = new TeamInfoController();
+			System.out.println("TeamInfo 생성됨");
+		}
+		else if(command.equals("mapList.do")) {
+			controller = new MapController();
 			System.out.println("TeamInfo 생성됨");
 		}
 		

@@ -190,6 +190,7 @@ $(function() {
 <body>
   	
   	<%@ include file="header.jsp"%>
+	<%@ include file="chat.jsp"%>
   	
     <section>
       <!-- 상단 여백 처리-->
