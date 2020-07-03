@@ -1,19 +1,12 @@
 package com.shobu.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 
-import javax.jws.WebParam.Mode;
-
-import com.shobu.config.ServerInfo;
-import com.shobu.controller.Playerlist;
 import com.shobu.datasource.DataSourceManager;
 import com.shobu.logic.Logic;
 import com.shobu.model.ChatVO;
@@ -25,7 +18,6 @@ import com.shobu.model.MemberVO;
 import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
-import com.shobu.model.PlayerListVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
