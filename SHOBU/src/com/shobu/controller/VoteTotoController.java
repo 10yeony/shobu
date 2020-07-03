@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.ModelAndView;
-import com.shobu.model.TotoVO;
+import com.shobu.model.TotoVO2;
 
 public class VoteTotoController implements Controller {
 
@@ -25,22 +25,27 @@ public class VoteTotoController implements Controller {
 		String game4 = req.getParameter("game4");
 		String game5 = req.getParameter("game5");
 		int totalCount = Integer.parseInt(req.getParameter("totalCount"));
-		TotoVO toto = null;
-		
+		TotoVO2 toto = null;
+
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
 		
 		JSONObject json = new JSONObject();
 		
+		boolean flag = false;
+		
 		try {
+			PrintWriter out = res.getWriter();
 			toto = dao.checkToto(id, date);
 			if(toto==null) {//아직 토토에 참여하지 않았을 때
-				toto = new TotoVO(id, date, game1, game2, game3, game4, game5, totalCount);
+				toto = new TotoVO2(id, date, game1, game2, game3, game4, game5, totalCount);
 				dao.saveToto(toto);
+				flag = true;	
 			}
-			PrintWriter out = res.getWriter();
-			json.put("toto", toto);
-			System.out.println(toto);
-			out.print(toto);
+			//json.put("toto", toto);
+			//System.out.println(toto);
+			//out.print(toto);
+			json.put("flag", flag);
+			out.print(flag);
 		} catch (SQLException e) {
 			//e.printStackTrace();
 		} catch (IOException e) {

@@ -19,7 +19,7 @@ import com.shobu.model.PlayerVO;
 import com.shobu.model.ResultVO;
 import com.shobu.model.TeamInfoVO;
 import com.shobu.model.TeamVO;
-import com.shobu.model.TotoVO;
+import com.shobu.model.TotoVO2;
 
 public interface ModelDAO {
 	Connection getConnection() throws SQLException ;
