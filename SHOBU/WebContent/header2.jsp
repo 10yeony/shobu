@@ -302,30 +302,86 @@
 		
 		let teamLogo = {두산:'OB', KT:'KT', LG:'LG', 기아:'HT', 롯데:'LT', 키움:'WO', SK:'SK', 삼성:'SS', NC:'NC', 한화:'HH'};
 		
-		$('#correctCount').text(3);
-		$('#totalCount').text(5);
-		$('#thisMatch').append('<td>SK vs 삼성</td>');		
-		$('#thisMatch').append('<td>두산 vs 키움</td>');		
-		$('#thisMatch').append('<td>롯데 vs NC</td>');		
-		$('#thisMatch').append('<td>KT vs LG</td>');		
-		$('#thisMatch').append('<td>한화 vs 기아</td>');		
-		$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/SS.png width=50px height=50px></td>');
-		$('#myChoice').append('<td><img src=image/team/OB.png width=50px height=50px></td>');
-		$('#myChoice').append('<td><img src=image/team/LT.png width=50px height=50px></td>');
-		$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/KT.png width=50px height=50px></td>');
-		$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/HT.png width=50px height=50px></td>');
-		$('#pointTable').append('<tr><td>'+yesterday+'</td><td>+'+0+'p</td><td>'+12+'p</td></tr>'); 
-		$('#pointTable').append('<tr><td>2020-07-01</td><td>+'+8+'p</td><td>'+12+'p</td></tr>'); 
-		$('#pointTable').append('<tr><td>2020-06-30</td><td>+'+4+'p</td><td>'+4+'p</td></tr>'); 
-		$('#pointTable').append('<tr><td>2020-06-28</td><td>+'+0+'p</td><td>'+0+'p</td></tr>'); 
-		
-		/* 
-		//어제 날짜에 투표하지 않았을 경우
-		$('#correctCount').text('0');
-		$('#totalCount').text('0');
-		$('.resultTable').hide();
-		 */
-		 
+		$.ajax({
+			type:'post',
+			url:'totoResult.do',
+			data: "id="+id,
+			
+			success:function(r){
+				console.log("Header.jsp get Json");
+				console.log(r);
+				console.log(r.totoResult);
+				
+				$.each(r.totoResultList, function(idx, totoResult){
+					if(totoResult.date == yesterday){
+						flag = true;
+						$('#correctCount').text(totoResult.correctCount);
+						$('#totalCount').text(totoResult.totalCount);
+					
+						var game1 = totoResult.game1;
+						var game2 = totoResult.game2;
+						var game3 = totoResult.game3;
+						var game4 = totoResult.game4;
+						var game5 = totoResult.game5;
+					
+						if(game1!='undefined'){
+							var game1Arr = game1.split("/");
+							$('#thisMatch').append('<td>'+game1Arr[0]+' vs '+game1Arr[1]+'</td>');
+							if(game1Arr[3]=='true'){
+								$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/'+teamLogo[game1Arr[2]]+'.png width=50px height=50px></td>');
+							}else{
+								$('#myChoice').append('<td><img src=image/team/'+teamLogo[game1Arr[2]]+'.png width=50px height=50px></td>');
+							}
+						}
+						if(game2!='undefined'){
+							var game2Arr = game2.split("/");
+							$('#thisMatch').append('<td>'+game2Arr[0]+' vs '+game2Arr[1]+'</td>');
+							if(game2Arr[3]=='true'){
+								$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/'+teamLogo[game2Arr[2]]+'.png width=50px height=50px></td>');
+							}else{
+								$('#myChoice').append('<td><img src=image/team/'+teamLogo[game2Arr[2]]+'.png width=50px height=50px></td>');
+							}
+						}
+						if(game3!='undefined'){
+							var game3Arr = game3.split("/");
+							$('#thisMatch').append('<td>'+game3Arr[0]+' vs '+game3Arr[1]+'</td>');
+							if(game3Arr[3]=='true'){
+								$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/'+teamLogo[game3Arr[2]]+'.png width=50px height=50px></td>');
+							}else{
+								$('#myChoice').append('<td><img src=image/team/'+teamLogo[game3Arr[2]]+'.png width=50px height=50px></td>');
+							}
+						}
+						if(game4!='undefined'){
+							var game4Arr = game4.split("/");
+							$('#thisMatch').append('<td>'+game4Arr[0]+' vs '+game4Arr[1]+'</td>');
+							if(game4Arr[3]=='true'){
+								$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/'+teamLogo[game4Arr[2]]+'.png width=50px height=50px></td>');
+							}else{
+								$('#myChoice').append('<td><img src=image/team/'+teamLogo[game4Arr[2]]+'.png width=50px height=50px></td>');
+							}
+						}
+						if(game5!='undefined'){
+							var game5Arr = game5.split("/");
+							$('#thisMatch').append('<td>'+game5Arr[0]+' vs '+game5Arr[1]+'</td>');
+							if(game5Arr[3]=='true'){
+								$('#myChoice').append('<td style="background:#FFD8D8"><img src=image/team/'+teamLogo[game5Arr[2]]+'.png width=50px height=50px></td>');
+							}else{
+								$('#myChoice').append('<td><img src=image/team/'+teamLogo[game5Arr[2]]+'.png width=50px height=50px></td>');
+							}
+						}
+					}//어제 날짜가 존재할 경우
+			    	$('#pointTable').append('<tr><td>'+totoResult.date+'</td><td>+'+totoResult.getPoint+'p</td><td>'+totoResult.stackPoint+'p</td></tr>');
+				});//each
+				if(!flag){ //어제 날짜에 투표하지 않았을 경우
+					$('#correctCount').text('0');
+					$('#totalCount').text('0');
+					$('.resultTable').hide();
+				}
+			},//~callback
+			error:function(){
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+		    }
+		});//~ajax
     });//Ready
     
     /* 이미지 업로드 핸들러 함수 시작 */
