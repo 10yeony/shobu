@@ -96,7 +96,7 @@
 			  	$('#hitter-rate').append("<br/>");
 			  	$('#hitter-rate').append("<img alt='' src='image/player/"+data.hitterlist[0].playerId+".jpg' width='150px' height='190px'>");
 			  	$('#hitter-rate').append("<div id='name'>"+data.hitterlist[0].name+"</div>");
-			  	$('#hitter-rate').append("<div id='detail'>"+data.hitterlist[0].rate+"</div><br/>");			  	
+			  	$('#hitter-rate').append("<div id='detail'>"+data.hitterlist[0].rate.toFixed(3)+"</div><br/>");			  	
 			  //타점 1위
 			  	$('#hitter-rbi').append("<div id='title'><h3>타점</h3></div>");
 			  	$('#hitter-rbi').append("<br/>");

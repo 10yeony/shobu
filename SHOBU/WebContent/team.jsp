@@ -165,7 +165,7 @@ function search(mode, team) {
 					success:function(data){
 						$.each(data.list, function(index, list){
 						$('#review').empty();
-						$('#review').append("<img alt='' src='image/player/"+list.playerId+".jpg' width='180px' height='226px' style='margin-top: 10px'><br/>");
+						$('#review').append("<img alt='' src='image/player/"+list.playerId+".jpg' width='80%'style='margin-top: 10px'><br/>");
 						$('#review').append("<hr><div>"+list.name+" ("+list.position+")</div><br/>");
 						$('#review').append("<div>NO. "+list.number+"</div><br/>");
 						$('#review').append("<div>"+list.birth+"</div><br/>");

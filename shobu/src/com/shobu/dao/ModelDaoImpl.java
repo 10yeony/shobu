@@ -32,8 +32,7 @@ import com.shobu.model.TeamVO;
 import com.shobu.model.TotoVO;
 
 public class ModelDaoImpl implements ModelDAO{
-
-	/*
+	
 	//실제로는 DataSource 사용
 	private DataSourceManager dsm = DataSourceManager.getInstance();
 	private static ModelDaoImpl dao = new ModelDaoImpl();
@@ -55,46 +54,9 @@ public class ModelDaoImpl implements ModelDAO{
 		dsm.close(rs);
 		closeAll(ps, conn);		
 	}
-	*/
-	
-	//단위테스트 할 때 DataSource 관련 코드는 주석으로 막고 DriverManager로 하면 됨
-	private static ModelDaoImpl ds = new ModelDaoImpl();
-	private ModelDaoImpl() {
-		try {
-			Class.forName(ServerInfo.DRIVER_NAME);
-			System.out.println("Driver Loading Success...");
-		}catch(ClassNotFoundException e){
-			System.out.println("Driver Loading Fail...."); 
-		}
-	}
-	public static ModelDaoImpl getInstance() {
-		return ds;
-	}
-	@Override
-	public Connection getConnection() throws SQLException {
-		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASS);
-		System.out.println("Database Connection......");
-		return conn;
-	}
-	@Override
-	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException{
-		if(ps!=null) ps.close();		
-		if(conn != null) conn.close();
-	}
-	@Override
-	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException{		
-		if(rs != null)	rs.close();
-		closeAll(ps, conn);		
-	}
-	//단위 테스트
-	public static void main(String[] args) throws Exception {
-		ModelDaoImpl dao = ModelDaoImpl.getInstance();
-		String date = "2020-06-27";
-		dao.updatePoint(date);
-	}
 	
 	
-	
+
 	/* ================= 업데이트 ===================== */
 	
 	/* 선수 업데이트 */

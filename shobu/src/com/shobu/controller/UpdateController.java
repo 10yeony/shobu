@@ -72,22 +72,23 @@ public class UpdateController implements Controller {
 					ModelDaoImpl.getInstance().updateHitter(pu.updateHitter(playerlist.get(i).getPlayerId(), playerlist.get(i).getTeamCode()), playerlist.get(i).getPlayerId());
 			}
 			
-			Date D = new Date();
-			Date YD = new Date();
-			YD.setTime(D.getTime() - ((long)1000*60*60*24));
-			
+			Date TD = new Date(); // 오늘날짜
+			Date YD = new Date(); // 어제날짜
+			YD.setTime(TD.getTime() - ((long)1000*60*60*24));
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println(date.format(YD));
+			System.out.println(date.format(TD));
 			
-			ResultVO result = pu.updateResult(date.format(YD));
-			System.out.println(result);
-			ModelDaoImpl.getInstance().updateResult(result);
-			ModelDaoImpl.getInstance().updatePoint(date.format(YD));
-			
-			ArrayList<MatchVO> matches = pu.updateMatch(date.format(D));
+			//오늘경기 DB업데이트
+			ArrayList<MatchVO> matches = pu.updateMatch(date.format(TD));
 			for(int i = 0; i<matches.size(); i++) {
 				ModelDaoImpl.getInstance().updateMatch(matches.get(i));
 			}
+			
+			ResultVO result = pu.updateResult(date.format(YD));//어제경기결과
+			ModelDaoImpl.getInstance().updateResult(result);//어제경기결과 DB업데이트
+			ModelDaoImpl.getInstance().updatePoint(date.format(YD));//포인트적립
+			
 			mv = new ModelAndView(path);
 			
 			
