@@ -694,17 +694,19 @@ public class PlayerUpdate {
 			
 			for(int i = 1; i<6; i++) {
 				Elements links = link.eq(i);
-				String home = links.select("tr").eq(1).select("td").eq(0).text();
-				String away = links.select("tr").eq(2).select("td").eq(0).text();
+				String home = links.select("tr").eq(1).select("td").first().text();
+				String away = links.select("tr").eq(2).select("td").first().text();
 				
-				int homescore = Integer.parseInt(links.select("tr").eq(1).select("td").eq(10).text());
-				int awayscore = Integer.parseInt(links.select("tr").eq(2).select("td").eq(10).text());
-				
-				if(homescore > awayscore) 
+				int homescore = Integer.parseInt(links.select("tr").eq(1).select("td").last().text());
+				int awayscore = Integer.parseInt(links.select("tr").eq(2).select("td").last().text());
+				if(homescore > awayscore) {
 					arr.add(home);
-				else if(homescore < awayscore) 
+				}
+				else if(homescore < awayscore) {
 					arr.add(away);
+				}
 			}
+			
 			result.setDate(date);
 			result.setGame1(arr.get(0));
 			result.setGame2(arr.get(1));
