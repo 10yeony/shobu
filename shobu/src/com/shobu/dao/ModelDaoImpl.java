@@ -15,14 +15,12 @@ import com.shobu.model.HitterVO;
 import com.shobu.model.MapVO;
 import com.shobu.model.MatchVO;
 import com.shobu.model.MemberVO;
-import com.shobu.model.Pitcher3VO;
 import com.shobu.model.PitcherListVO;
 import com.shobu.model.PitcherVO;
 import com.shobu.model.PlayerVO;
 import com.shobu.model.ResultVO;
 import com.shobu.model.TeamVO;
 import com.shobu.model.TotoResultVO;
-import com.shobu.model.TotoVO;
 
 public class ModelDaoImpl implements ModelDAO{
 	//실제로는 DataSource 사용
