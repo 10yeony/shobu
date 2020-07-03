@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import com.shobu.dao.ModelDaoImpl;
 import com.shobu.model.ModelAndView;
-import com.shobu.model.TotoVO2;
+import com.shobu.model.TotoVO;
 
 public class VoteTotoController implements Controller {
 
@@ -25,7 +25,7 @@ public class VoteTotoController implements Controller {
 		String game4 = req.getParameter("game4");
 		String game5 = req.getParameter("game5");
 		int totalCount = Integer.parseInt(req.getParameter("totalCount"));
-		TotoVO2 toto = null;
+		TotoVO toto = null;
 
 		ModelDaoImpl dao = ModelDaoImpl.getInstance();
 		
@@ -37,7 +37,7 @@ public class VoteTotoController implements Controller {
 			PrintWriter out = res.getWriter();
 			toto = dao.checkToto(id, date);
 			if(toto==null) {//아직 토토에 참여하지 않았을 때
-				toto = new TotoVO2(id, date, game1, game2, game3, game4, game5, totalCount);
+				toto = new TotoVO(id, date, game1, game2, game3, game4, game5, totalCount);
 				dao.saveToto(toto);
 				flag = true;	
 			}
